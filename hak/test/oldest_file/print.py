@@ -4,7 +4,7 @@ from os.path import getmtime
 
 from hak.dict.test_durations.to_tuple_list_sorted_by_duration import f as srt
 from hak.file.pickle.load_if_exists import f as load_pickle
-from hak.file.pickle.save import f as save
+from hak.file.pickle.save import f as save_pickle
 from hak.file.remove import f as remove
 from hak.file.save import f as save
 from hak.file.save import f as save_file
@@ -88,13 +88,13 @@ def list_testables(root='.'):
 
 def make_Pi_t(python_filepaths, test_all, prev, last_mods): return (
   python_filepaths.copy() if test_all else [
-    p
-    for p
+    python_filepath
+    for python_filepath
     in python_filepaths
     if (
-      (prev[p] if p in prev else 0) !=
+      (prev[python_filepath] if python_filepath in prev else 0) !=
       # tern(     prev[p],      p in prev, 0) !=
-      tern(last_mods[p], p in last_mods, 0)
+      tern(last_mods[python_filepath], python_filepath in last_mods, 0)
     )
   ]
 ) or python_filepaths.copy()
@@ -115,7 +115,7 @@ def f(filepaths=None, term=None):
   except EOFError as eofe: remove('./last_modified.pickle'); prev = set()
   
   last_mods = {py_filename: getmtime(py_filename) for py_filename in filepaths}
-  save(last_mods, './last_modified.pickle')
+  save_pickle(last_mods, './last_modified.pickle')
 
   python_filepaths_sorted_by_last_mod = [_[0] for _ in srt(last_mods)[::-1]]
   python_filepaths_to_test_and_previously_failed = make_Pi_t(
