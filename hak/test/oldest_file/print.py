@@ -15,14 +15,8 @@ from hak.ternary import f as tern
 
 # ------------------------------------------------------------------------------
 # from hak.list.strings.filepaths.py.testables.get import f as list_testables
-
-
 # from hak.directory.make import f as mkdir
-
-
 # from hak.directory.remove import f as remove_dir
-
-
 
 _list_testables = lambda root='.': [
   φ for φ in list_py_files(root, [])
@@ -90,12 +84,7 @@ def list_testables(root='.'):
 #   dn()
 #   return y == z or pf([f'y: {y}', f'z: {z}'])
 
-
 # ------------------------------------------------------------------------------
-
-
-
-
 
 def make_Pi_t(python_filepaths, test_all, prev, last_mods): return (
   python_filepaths.copy() if test_all else [
@@ -115,9 +104,6 @@ def make_Pi_t(python_filepaths, test_all, prev, last_mods): return (
 # _prev = {'./b.py': 32481.8, './c.py': 32497.3}
 # _last_mods = {'./a.py': 97551.0, './b.py': 32481.8, './c.py': 32497.3}
 # t = lambda: ['./a.py'] == f(_python_filepaths, _test_all, _prev, _last_mods)
-
-
-
 
 # print_oldest_file
 def f(filepaths=None, term=None):
