@@ -2,6 +2,7 @@ from hak.string.char.is_digit import f as is_digit
 from hak.string.char.is_upper import f as is_upper
 
 # camel_to_snake
+
 f = lambda ζ: (
   ('_' if is_digit(ζ[0]) else '')+ ζ[0].lower() + ''.join([
     f'_{ζ[θ].lower()}' if all([
@@ -13,6 +14,7 @@ f = lambda ζ: (
 )
 
 def t():
-  z = f("ThisIsAnExampleOfCamelCase")
+  x = "ThisIsAnExampleOfCamelCase"
   y = "this_is_an_example_of_camel_case"
+  z = f(x)
   return y == z
