@@ -131,3 +131,4 @@ dmypy.json
 # Added by John
 last_modified.pickle
 durations.pickle
+*.secret
