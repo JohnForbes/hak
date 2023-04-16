@@ -8,6 +8,7 @@ from hak.terminal import Terminal
 from hak.file.remove import f as remove
 
 # check_final_line
+
 def f(filepaths=None, term=None):
   term = term or Terminal()
   term.print('Checking final lines...', end='\r')
