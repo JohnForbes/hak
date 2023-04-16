@@ -1,4 +1,5 @@
 from hak.string.print_and_return_false import f as pf
+
 f = lambda x_str, x_char: [i for (i, c) in enumerate(x_str) if c == x_char]
 
 def t():
