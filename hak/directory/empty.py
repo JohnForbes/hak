@@ -8,6 +8,7 @@ from hak.file.remove import f as remove
 r = './temp'
 up = lambda: [mkdir(r), *[save(f'{r}/{_}.txt', _) for _ in az]]
 dn = lambda: rmdir(r)
+
 f = lambda x: [remove(f'{r}/{filename}') for filename in listdir(x)]
 
 def t():
