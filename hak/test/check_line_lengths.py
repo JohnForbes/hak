@@ -8,6 +8,7 @@ from hak.terminal import Terminal
 from hak.file.remove import f as remove
 
 # check_line_lengths
+
 def f(filepaths=None, term=None):
   term = term or Terminal()
   term.print('Checking line lengths...', end='\r')
