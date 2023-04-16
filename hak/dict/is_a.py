@@ -1,4 +1,5 @@
 f = lambda x: isinstance(x, dict)
+
 t = lambda: all([
   not any([f(_) for _ in [
     'abc',
