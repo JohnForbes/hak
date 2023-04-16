@@ -1,4 +1,5 @@
 # _l
+
 f = lambda body: eval("lambda x: "+body.replace('\n', '\\n'))
 
 test_x_squared = lambda: f("x*x")(2) == 4
