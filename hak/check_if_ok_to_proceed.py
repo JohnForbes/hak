@@ -10,6 +10,7 @@ def t_do_not_proceed():
   except RuntimeError: return True
 
 t_silent = lambda: f(silent=True) == 'silent'
+
 t = lambda: all([t_proceed(), t_do_not_proceed(), t_silent()])
 
 class FakeInput:
