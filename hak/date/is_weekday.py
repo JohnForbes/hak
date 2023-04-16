@@ -1,5 +1,7 @@
 from datetime import date
+
 f = lambda x: x.weekday() < 5
+
 t = lambda: all([
   not any([
     f(date(2022, 12, 31)), # 2022-12-31 5  Saturday
