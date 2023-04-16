@@ -34,4 +34,4 @@ def t():
   z = f(set(['failed.py']), 'foo.py', 'foo foo', dt(2022, 1, 1), _dir)
   z_failed_pickle = load_pickle(_failed_pickle_path)
   dn()
-  return all([z == y, z_failed_pickle == {'failed.py', 'foo.py'}])
+  return all([y == z, z_failed_pickle == {'failed.py', 'foo.py'}])
