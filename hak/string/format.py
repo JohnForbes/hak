@@ -18,7 +18,7 @@ from hak.string.remove.whitespace_between_newlines import f as remove_whitespace
 from hak.string.colour.bright.yellow import f as yellow
 from hak.string.colour.bright.cyan import f as cy
 from hak.string.colour.bright.magenta import f as magenta
-from hak.strings.compare import f as compare_strings
+from hak.list.strings.compare import f as compare_strings
 
 def f(x: str):
   for fn in [
