@@ -99,7 +99,7 @@ def f(x):
 
   update_setup_cfg(z)
   update_setup_py(z)
-  remove_dist_tar()
+  remove_dist_tar(x)
   generate_new_dist_tar(x)
   # add_to_git(cwd=_root, cap_out=True)
   # upload_result = start_upload()
@@ -168,7 +168,15 @@ def t():
     return pf([f"t_remove_dist_tar()", f'x: {x}', f'y: {y}', f'z: {z}'])
 
   if not t_generate_new_dist_tar():
-    return pf([f"t_generate_new_dist_tar()", f'x: {x}', f'y: {y}', f'z: {z}'])
+    print(f"t_generate_new_dist_tar()")
+    print(f'x: {x}')
+    for k in (set(y.keys()) | set(z.keys())):
+      if y[k] != z[k]:
+        print(f'y[{k}]: {y[{k}]}')
+        print(f'z[{k}]: {z[{k}]}')
+        print()
+
+    return False
 
   if not t_add_to_git():
     return pf([f"t_add_to_git()", f'x: {x}', f'y: {y}', f'z: {z}'])
