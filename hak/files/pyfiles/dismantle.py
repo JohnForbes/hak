@@ -1,7 +1,7 @@
 from hak.directory.make import f as mkdir
 from hak.file.save import f as save
 from hak.list.strings.filepaths.py.get import f as list_py_files
-from hak.strings.pyfiles.filter_out_items import f as ignore_protected
+from hak.list.strings.pyfiles.filter_out_items import f as ignore_protected
 from hak.file.py.dismantle import f as dismantle
 from hak.file.load import f as load
 from hak.directory.remove import f as rmdir
