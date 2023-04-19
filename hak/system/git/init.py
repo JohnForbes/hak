@@ -6,7 +6,7 @@ _root = '../temp_git_init'
 def up(): mkdir(_root)
 
 def dn(): rmdir(_root)
-args = ['git', 'init', '--initial-branch', 'main']
+args = ['git', 'init']
 
 f = lambda cwd: sprun(cwd=cwd, capture_output=True, args=args)
 
