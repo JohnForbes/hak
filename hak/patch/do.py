@@ -103,7 +103,7 @@ def f(x):
   x = deepcopy(x)
   z = {}
   z['v'] = x['v'] if 'v' in x else None
-  z['root'] = x['root'] # if 'root' in x else '.'
+  z['root'] = x['root'] if 'root' in x else '.'
   z['cfg_path'] = f'{z["root"]}/setup.cfg'
   z['py_path'] = f'{z["root"]}/setup.py'
 
