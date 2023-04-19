@@ -19,10 +19,7 @@ def up():
   print(temp_root)
   filename = f'{temp_root}/junk.tar'
   save(filename, 'junk')
-  return {
-    'filename': filename,
-    'root': temp_root
-  }
+  return {'filename': filename, 'root': temp_root}
 
 dn = lambda x: rmdirie(x['root'])
 
