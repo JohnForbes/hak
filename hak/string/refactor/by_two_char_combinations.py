@@ -1,5 +1,5 @@
 from subprocess import run as sprun
-from hak.strings.two_char_combinations import f as prepare_combinations
+from hak.list.strings.two_char_combinations import f as prepare_combinations
 
 def f(original):
   data = original
