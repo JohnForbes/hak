@@ -8,12 +8,10 @@ from hak.string.print_and_return_false import f as pf
 
 f = lambda x='.': empty_directory(x)
 temp_root = './_dist_tars_remove'
-# target = f'{temp_root}/dist'
 
 def up():
   mkdir(temp_root)
   print(temp_root)
-  # print(target)
   _ = f'{temp_root}/junk.tar'
   save(_, 'junk')
   return _
