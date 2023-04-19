@@ -2,8 +2,8 @@
 from subprocess import CompletedProcess
 from hak.file.load import f as load
 
-_username = load('username.secret')
-_password = load('password.secret')
+_username = load('username.secret').split('\n')[0]
+_password = load('password.secret').split('\n')[0]
 
 def f(args, cwd, capture_output):
   if args == ['pwd']:
