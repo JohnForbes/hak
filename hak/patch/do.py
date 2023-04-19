@@ -27,6 +27,7 @@ from subprocess import run as sprun
 from hak.string.print_and_return_false import f as pf
 
 from hak.directory.make import f as mkdir
+from hak.file.load import f as load
 
 temp_root = '.'
 temp_dir_path = f'{temp_root}/hak_test'
@@ -102,16 +103,8 @@ def f(x):
   remove_dist_tar(x)
   generate_new_dist_tar(x)
   # add_to_git(cwd=_root, cap_out=True)
-  # upload_result = start_upload()
-  z['upload_result'] = True
-
+  z['upload_result'] = start_upload(x)
   return z
-  # return {
-  #   'v': v,
-  #   'cfg_path': cfg_path,
-  #   'py_path': py_path,
-  #   'upload_result': upload_result
-  # } 
 
 def t():
   x = {
@@ -122,7 +115,12 @@ def t():
     'v': {'major': 1, 'minor': 2, 'patch': 4},
     'cfg_path': './hak_test/setup.cfg',
     'py_path': './hak_test/setup.py',
-    'upload_result': True,
+    'upload_result': {
+      'args': ['twine', 'upload', 'dist/*', '-u', 'username', '-p', 'password'],
+      'returncode': 0,
+      'stdout': b'Uploading distributions to',
+      'stderr': b''
+    },
     'root': temp_dir_path
   }
   up()
@@ -131,29 +129,110 @@ def t():
 
   if z is None: return pf([f"z is None", f'x: {x}', f'y: {y}', f'z: {z}'])
 
-  if y != z:
-    print('y != z')
-    for k in (set(y.keys()) | set(z.keys())):
-      if not y[k] == z[k]:
-        return pf([
-          f"y[{k}] == z[{k}]",
-          f'y[{k}]: {y[k]}',
-          f'z[{k}]: {z[k]}',
-        ])
+  # if y != z:
+  #   print('y != z')
+  #   for k in (set(y.keys()) | set(z.keys())):
+  #     if not y[k] == z[k]:
+  #       return pf([f"y[{k}] == z[{k}]", f'y[{k}]: {y[k]}', f'z[{k}]: {z[k]}'])
     
-    return False
+  #   return False
 
   if y['v'] != z['v']:
     return pf([f"y['v'] != z['v']", f'x: {x}', f'y: {y}', f'z: {z}'])
   
   for k in (set(y.keys()) | set(z.keys())):
-    if not y[k] == z[k]:
-      return pf([
-        f"y[{k}] == z[{k}]",
-        f'x: {x}',
-        f'y: {y}',
-        f'z: {z}'
-      ])
+    if k != 'upload_result':
+      if not y[k] == z[k]:
+        return pf([f"y[{k}] == z[{k}]", f'x: {x}', f'y: {y}', f'z: {z}'])
+  
+  if not (
+    len(y['upload_result']['args']) ==
+    len(z['upload_result']['args']) ==
+    7
+  ):
+    return pf([
+      ' == '.join([
+        "not (len(y['upload_result']['args'])",
+        "len(z['upload_result']['args'])",
+        "5)"
+      ]),
+      f"y['upload_result']['args']: {y['upload_result']['args']}",
+      f"z['upload_result']['args']: {z['upload_result']['args']}"
+    ])
+
+  if not (
+    y['upload_result']['args'][0] ==
+    z['upload_result']['args'][0] ==
+    'twine'
+  ):
+    return pf(' == '.join([
+      "not (y['upload_result']['args'][0]",
+      "z['upload_result']['args'][0]",
+      "'twine')"
+    ]))
+
+  if not (
+    y['upload_result']['args'][1] ==
+    z['upload_result']['args'][1] ==
+    'upload'
+  ):
+    return pf(' == '.join([
+      "not (y['upload_result']['args'][1]",
+      "z['upload_result']['args'][1]",
+      "'upload')"
+    ]))
+
+  if not (
+    y['upload_result']['args'][2] ==
+    z['upload_result']['args'][2] ==
+    'dist/*'
+  ):
+    return pf(' == '.join([
+      "not (y['upload_result']['args'][2]",
+      "z['upload_result']['args'][2]",
+      "'dist/*')"
+    ]))
+
+  if not (
+    z['upload_result']['args'][4] ==
+    load('username.secret').split('\n')[0]
+  ):
+    return pf(' == '.join([
+      "not (z['upload_result']['args'][4]",
+      "load('username.secret').split('\n')[0])"
+    ]))
+
+  if not (
+    z['upload_result']['args'][6] ==
+    load('password.secret').split('\n')[0]
+  ):
+    return pf(' == '.join([
+      "not (z['upload_result']['args'][6]",
+      "load('password.secret').split('\n')[0])"
+    ]))
+
+  if not (
+    y['upload_result']['returncode'] ==
+    z['upload_result']['returncode'] ==
+    0
+  ):
+    return pf(' == '.join([
+      "not y['upload_result']['returncode']",
+      "z['upload_result']['returncode']",
+      "0"
+    ]))
+
+  if not (y['upload_result']['stderr'] == z['upload_result']['stderr'] == b''):
+    return pf(' == '.join([
+      "not y['upload_result']['stderr'] == z['upload_result']['stderr'] == b''"
+    ]))
+
+  if y['upload_result']['stdout'] not in z['upload_result']['stdout']:
+    return pf([
+      "y['upload_result']['stdout'] not in z['upload_result']['stdout']",
+      f"y['upload_result']['stdout']: {y['upload_result']['stdout']}",
+      f"z['upload_result']['stdout']: {z['upload_result']['stdout']}"
+    ])
 
   if not t_get_pip_version():
     return pf([f"t_get_pip_version()", f'x: {x}', f'y: {y}', f'z: {z}'])
