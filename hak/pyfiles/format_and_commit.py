@@ -1,6 +1,6 @@
 from hak.system.git.push_after_delay import f as push_commits_after_delay
 from hak.list.strings.filepaths.py.get import f as list_py_files
-from hak.strings.pyfiles.filter_out_items import f as filter_out_items
+from hak.list.strings.pyfiles.filter_out_items import f as filter_out_items
 from hak.pyfiles.format import f as auto_format_py_filenames
 
 def f(_L_pi, fn_a=auto_format_py_filenames, fn_b=push_commits_after_delay):
