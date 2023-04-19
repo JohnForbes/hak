@@ -3,6 +3,16 @@ from hak.file.save import f as save
 from hak.list.strings.patch_setup_cfg import f as increment_patch_in_setup_cfg
 from hak.directory.make import f as mkdirine
 from hak.directory.remove import f as rmdirie
+from copy import deepcopy
+
+def f(x):
+  x = deepcopy(x)
+  v = x['v']
+  filename = x['filename'] if 'filename' in x else 'setup.cfg'
+  lines = load(filename).split('\n')
+  new_lines = increment_patch_in_setup_cfg(v, lines)
+  save(filename, "\n".join(new_lines))
+  return None
 
 temp_dir_path = temp_dir_path = './_setup_cfg_update'
 temp_file_path = f'{temp_dir_path}/setup.cfg'
@@ -33,15 +43,10 @@ def up():
 
 dn = lambda: rmdirie(temp_dir_path)
 
-def f(v, filename='setup.cfg'):
-  lines = load(filename).split('\n')
-  new_lines = increment_patch_in_setup_cfg(v, lines)
-  save(filename, "\n".join(new_lines))
-  return None
-
 def t():
   up()
-  f(v={'major': 4, 'minor': 5, 'patch': 6}, filename=temp_file_path)
+  x = {'v': {'major': 4, 'minor': 5, 'patch': 6}, 'filename': temp_file_path}
+  f(x)
   z = load(temp_file_path)
   dn()
   return "version = 4.5.6" in z
