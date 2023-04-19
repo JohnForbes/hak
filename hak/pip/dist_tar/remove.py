@@ -6,22 +6,30 @@ from hak.directory.remove import f as rmdirie
 from hak.file.save import f as save
 from hak.string.print_and_return_false import f as pf
 
-f = lambda x='.': empty_directory(x)
-temp_root = './_dist_tars_remove'
+from copy import deepcopy
+
+def f(x):
+  x = deepcopy(x)
+  root = x['root'] if 'root' in x else '.'
+  return empty_directory(root)
 
 def up():
+  temp_root = './_dist_tars_remove'
   mkdir(temp_root)
   print(temp_root)
-  _ = f'{temp_root}/junk.tar'
-  save(_, 'junk')
-  return _
+  filename = f'{temp_root}/junk.tar'
+  save(filename, 'junk')
+  return {
+    'filename': filename,
+    'root': temp_root
+  }
 
-def dn(): rmdirie(temp_root)
+dn = lambda x: rmdirie(x['root'])
 
 def t():
-  _ = up()
-  f(temp_root)
-  if not exists(_): return pf(f'not exists({_})')
-  dn()
-  if exists(temp_root): return pf(f'exists({temp_root})')
+  x = up()
+  f(x)
+  if not exists(x['filename']): return pf(f'not exists({x["filename"]})')
+  dn(x)
+  if exists(x["root"]): return pf(f'exists({x["root"]})')
   return True
