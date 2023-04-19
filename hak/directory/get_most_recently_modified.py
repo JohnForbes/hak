@@ -1,4 +1,4 @@
-from hak.directory.make import f as mkdir
+from hak.directory.make import f as mkdirine
 from hak.file.save import f as save
 from hak.directory.remove import f as rmdir
 from hak.string.print_and_return_false import f as pf
@@ -19,7 +19,7 @@ def up():
   x['dir_name'] = './test_directory_get_most_recently_modified'
   
   # Create test directory
-  mkdir(x['dir_name'])
+  mkdirine(x['dir_name'])
 
   # create old file
   x['old_file_content'] = 'ABC'
