@@ -172,10 +172,7 @@ def t():
     print(f'x: {x}')
     for k in (set(y.keys()) | set(z.keys())):
       if y[k] != z[k]:
-        print(f'y[{k}]: {y[{k}]}')
-        print(f'z[{k}]: {z[{k}]}')
-        print()
-
+        print('\n'.join([f'y[{k}]: {y[{k}]}', f'z[{k}]: {z[{k}]}', '']))
     return False
 
   if not t_add_to_git():
