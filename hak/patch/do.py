@@ -100,7 +100,7 @@ def f(x):
   update_setup_cfg(z)
   update_setup_py(z)
   # remove_dist_tar()
-  generate_new_dist_tar()
+  generate_new_dist_tar(x)
   # add_to_git(cwd=_root, cap_out=True)
   # upload_result = start_upload()
   z['upload_result'] = True
