@@ -133,3 +133,4 @@ last_modified.pickle
 durations.pickle
 *.secret
 failed.pickle
+hak_test
