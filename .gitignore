@@ -132,3 +132,4 @@ dmypy.json
 last_modified.pickle
 durations.pickle
 *.secret
+failed.pickle
