@@ -4,15 +4,16 @@ from hak.directory.remove import f as rmdir
 from hak.string.print_and_return_false import f as pf
 from os.path import getmtime
 from hak.list.strings.filepaths.get import f as get_filepaths
+from time import sleep
 
 def f(x):
   filepaths = get_filepaths(x, [])
-  newest = {'name': '', 'time': float('inf')}
-  for filename in filepaths:
-    last_modified_time = getmtime(filename)
-    if last_modified_time < newest['time']:
-      newest = {'file': filename, 'time': last_modified_time}
-  return newest['file']
+  latest = {'filepath': '', 'time': 0}
+  for filepath in filepaths:
+    last_modified_time = getmtime(filepath)
+    if last_modified_time > latest['time']:
+      latest = {'filepath': filepath, 'time': last_modified_time}
+  return latest['filepath']
 
 def up():
   x = {}
@@ -26,6 +27,8 @@ def up():
   x['old_file_path'] = f"{x['dir_name']}/old_file.txt"
   save(x['old_file_path'], x['old_file_content'])
 
+  sleep(1)
+
   # create new file
   x['new_file_content'] = 'XYZ'
   x['new_file_path'] = f"{x['dir_name']}/new_file.txt"
@@ -37,7 +40,7 @@ dn = lambda x: rmdir(x['dir_name'])
 
 def t():
   x = up()
-  y = x['old_file_path']
+  y = x['new_file_path']
   z = f(x['dir_name'])
   dn(x)
   return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
