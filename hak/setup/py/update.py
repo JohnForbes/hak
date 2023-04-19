@@ -4,6 +4,15 @@ from hak.list.strings.patch_setup_py import f as increment_patch_in_setup_py
 from hak.directory.make import f as mkdirine
 from hak.directory.remove import f as rmdirie
 from hak.string.print_and_return_false import f as pf
+from copy import deepcopy
+
+def f(x):
+  x = deepcopy(x)
+  filename = x['filename'] if 'filename' in x else 'setup.py'
+  lines = load(filename).split('\n')
+  new_lines = increment_patch_in_setup_py(x['v'], lines)
+  save(filename, "\n".join(new_lines))
+  return None
 
 temp_dir_path = temp_dir_path = './_setup_py_update'
 temp_file_path = f'{temp_dir_path}/setup.py'
@@ -33,16 +42,11 @@ def up():
 
 dn = lambda: rmdirie(temp_dir_path)
 
-def f(v, filename='setup.py'):
-  lines = load(filename).split('\n')
-  new_lines = increment_patch_in_setup_py(v, lines)
-  save(filename, "\n".join(new_lines))
-  return None
-
 def t():
-  up()
+  x = {'v': {'major': 4, 'minor': 5, 'patch': 6}, 'filename': temp_file_path}
   y = "version='4.5.6',"
-  f(v={'major': 4, 'minor': 5, 'patch': 6}, filename=temp_file_path)
-  z = load(temp_file_path)
+  up()
+  f(x)
+  z = [_ for _ in load(temp_file_path).split('\n') if 'version' in _][0]
   dn()
-  return y in z or pf([f'y: {y}', f'z: {z}'])
+  return y in z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
