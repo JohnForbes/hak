@@ -3,14 +3,16 @@ from hak.string.colour.bright.magenta import f as mag
 from subprocess import run as sprun
 from hak.file.save import f as save
 from hak.file.load import f as load
+from os.path import exists
 
 f_M = lambda x: f_X(x, 'Updated', ask=True)
 f_A = lambda x: f_X(x, 'Added', ask=True)
 f_D = lambda x: f_X(x, 'Removed', ask=False)
 
 def f_X(a, b, ask=True):
-  save(a, load(a))
-  sprun(args=['code', a])
+  if exists(a):
+    save(a, load(a))
+    sprun(args=['code', a])
   __=mag(a)
   response=input(cy(f"Proceed with '")+a+cy(f"'? (Q/Y/N):")) if ask else 'Y'
   if response=='Y':
