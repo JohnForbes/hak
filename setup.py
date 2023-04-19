@@ -4,7 +4,7 @@ long_description = Path("./README.md").read_text()
 
 setup(
   name='hak',
-  version='0.0.7',
+  version='0.0.8',
   license='MIT',
   description='Function Test Pair Toolbox',
   long_description=long_description,
@@ -54,6 +54,7 @@ setup(
     'hak/list',
     'hak/list/strings',
     'hak/list/strings/contain',
+    'hak/list/strings/filepaths',
     'hak/list/strings/pyfiles',
     'hak/lists',
     'hak/patch',
