@@ -28,7 +28,7 @@ from hak.string.print_and_return_false import f as pf
 
 from hak.directory.make import f as mkdir
 
-temp_root = '..'
+temp_root = '.'
 temp_dir_path = f'{temp_root}/hak_test'
 temp_cfg_path = f'{temp_dir_path}/setup.cfg'
 temp_py_path = f'{temp_dir_path}/setup.py'
@@ -120,8 +120,8 @@ def t():
   }
   y = {
     'v': {'major': 1, 'minor': 2, 'patch': 4},
-    'cfg_path': '../hak_test/setup.cfg',
-    'py_path': '../hak_test/setup.py',
+    'cfg_path': './hak_test/setup.cfg',
+    'py_path': './hak_test/setup.py',
     'upload_result': True,
     'root': temp_dir_path
   }
@@ -132,16 +132,16 @@ def t():
   if z is None: return pf([f"z is None", f'x: {x}', f'y: {y}', f'z: {z}'])
 
   if y != z:
-    y_keys = set(y.keys())
-    z_keys = set(z.keys())
-    return pf([
-      'y != z',
-      f'y_keys - z_keys: {y_keys - z_keys}',
-      f'z_keys - y_keys: {z_keys - y_keys}',
-      f'x: {x}',
-      f'y: {y}',
-      f'z: {z}'
-    ])
+    print('y != z')
+    for k in (set(y.keys()) | set(z.keys())):
+      if not y[k] == z[k]:
+        return pf([
+          f"y[{k}] == z[{k}]",
+          f'y[{k}]: {y[k]}',
+          f'z[{k}]: {z[k]}',
+        ])
+    
+    return False
 
   if y['v'] != z['v']:
     return pf([f"y['v'] != z['v']", f'x: {x}', f'y: {y}', f'z: {z}'])
