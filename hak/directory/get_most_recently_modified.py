@@ -3,7 +3,7 @@ from hak.file.save import f as save
 from hak.directory.remove import f as rmdir
 from hak.string.print_and_return_false import f as pf
 from os.path import getmtime
-from hak.list.strings.filepaths.get import f as get_filepaths
+from hak.directory.filepaths.get import f as get_filepaths
 from time import sleep
 
 def f(x):
