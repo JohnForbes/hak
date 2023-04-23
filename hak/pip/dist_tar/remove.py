@@ -16,7 +16,6 @@ def f(x):
 def up():
   temp_root = './_dist_tars_remove'
   mkdir(temp_root)
-  print(temp_root)
   filename = f'{temp_root}/junk.tar'
   save(filename, 'junk')
   return {'filename': filename, 'root': temp_root}
