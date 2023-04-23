@@ -42,8 +42,7 @@ def make_Pi_t(python_filepaths, test_all, prev, last_mods): return (
 
 # ------------------------------------------------------------------------------
 
-
-excludables = set(['./start.py', './gitter.py'])
+excludables = set(['./start.py', './gitter.py', './packages.py'])
 
 def f(test_all=False, t_0=time()):
   testables = [
