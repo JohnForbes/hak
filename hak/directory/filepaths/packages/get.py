@@ -1,6 +1,5 @@
 from os.path import isdir
 from os.path import isfile
-from os import listdir
 from os import remove
 
 from hak.directory.filepaths.get import f as get_filepaths
@@ -19,8 +18,7 @@ def f(x):
       in get_filepaths(directory, [])
       if isfile(_) and _.endswith('.py')
     ]
-    if python_files_in_directory:
-      _packages.add(directory)
+    if python_files_in_directory: _packages.add(directory)
   return _packages
 
 temp_dir_0 = './_get_packages'
