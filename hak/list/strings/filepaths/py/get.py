@@ -1,7 +1,7 @@
 from hak.directory.remove import f as remove_dir
 from hak.file.py.is_a import f as is_py
 from hak.file.save import f as save
-from hak.list.strings.filepaths.get import f as list_filepaths
+from hak.directory.filepaths.get import f as list_filepaths
 
 from os import mkdir
 from os import remove
