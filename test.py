@@ -1,5 +1,5 @@
-from hak.test.check_final_line import f as check_final_line
-from hak.test.check_line_lengths import f as check_line_lengths
+from hak.test.final_line.check import f as check_final_line
+from hak.test.line_lengths.check import f as check_line_lengths
 from hak.test.oldest_file.print import f as print_oldest_file
 from hak.test.do import f as do_test
 
