@@ -1,6 +1,6 @@
 from setuptools import setup
 from pathlib import Path
-from packages import packages as _packages
+from hak.directory.filepaths.packages.get import f as get_packages
 long_description = Path("./README.md").read_text()
 
 setup(
@@ -13,7 +13,7 @@ setup(
   author='@JohnRForbes',
   author_email='john.robert.forbes@gmail.com',
   url='https://github.com/JohnForbes/hak',
-  packages=_packages,
+  packages=[_[2:] for _ in list(get_packages('.'))],
   keywords='hak',
   install_requires=[],
 )
