@@ -1,67 +1,83 @@
 from time import time
-from hak.test.passed.handle import f as hp
-from hak.dict.test_durations.to_tuple_list_sorted_by_duration import f as srt
-from hak.list.strings.filepaths.py.testables.get import f as list_testables
 from os.path import getmtime
 
-# ------------------------------------------------------------------------------
-# from hak.test.make_Pi_to_test import f as make_Pi_t
-_Pi = ['./a.py', './b.py', './c.py']
-_test_all  = False
-_prev = {'./b.py': 32481.8, './c.py': 32497.3}
-_last_mods = {'./a.py': 97551.0, './b.py': 32481.8, './c.py': 32497.3}
-
-def make_Pi_t(_Pi, test_all, prev, last_mods): return (
-  _Pi.copy() if test_all else [
-    _pi for _pi in _Pi if (
-      (prev[_pi] if _pi in prev else 0)
-      !=
-      (last_mods[_pi] if _pi in last_mods else 0)
-    )
-  ]
-) or _Pi.copy()
-
-# ------------------------------------------------------------------------------
-
+from hak.list.strings.filepaths.py.testables.get import f as list_testables
 from hak.file.pickle.load_if_exists import f as load_pickle
-from hak.file.remove import f as remove
 from hak.file.pickle.save import f as save
+from hak.dict.test_durations.to_tuple_list_sorted_by_duration import f as srt
 from hak.list.strings.filepaths.py.to_filepath_file_content_dict import f as pyfiles_to_dict
 from hak.string.contains.function.test import f as has_t
 from hak.string.contains.function.run import f as has_f
-
-# ------------------------------------------------------------------------------
-# from hak.test.pi_test_failed import f as _pi_test_failed
-from importlib import import_module
-_pi_test_failed = lambda x: not import_module(x.replace('/','.').replace('..','')[:-3]).t()
-# ------------------------------------------------------------------------------
-
-from hak.test.failed.handle import f as  hf
+from hak.string.filepath.py.get_t import f as get_t
+from hak.test.passed.handle import f as handle_passed_test
+from hak.test.failed.handle import f as handle_failed_test
+from hak.file.remove import f as remove
 from hak.string.colour.bright.red import f as danger
 from hak.string.colour.dark.yellow import f as warn
 
+excludables = set(['./start.py', './gitter.py'])
+
+def make_Pi_t(python_filepaths, test_all, prev, last_mods):
+  return (
+    python_filepaths.copy()
+    if test_all
+    else [
+      p
+      for p
+      in python_filepaths
+      if (
+        (prev[p] if p in prev else 0)
+        !=
+        (last_mods[p] if p in last_mods else 0)
+      )
+    ]
+  ) or python_filepaths.copy()
+
 def f(test_all=False, t_0=time()):
-  _Pi = list_testables()
+  testables = [
+    pyfilepath
+    for pyfilepath
+    in list_testables()
+    if all([
+      pyfilepath not in excludables,
+      not pyfilepath.startswith('./data/')
+    ])
+  ]
+
   try: prev = load_pickle('./last_modified.pickle') or set()
-  except EOFError as eofe: remove('./last_modified.pickle'); prev = set()
-  last_mods = {py_filename: getmtime(py_filename) for py_filename in _Pi}
+  except EOFError as _: remove('./last_modified.pickle'); prev = set()
+  last_mods = {py_filename: getmtime(py_filename) for py_filename in testables}
   save(last_mods, './last_modified.pickle')
-  _Pi_fail = set()
   _A = [_[0] for _ in srt(last_mods)[::-1]]
-  _B = set(make_Pi_t(_Pi, test_all, prev, last_mods) + list(_Pi_fail))
-  _Pi_t = [a for a in _A if a in _B]
-  pyfile_data = pyfiles_to_dict(_Pi_t)
+  _B = set(make_Pi_t(testables, test_all, prev, last_mods))
+  Pi_t = [a for a in _A if a in _B]
+  pyfile_data = pyfiles_to_dict(Pi_t)
   max_len = 0
-  for _pi_index, _pi in enumerate(_Pi_t):
-    content = pyfile_data[_pi]
+  for pi_index, py_filepath in enumerate(Pi_t):
+    content = pyfile_data[py_filepath]
     _m = ' '.join([
-      f'[{(100*(_pi_index+1)/len(_Pi_t)):> 6.2f} % of',
-      f'{_pi_index+1}/{len(_Pi_t)} files.] Checking {_pi}'
+      f'[{(100*(pi_index+1)/len(Pi_t)):> 7.2f} % of',
+      f'{pi_index+1:3}/{len(Pi_t)} files.] Checking {py_filepath}'
     ])
     max_len = max(max_len, len(_m))
-    # print(f'{_m:<{max_len}}', end='\r')
     print(f'{_m:<{max_len}}')
-    if not has_t(content): return hf(_Pi_fail, _pi, danger(" has no ")+warn('t()'))
-    if not has_f(content): return hf(_Pi_fail, _pi, danger(" has no ")+warn('f()'))
-    if _pi_test_failed(_pi): return hf(_Pi_fail, _pi, '')
-  return hp(t_0, _Pi_t)
+    
+    if not has_t(content): return handle_failed_test(
+      set(),
+      py_filepath,
+      danger(" has no ")+warn('t()')
+    )
+    
+    if not has_f(content): return handle_failed_test(
+      set(),
+      py_filepath,
+      danger(" has no ")+warn('f()')
+    )
+
+    if not get_t(py_filepath)(): return handle_failed_test(
+      set(),
+      py_filepath,
+      ''
+    )
+
+  return handle_passed_test(t_0, Pi_t)
