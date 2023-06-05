@@ -34,7 +34,7 @@ def make_Pi_t(python_filepaths, test_all, prev, last_mods):
   ) or python_filepaths.copy()
 
 def f(test_all=False, t_0=time()):
-  testables = [
+  testables = sorted([
     pyfilepath
     for pyfilepath
     in list_testables()
@@ -42,7 +42,7 @@ def f(test_all=False, t_0=time()):
       pyfilepath not in excludables,
       not pyfilepath.startswith('./data/')
     ])
-  ]
+  ])
 
   try: prev = load_pickle('./last_modified.pickle') or set()
   except EOFError as _: remove('./last_modified.pickle'); prev = set()
