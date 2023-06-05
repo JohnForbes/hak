@@ -11,7 +11,14 @@ f_D = lambda x: f_X(x, 'Removed', ask=False)
 
 def f_X(a, b, ask=True):
   if exists(a):
-    save(a, load(a))
+    print(f'a: {a}')
+    if not any([a.endswith(_) for _ in [
+      '.pdf',
+      '.bak',
+      '.db',
+      '.x'
+    ]]):
+      save(a, load(a))
     sprun(args=['code', a])
   __=mag(a)
   response=input(cy(f"Proceed with '")+a+cy(f"'? (Q/Y/N):")) if ask else 'Y'
