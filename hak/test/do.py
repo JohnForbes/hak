@@ -15,7 +15,11 @@ from hak.file.remove import f as remove
 from hak.string.colour.bright.red import f as danger
 from hak.string.colour.dark.yellow import f as warn
 
-excludables = set(['./start.py', './gitter.py'])
+excludables = set([
+  './start.py',
+  './gitter.py',
+  './hak/data/months.py',
+])
 
 def make_Pi_t(python_filepaths, test_all, prev, last_mods):
   return (
