@@ -134,3 +134,5 @@ durations.pickle
 *.secret
 failed.pickle
 hak_test
+prime10.zip
+primes10.txt
