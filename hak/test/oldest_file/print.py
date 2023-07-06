@@ -2,21 +2,16 @@ from os import remove
 from os.path import exists
 from os.path import getmtime
 
-from hak.dict.test_durations.to_tuple_list_sorted_by_duration import f as srt
-from hak.file.pickle.load_if_exists import f as load_pickle
-from hak.file.pickle.save import f as save_pickle
-from hak.file.remove import f as remove
-from hak.file.save import f as save
-from hak.file.save import f as save_file
-from hak.list.strings.filepaths.py.get import f as list_py_files
-from hak.string.print_and_return_false import f as pf
-from hak.terminal import Terminal
-from hak.ternary import f as tern
-
-# ------------------------------------------------------------------------------
-# from hak.list.strings.filepaths.py.testables.get import f as list_testables
-# from hak.directory.make import f as mkdir
-# from hak.directory.remove import f as remove_dir
+from hak.one.dict.durations.to_tuple_list_sorted_by_duration import f as srt
+from hak.one.file.pickle.load_if_exists import f as load_pickle
+from hak.one.file.pickle.save import f as save_pickle
+from hak.one.file.remove import f as remove
+from hak.one.file.save import f as save
+from hak.one.file.save import f as save_file
+from hak.many.strings.filepaths.py.get import f as list_py_files
+from hak.one.string.print_and_return_false import f as pf
+from hak.one.terminal import Terminal
+from hak.other.ternary import f as tern
 
 _list_testables = lambda root='.': [
   φ for φ in list_py_files(root, [])
