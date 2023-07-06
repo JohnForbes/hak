@@ -1,10 +1,10 @@
-from hak.list.strings.filepaths.py.testables.get import f as list_testables
+from hak.many.strings.filepaths.py.testables.get import f as list_testables
 from os.path import getmtime
-from hak.file.pickle.load_if_exists import f as load_pickle
-from hak.file.remove import f as remove
-from hak.file.pickle.save import f as save
-from hak.list.strings.filepaths.py.testables.get import f as make_Pi_t
-from hak.dict.test_durations.to_tuple_list_sorted_by_duration import f as srt
+from hak.one.file.pickle.load_if_exists import f as load_pickle
+from hak.one.file.remove import f as remove
+from hak.one.file.pickle.save import f as save
+from hak.many.strings.filepaths.py.testables.get import f as make_Pi_t
+from hak.one.dict.durations.to_tuple_list_sorted_by_duration import f as srt
 
 def f(_Pi=None):
   _Pi = list_testables()
