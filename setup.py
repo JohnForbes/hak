@@ -1,11 +1,11 @@
 from setuptools import setup
 from pathlib import Path
-from hak.directory.filepaths.packages.get import f as get_packages
+from hak.one.directory.filepaths.packages.get import f as get_packages
 long_description = Path("./README.md").read_text()
 
 setup(
   name='hak',
-  version='0.0.36',
+  version='0.0.37',
   license='MIT',
   description='Function Test Pair Toolbox',
   long_description=long_description,
