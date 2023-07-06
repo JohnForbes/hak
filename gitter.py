@@ -1,9 +1,10 @@
-from hak.string.colour.bright.cyan import f as cy
-from hak.string.colour.bright.magenta import f as mag
-from subprocess import run as sprun
-from hak.file.save import f as save
-from hak.file.load import f as load
 from os.path import exists
+from subprocess import run as sprun
+
+from hak.one.file.load import f as load
+from hak.one.file.save import f as save
+from hak.one.string.colour.bright.cyan import f as cy
+from hak.one.string.colour.bright.magenta import f as mag
 
 f_M = lambda x: f_X(x, 'Updated', ask=True)
 f_A = lambda x: f_X(x, 'Added', ask=True)
@@ -11,17 +12,19 @@ f_D = lambda x: f_X(x, 'Removed', ask=False)
 
 def f_X(a, b, ask=True):
   if exists(a):
-    print(f'a: {a}')
+    print(f'a: {mag(a)}')
     if not any([a.endswith(_) for _ in [
       '.pdf',
       '.bak',
       '.db',
-      '.x'
+      '.x',
+      '.xlsx'
     ]]):
       save(a, load(a))
     sprun(args=['code', a])
   __=mag(a)
-  response=input(cy(f"Proceed with '")+a+cy(f"'? (Q/Y/N):")) if ask else 'Y'
+  # response=input(cy(f"Proceed with '")+a+cy(f"'? (Q/Y/N):")) if ask else 'Y'
+  response = 'Y'
   if response=='Y':
     result = sprun(args=['git', 'add', a], capture_output=True, cwd='.')
     print(cy("Executing 'git add'"))
