@@ -1,19 +1,19 @@
-from time import time
 from os.path import getmtime
+from time import time
 
-from hak.list.strings.filepaths.py.testables.get import f as list_testables
-from hak.file.pickle.load_if_exists import f as load_pickle
-from hak.file.pickle.save import f as save
-from hak.dict.test_durations.to_tuple_list_sorted_by_duration import f as srt
-from hak.list.strings.filepaths.py.to_filepath_file_content_dict import f as pyfiles_to_dict
-from hak.string.contains.function.test import f as has_t
-from hak.string.contains.function.run import f as has_f
-from hak.string.filepath.py.get_t import f as get_t
-from hak.test.passed.handle import f as handle_passed_test
+from hak.one.dict.durations.to_tuple_list_sorted_by_duration import f as srt
+from hak.one.file.pickle.load_if_exists import f as load_pickle
+from hak.one.file.pickle.save import f as save
+from hak.one.file.remove import f as remove
+from hak.many.strings.filepaths.py.testables.get import f as list_testables
+from hak.many.strings.filepaths.py.to_filepath_file_content_dict import f as pyfiles_to_dict
+from hak.one.string.colour.bright.red import f as danger
+from hak.one.string.colour.dark.yellow import f as warn
+from hak.one.string.contains.function.run import f as has_f
+from hak.one.string.contains.function.test import f as has_t
+from hak.one.string.filepath.py.get_t import f as get_t
 from hak.test.failed.handle import f as handle_failed_test
-from hak.file.remove import f as remove
-from hak.string.colour.bright.red import f as danger
-from hak.string.colour.dark.yellow import f as warn
+from hak.test.passed.handle import f as handle_passed_test
 
 excludables = set([
   './start.py',
