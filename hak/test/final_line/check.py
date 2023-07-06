@@ -1,11 +1,11 @@
-from hak.file.load import f as load
-from hak.file.remove import f as remove
-from hak.file.save import f as save_file
-from hak.list.strings.filepaths.py.testables.get import f as list_testables
-from hak.string.colour.bright.green import f as success
-from hak.string.colour.bright.red import f as danger
-from hak.string.print_and_return_false import f as pf
-from hak.terminal import Terminal
+from hak.one.file.load import f as load
+from hak.one.file.remove import f as remove
+from hak.one.file.save import f as save_file
+from hak.many.strings.filepaths.py.testables.get import f as list_testables
+from hak.one.string.colour.bright.green import f as success
+from hak.one.string.colour.bright.red import f as danger
+from hak.one.string.print_and_return_false import f as pf
+from hak.one.terminal import Terminal
 
 # check_final_line
 
