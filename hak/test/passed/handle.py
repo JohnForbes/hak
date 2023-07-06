@@ -1,9 +1,9 @@
-from hak.string.colour.bright.green import f as success
+from hak.one.string.colour.bright.green import f as success
 from time import time
-from hak.file.remove import f as remove
-from hak.directory.make import f as mkdirine
-from hak.directory.remove import f as rmdirie
-from hak.file.pickle.save import f as save_pickle
+from hak.one.file.remove import f as remove
+from hak.one.directory.make import f as mkdirine
+from hak.one.directory.remove import f as rmdirie
+from hak.one.file.pickle.save import f as save_pickle
 from os.path import exists
 
 def f(t_0, _Pi_to_test, t_now=None):
