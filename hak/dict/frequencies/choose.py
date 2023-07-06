@@ -2,7 +2,8 @@ from random import choices
 
 def f(x):
   Σ = sum(x.values())
-  _K, _P = zip(*{k: x[k]/Σ for k in x}.items())
+  _zippable = {k: x[k]/Σ for k in x}.items()
+  _K, _P = zip(*_zippable)
   return choices(_K, weights=_P)[0]
 
 def t():
