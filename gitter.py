@@ -19,7 +19,8 @@ def f_X(a, b, ask=True):
       '.db',
       '.x',
       '.xlsx',
-      '.zip'
+      '.zip',
+      '.pkl'
     ]]):
       save(a, load(a))
     sprun(args=['code', a])
