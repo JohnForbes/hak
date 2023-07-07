@@ -1,8 +1,8 @@
-from hak.one.string.date.to_date import f as str_to_date
 from copy import deepcopy
 from datetime import date
-from hak.one.string.print_and_return_false import f as pf
 from hak.many.strings.dates.detect_format import f as detect_format
+from hak.one.string.date.to_date import f as str_to_date
+from hak.one.string.print_and_return_false import f as pf
 
 # convert_date_strs_to_date
 def f(x):
