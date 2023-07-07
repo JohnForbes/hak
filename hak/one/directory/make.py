@@ -1,12 +1,11 @@
 from os import mkdir as osmkdir
 from os.path import exists
 
-from hak.none.nop import f as nop
 from hak.one.directory.remove import f as remove
 from hak.one.string.print_and_return_false import f as pf
 
 def f(x):
-  if exists(x): return nop(x)
+  if exists(x): return x
   try:
     osmkdir(x)
   except FileNotFoundError as fe:
