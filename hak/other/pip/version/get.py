@@ -18,7 +18,10 @@ def f(name, response=None):
   )
 
 def t():
-  x = {'name': "hak", 'response': load('./hak/pip/version/test_response.pkl')}
-  y = {'major': 0, 'minor': 0, 'patch': 39}
+  x = {
+    'name': "hak",
+    'response': load('./hak/other/pip/version/test_response.pkl')
+  }
+  y = {'major': 0, 'minor': 0, 'patch': 4}
   z = f(**x) 
   return y == z or pf([f'y == z: {y == z}', f'x: {x}', f'y: {y}', f'z: {z}'])
