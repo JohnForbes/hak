@@ -24,7 +24,7 @@ def dn():
 
 def t():
   up()
-  
+
   x_content = 'apple'
   result = f(_filepath, x_content)
 
