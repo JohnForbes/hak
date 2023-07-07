@@ -21,4 +21,4 @@ def t():
   x = {'name': "hak", 'response': load('./hak/pip/version/test_response.pkl')}
   y = {'major': 0, 'minor': 0, 'patch': 38}
   z = f(**x) 
-  return y == z or pf([f'y == z: {y == z}', f'y: {y}', f'z: {z}'])
+  return y == z or pf([f'y == z: {y == z}', f'x: {x}', f'y: {y}', f'z: {z}'])
