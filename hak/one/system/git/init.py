@@ -1,19 +1,18 @@
 from subprocess import run as sprun
 from hak.one.directory.make import f as mkdir
 from hak.one.directory.remove import f as rmdir
-_root = '../temp_git_init'
 
-def up(): mkdir(_root)
+up = lambda: mkdir('../temp_git_init')
+dn = lambda x: rmdir(x)
 
-def dn(): rmdir(_root)
 args = ['git', 'init']
 
 f = lambda cwd: sprun(cwd=cwd, capture_output=True, args=args)
 
 def t():
-  up()
-  z = f(_root)
-  dn()
+  x = up()
+  z = f(x)
+  dn(x)
   return all([
     z.args==args,
     z.returncode==0,
