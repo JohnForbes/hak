@@ -18,6 +18,6 @@ def f(name, response=None):
   )
 
 def t():
-  y = {'major': 0, 'minor': 0, 'patch': 36}
+  y = {'major': 0, 'minor': 0, 'patch': 37}
   z = f("hak", response=load('./hak/pip/version/test_response.pkl')) 
   return y == z or pf([f'y == z: {y == z}', f'z: {z}', f'y: {y}'])
