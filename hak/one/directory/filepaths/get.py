@@ -14,33 +14,37 @@ def f(root, filepaths=[], condition=lambda x: True):
     if condition(item): filepaths.append(_pi)
   return filepaths
 
-temp_dir_0 = './_list_filepaths'
-temp_dir_1 = f'{temp_dir_0}/_'
-temp_files_and_content = [
-  (f'{temp_dir_0}/foo.py', 'foo'),
-  (f'{temp_dir_0}/xyz.txt', 'xyz'),
-  (f'{temp_dir_1}/abc.txt', 'abc'),
-  (f'{temp_dir_1}/bar.py', 'bar'),
-]
-
 def up():
-  for temp_dir in [temp_dir_0, temp_dir_1]: mkdir(temp_dir)
-  for (filename, content) in temp_files_and_content: save(filename, content)
+  x = {}
+  x['temp_dir_0'] = './_list_filepaths'
+  x['temp_dir_1'] = f"{x['temp_dir_0']}/_"
+  x['temp_files_and_content'] = [
+    (f"{x['temp_dir_0']}/foo.py", 'foo'),
+    (f"{x['temp_dir_0']}/xyz.txt", 'xyz'),
+    (f"{x['temp_dir_1']}/abc.txt", 'abc'),
+    (f"{x['temp_dir_1']}/bar.py", 'bar'),
+  ]
 
-def dn():
-  for (filename, _) in temp_files_and_content: remove(filename)
-  remove_dir(temp_dir_1)
-  remove_dir(temp_dir_0)
+  for temp_dir in [x['temp_dir_0'], x['temp_dir_1']]: mkdir(temp_dir)
+  for (name, content) in x['temp_files_and_content']: save(name, content)
+
+  x['y'] = set([
+    f"{x['temp_dir_0']}/foo.py",
+    f"{x['temp_dir_0']}/xyz.txt",
+    f"{x['temp_dir_1']}",
+    f"{x['temp_dir_1']}/abc.txt",
+    f"{x['temp_dir_1']}/bar.py",
+  ])
+  return x
+
+def dn(x):
+  for (filename, _) in x['temp_files_and_content']: remove(filename)
+  remove_dir(x['temp_dir_1'])
+  remove_dir(x['temp_dir_0'])
 
 def t():
-  up()
-  y = set([
-    f'{temp_dir_1}/abc.txt',
-    f'{temp_dir_1}/bar.py',
-    f'{temp_dir_1}',
-    f'{temp_dir_0}/xyz.txt',
-    f'{temp_dir_0}/foo.py'
-  ])
-  z = set(f(temp_dir_0))
-  dn()
-  return y == z or pf([f'y: {y}', f'z: {z}'])
+  x = up()
+  y = x['y']
+  z = set(f(x['temp_dir_0']))
+  dn(x)
+  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
