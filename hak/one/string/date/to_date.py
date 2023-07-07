@@ -57,10 +57,13 @@ def t_4():
   z = f(x, x_date_string_format)
   return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
 
+t_5 = lambda: f('2016-11-14') == date(2016, 11, 14)
+
 def t():
   if not t_0(): return pf('t_0 failed')
   if not t_1(): return pf('t_1 failed')
   if not t_2(): return pf('t_2 failed')
   if not t_3(): return pf('t_3 failed')
   if not t_4(): return pf('t_4 failed')
+  if not t_5(): return pf('t_5 failed')
   return True
