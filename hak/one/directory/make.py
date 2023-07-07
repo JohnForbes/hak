@@ -1,19 +1,18 @@
-from os.path import exists
 from os import mkdir as osmkdir
-from re import L
+from os.path import exists
 
+from hak.none.nop import f as nop
 from hak.one.directory.remove import f as remove
 from hak.one.string.print_and_return_false import f as pf
 
-from hak.none.nop import f as nop
-# nop = lambda x=None: None # DELETE LINE
-
-def f(x='./hak/classes'):
+def f(x):
   if exists(x): return nop(x)
-  try: osmkdir(x)
+  try:
+    osmkdir(x)
   except FileNotFoundError as fe:
     f('/'.join(x.split('/')[:-1]))
     f(x)
+  return x
 
 temp_path_0 = './temp_dir_make'
 temp_path_1 = f'{temp_path_0}/_'
@@ -23,7 +22,16 @@ def dn():
   remove(temp_path_0)
 
 def t():
-  f(x=temp_path_1)
-  result = exists(temp_path_1)
+  x = temp_path_1
+  y_returned = '----'
+  z_returned = f(x)
+  z_dir_exists = exists(temp_path_1)
   dn()
-  return result or pf(f'Failed to create temporary directory: {temp_path_1}')
+  if not z_dir_exists: return pf('!z_dir_exists')
+  if not z_returned: return pf([
+    'z_returned != y_returned',
+    f'x: {x}',
+    f'y_returned: {y_returned}',
+    f'z_returned: {z_returned}'
+  ])
+  return True
