@@ -15,10 +15,8 @@ def f(x):
   ])
 
 def t_0():
-  x = {
-    'field_widths': {'a': 2, 'b': 2, 'c': 2, 'd': 2, 'e': 2},
-    'field_names': ['a', 'b', 'c', 'd', 'e'],
-  }
+  x = {'field_names': list('abcde')}
+  x['field_widths'] = {k: 2 for k in x['field_names']}
   y = '|  a |  b |  c |  d |  e |'
   z = f(x)
   return y == z or pf([f"x: {x}", f'y: {y}', f'z: {z}'])
