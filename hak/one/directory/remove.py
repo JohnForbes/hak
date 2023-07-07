@@ -14,6 +14,7 @@ def f(directory, filepaths=[]):
     _pi = directory+'/'+item
     f(_pi, filepaths) if isdir(_pi) else remove(_pi)
   rmdir(directory)
+  return directory
 
 temp_dir = './temp_directory_remove'
 temp_files_and_content = [
