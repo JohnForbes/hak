@@ -47,4 +47,10 @@ def t():
   y = x['y']
   z = set(f(x['temp_dir_0']))
   dn(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return y == z or pf([
+    f'x: {x}',
+    f'y: {y}',
+    f'z: {z}',
+    f'y-z: {y-z}',
+    f'z-y: {z-y}'
+  ])
