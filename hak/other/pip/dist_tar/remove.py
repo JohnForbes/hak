@@ -15,17 +15,18 @@ def f(x):
 
 def up():
   temp_root = './_dist_tars_remove'
-  mkdir(temp_root)
   filename = f'{temp_root}/junk.tar'
+  x = {'filename': filename, 'root': temp_root}
+  mkdir(temp_root)
   save(filename, 'junk')
-  return {'filename': filename, 'root': temp_root}
+  return x
 
 dn = lambda x: rmdirie(x['root'])
 
 def t():
   x = up()
   f(x)
-  if not exists(x['filename']): return pf(f'not exists({x["filename"]})')
+  if exists(x['filename']): return pf(f'exists({x["filename"]})')
   dn(x)
   if exists(x["root"]): return pf(f'exists({x["root"]})')
   return True
