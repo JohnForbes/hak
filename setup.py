@@ -5,7 +5,7 @@ long_description = Path("./README.md").read_text()
 
 setup(
   name='hak',
-  version='0.0.37',
+  version='0.0.38',
   license='MIT',
   description='Function Test Pair Toolbox',
   long_description=long_description,
