@@ -7,10 +7,11 @@ from hak.one.directory.remove import f as rmdir
 f = lambda root: set([d for d in get_directories(root) if is_empty(d)])
 
 def up():
-  _root = './temp_root'
+  _root = './temp_root_B'
   _ = {'x': _root}
   _['temp_directories'] = [f'{_root}/temp_a', f'{_root}/temp_b']
-  _['created'] = set([mkdir(x_i) for x_i in _['temp_directories']])
+  _['y'] = set([mkdir(x_i) for x_i in _['temp_directories']])
+  _['created'] = _['y'] | set([_root])
   return _
 
 def dn(created):
@@ -20,7 +21,7 @@ def dn(created):
 def t():
   _up = up()
   x = _up['x']
-  y = _up['created']
+  y = _up['y']
   z = f(x)
   dn(_up['created'])
   return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
