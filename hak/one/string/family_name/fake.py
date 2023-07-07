@@ -2848,8 +2848,9 @@ def f():
   _2 = q3[_z[-2:]]
   while _2 != '!':
     choices = q3[_z[-2:]]
-    # print(f'choices: {choices}')
+    print(f'choices: {choices}') # Temporarily monitoring this, test is flaky
     _2 = choose(choices)
+    print(f'_2: {_2}') # Temporarily monitoring this, test is flaky
     _z += _2
   return _z[:-1]
 
