@@ -25,8 +25,8 @@ def f_X(a, b, ask=True):
       save(a, load(a))
     sprun(args=['code', a])
   __=mag(a)
-  # response=input(cy(f"Proceed with '")+a+cy(f"'? (Q/Y/N):")) if ask else 'Y'
-  response = 'Y'
+  response=input(cy(f"Proceed with '")+a+cy(f"'? (Q/Y/N):")) if ask else 'Y'
+  # response = 'Y'
   if response=='Y':
     result = sprun(args=['git', 'add', a], capture_output=True, cwd='.')
     print(cy("Executing 'git add'"))
