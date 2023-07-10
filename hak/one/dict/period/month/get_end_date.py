@@ -44,7 +44,6 @@ def t_4():
   z = f(x)
   return pxyz(x, y, z)
 
-
 def t():
   if not t_0(): return pf('!t_0')
   if not t_1(): return pf('!t_1')
