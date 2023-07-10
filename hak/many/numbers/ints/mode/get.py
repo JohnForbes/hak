@@ -1,4 +1,4 @@
-from hak.one.string.print_and_return_false import f as pf
+from hak.pxyz import f as pxyz
 
 # src.list.ints.mode.get.py
 def f(x):
@@ -21,4 +21,4 @@ def t():
   x = [0, 0, 0, 1, 1, 1, 1, 2, 2]
   y = 1
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
