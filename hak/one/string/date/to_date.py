@@ -4,7 +4,7 @@ from hak.many.strings.date_pieces.get import f as get_bag
 from hak.many.strings.date_pieces.separate_day import f as separate_day
 from hak.many.strings.date_pieces.separate_year import f as separate_year
 from hak.one.string.date.separator.get import f as get_separator
-from hak.one.string.month.to_month_number import f as to_month_number
+from hak.one.string.month.to_number import f as to_number
 from hak.one.string.print_and_return_false import f as pf
 from hak.pxyz import f as pxyz
 
@@ -15,7 +15,7 @@ def f(x, date_string_format=None):
     if len(bag) != 3: raise NotImplementedError('!E: len(bag) != 3')
     year, bag = separate_year(bag)
     day, bag = separate_day(bag)
-    month = to_month_number(bag.pop())
+    month = to_number(bag.pop())
     return date(year, month, day)
   
   _ymd = x.split(get_separator(x))
