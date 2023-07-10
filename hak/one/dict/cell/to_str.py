@@ -6,6 +6,7 @@ from hak.one.number.float.is_a import f as is_float
 from hak.one.string.colour.bright.green import f as g
 from hak.one.string.colour.bright.red import f as r
 from hak.one.string.print_and_return_false import f as pf
+from hak.pxyz import f as pxyz
 
 # src.cell.to_str
 def f(x):
@@ -20,43 +21,43 @@ def t_0():
   x = 0
   y = ' '
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_1():
   x = 'a'
   y = str(x)
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_2():
   x = False
   y = r('N')
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_3():
   x = True
   y = g('Y')
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_4():
   x = None
   y = ' '
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_5():
   x = 1.0
   y = '1.00'
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_6():
   x = make_rate(710, 113)
   y = '6.283186'
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t():
   if not t_0(): return pf('t_0 failed')
