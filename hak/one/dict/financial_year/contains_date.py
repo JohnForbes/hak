@@ -6,20 +6,23 @@ from hak.one.dict.financial_year.get_start_date import f as get_α_d
 from hak.one.dict.financial_year.make import f as mkfy
 
 # contains_date
-f = lambda fy, δ: (
-  get_α_d(fy) <= (δ.date() if isinstance(δ, dt) else δ) <= get_ω_d(fy)
+f = lambda x: (
+  get_α_d(x['financial_year']) <= (
+    x['date'].date() if isinstance(x['date'], dt) else
+    x['date']
+  ) <= get_ω_d(x['financial_year'])
 )
 
 def t_true():
-  x = {'fy': mkfy({'start_year': 2022}),'δ': date(2022, 7, 5)}
+  x = {'financial_year': mkfy({'start_year': 2022}), 'date': date(2022, 7, 5)}
   y = True
-  z = f(**x)
+  z = f(x)
   return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
 
 def t_false():
-  x = {'fy': mkfy({'start_year': 2022}),'δ': date(2022, 6, 5)}
+  x = {'financial_year': mkfy({'start_year': 2022}), 'date': date(2022, 6, 5)}
   y = False
-  z = f(**x)
+  z = f(x)
   return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
 
 def t():
