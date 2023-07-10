@@ -1,5 +1,6 @@
-from hak.one.string.print_and_return_false import f as pf
 from hak.one.number.int.is_a import f as is_int
+from hak.one.string.print_and_return_false import f as pf
+from hak.pxyz import f as pxyz
 
 def f(x):
   if not is_int(x): return False
@@ -11,31 +12,31 @@ def t_true():
   x = 2023
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_false_neg():
   x = -2023
   y = False
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_false_float():
   x = 2000.5
   y = False
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_false_zero():
   x = 0
   y = False
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_false_too_big():
   x = 10000
   y = False
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t():
   if not t_true(): return pf('!t_true')
