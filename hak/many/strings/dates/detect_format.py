@@ -4,6 +4,7 @@ from hak.one.string.day.is_a import f as is_day
 from hak.one.string.month.is_a import f as is_month
 from hak.one.string.print_and_return_false import f as pf
 from hak.one.string.year.is_a import f as is_year
+from hak.pxyz import f as pxyz
 
 # src.list_strings.dates.detect_format
 def f(x):
@@ -85,7 +86,7 @@ def t_0():
   x = ['2021-11-04', '2021/11/19', '2022 01 31']
   y = {'year_index': 0, 'month_index': 1, 'day_index': 2}
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_1():
   x = [
@@ -102,7 +103,7 @@ def t_1():
   ]
   y = {'year_index': 2, 'month_index': 1, 'day_index': 0}
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_2():
   x = [
@@ -115,7 +116,7 @@ def t_2():
   ]
   y = {'year_index': 0, 'month_index': 1, 'day_index': 2}
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t():
   if not t_0(): return pf('t_0 failed')
