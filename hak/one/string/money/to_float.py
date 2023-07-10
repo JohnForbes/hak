@@ -1,4 +1,5 @@
 from hak.one.string.print_and_return_false import f as pf
+from hak.pxyz import f as pxyz
 
 # src.string.money.to_float
 f = lambda x: float(x.strip().replace('$', '')) if x else 0.0
@@ -7,19 +8,19 @@ def t_0():
   x = ''
   y = 0.0
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_1():
   x = ' $200.00 '
   y = 200.0
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_2():
   x = '$ 300.00 '
   y = 300.0
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t():
   if not t_0(): return pf('t_0 failed')
