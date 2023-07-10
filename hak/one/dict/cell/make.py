@@ -1,6 +1,7 @@
-from hak.one.string.print_and_return_false import f as pf
 from hak.one.dict.cell.to_str import f as to_str
 from hak.one.string.colour.decolour import f as decol
+from hak.one.string.print_and_return_false import f as pf
+from hak.pxyz import f as pxyz
 
 # make_cell
 # src.cell.make
@@ -31,7 +32,7 @@ def t_0():
   }
   y = 'a'
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_1():
   x = {
@@ -42,7 +43,7 @@ def t_1():
   }
   y = 'a'
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t():
   if not t_0(): return pf('t_0 failed')
