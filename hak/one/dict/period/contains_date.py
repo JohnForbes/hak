@@ -22,7 +22,7 @@ def t_fy_false():
   return pxyz(x, y, z)
 
 def t_month():
-  x = {'month': {'year': 2022, 'month_number': 1}, 'date': date(2022, 1, 10)}
+  x = {'month': {'year': 2022, 'number': 1}, 'date': date(2022, 1, 10)}
   y = True
   z = f(x)
   return y == z or pf(f'expected {x["date"]} to be in {x["month"]}')
