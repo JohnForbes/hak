@@ -1,4 +1,5 @@
 from hak.one.string.print_and_return_false import f as pf
+from hak.pxyz import f as pxyz
 from string import digits
 
 # src.string.date.separator.get
@@ -16,31 +17,31 @@ def t_0():
   x = '2022-11-11'
   y = '-'
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_1():
   x = '28/03/2022'
   y = '/'
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_2():
   x = '2022 01 31'
   y = ' '
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_3():
   x = '19 Nov 2021'
   y = ' '
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_4():
   x = '2022-05-06'
   y = '-'
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t():
   if not t_0(): return pf('t_0 failed')
