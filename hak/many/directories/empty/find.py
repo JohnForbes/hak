@@ -1,7 +1,7 @@
 from hak.many.directories.get import f as get_directories
 from hak.one.directory.is_empty import f as is_empty
 from hak.one.directory.make import f as mkdir
-from hak.one.string.print_and_return_false import f as pf
+from hak.pxyz import f as pxyz
 from hak.one.directory.remove import f as rmdir
 
 f = lambda root: set([d for d in get_directories(root) if is_empty(d)])
@@ -24,4 +24,4 @@ def t():
   y = _up['y']
   z = f(x)
   dn(_up['created'])
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
