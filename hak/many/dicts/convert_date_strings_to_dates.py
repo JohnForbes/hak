@@ -2,7 +2,7 @@ from copy import deepcopy
 from datetime import date
 from hak.many.strings.dates.detect_format import f as detect_format
 from hak.one.string.date.to_date import f as str_to_date
-from hak.one.string.print_and_return_false import f as pf
+from hak.pxyz import f as pxyz
 
 # convert_date_strs_to_date
 def f(x):
@@ -26,4 +26,4 @@ def t():
     {'date': date(2022,  1, 31), 'other': 'ccc'},
   ]
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
