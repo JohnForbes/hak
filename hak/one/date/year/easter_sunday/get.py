@@ -1,5 +1,7 @@
 from datetime import date
+
 from hak.one.string.print_and_return_false import f as pf
+from hak.pxyz import f as pxyz
 
 def f(year: int):
   g = year % 19
@@ -16,19 +18,19 @@ def t_easter_2022():
   x = 2022
   y = date(2022, 4, 17)
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_easter_2023():
   x = 2023
   y = date(2023, 4, 9)
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_easter_2024():
   x = 2024
   y = date(2024, 3, 31)
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t():
   if not t_easter_2022(): return pf('t_easter_2022')
