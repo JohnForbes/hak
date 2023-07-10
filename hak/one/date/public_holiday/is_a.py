@@ -1,8 +1,10 @@
 from datetime import date
-from hak.one.string.print_and_return_false import f as pf
 from datetime import timedelta as td
-from hak.one.date.year.easter_sunday.get import f as get_easter_sunday
+
 from hak.one.date.is_monday import f as is_monday
+from hak.one.date.year.easter_sunday.get import f as get_easter_sunday
+from hak.one.string.print_and_return_false import f as pf
+from hak.pxyz import f as pxyz
 
 def is_sunday(δ: date): return δ.weekday() == 6
 
@@ -29,136 +31,136 @@ def t_not_public_holiday_a():
   x = date(2023, 1, 25)
   y = False
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_new_years_day_act():
   # Sunday 1 January 2023
   x = date(2023, 1, 1)
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_new_years_day_obs():
   # Monday 2 January 2023
   x = date(2023, 1, 2)
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_australia_day():
   # Australia Day	Thursday 26 January 2023
   x = date(2023, 1, 26)
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_canberra_day():
   # Canberra Day	Monday 13 March 2023
   x = date(2023, 3, 13)
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_good_friday():
   # Good Friday	Friday 7 April 2023
   x = date(2023, 4, 7)
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_easter_saturday():
   # Easter Saturday – the day after Good Friday	Saturday 8 April 2023
   x = date(2023, 4, 8)
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_easter_sunday():
   # Easter Sunday	Sunday 9 April 2023
   x = date(2023, 4, 9)
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_easter_monday():
   # Easter Monday	Monday 10 April 2023
   x = date(2023, 4, 10)
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_anzac_day():
   # ANZAC Day	Tuesday 25 April 2023
   x = date(2023, 4, 25)
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_not_public_holiday_b():
   # Wednesday 28 May 2023
   x = date(2023, 5, 28)
   y = False
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_not_public_holiday_c():
   x = date(2023, 5, 22)
   y = False
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_reconciliation_day():
   # Reconciliation Day	Monday 29 May 2023**
   x = date(2023, 5, 29)
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_not_public_holiday_d():
   x = date(2023, 6, 5)
   y = False
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_not_public_holiday_e():
   x = date(2023, 6, 19)
   y = False
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_sovereigns_birthday():
   # Sovereign's Birthday	Monday 12 June 2023
   x = date(2023, 6, 12)
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_not_public_holiday_f():
   x = date(2023, 10, 9)
   y = False
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_labour_day():
   # Labour Day	Monday 2 October 2023
   x = date(2023, 10, 2)
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_christmas_day():
   # Christmas Day	Monday 25 December 2023
   x = date(2023, 12, 25)
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_boxing_day():
   # Boxing Day	Tuesday 26 December 2023
   x = date(2023, 12, 26)
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t():
   if not t_not_public_holiday_a(): return pf('t_not_public_holiday_a')
