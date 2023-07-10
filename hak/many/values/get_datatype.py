@@ -1,5 +1,6 @@
-from hak.one.string.print_and_return_false import f as pf
 from hak.one.dict.rate.make import f as make_rate
+from hak.one.string.print_and_return_false import f as pf
+from hak.pxyz import f as pxyz
 
 # detect_datatype_from_values
 def f(values):
@@ -20,37 +21,37 @@ def t_0():
   x = ['abc', 'xyz', None]
   y = 'str'
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_1():
   x = [1, 2, None]
   y = 'int'
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_2():
   x = [1.1, 2.2, None]
   y = 'float'
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_3():
   x = [True, False, None]
   y = 'bool'
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_4():
   x = [0+1j, 1+0j, None]
   y = 'complex'
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_5():
   x = [make_rate(110, 72), make_rate(72, 111), None]
   y = 'rate'
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t():
   if not t_0(): return pf('t_0 failed')
