@@ -1,5 +1,6 @@
-from hak.one.string.print_and_return_false import f as pf
 from hak.data.months import months
+from hak.one.string.print_and_return_false import f as pf
+from hak.pxyz import f as pxyz
 
 # src.string.month.is_a
 # is_month
@@ -13,37 +14,37 @@ def t_0():
   x = 'Apr'
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_1():
   x = 'April'
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_2():
   x = '04'
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_3():
   x = '4'
   y = True
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_4():
   x = '0'
   y = False
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_5():
   x = '13'
   y = False
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t():
   if not t_0(): return pf('t_0 failed')
