@@ -1,6 +1,7 @@
-from hak.one.string.print_and_return_false import f as pf
-from hak.one.string.month.is_a import f as is_month
 from hak.one.string.day.is_a import f as is_day
+from hak.one.string.month.is_a import f as is_month
+from hak.one.string.print_and_return_false import f as pf
+from hak.pxyz import f as pxyz
 
 def f(x):
   a, b = x
@@ -119,31 +120,31 @@ def t_0():
   x = set(['19', 'Nov'])
   y = 19, set(['Nov'])
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_1():
   x = set(['11', '19'])
   y = 19, set(['11'])
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_2():
   x = set(['03', '28'])
   y = 28, set(['03'])
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_3():
   x = set(['07', 'Jan'])
   y = 7, set(['Jan'])
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_4():
   x = set(['Jan', '07'])
   y = 7, set(['Jan'])
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t():
   if not t_0(): return pf('t_0 failed')
