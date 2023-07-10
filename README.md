@@ -13,7 +13,6 @@ Mostly for my own use but others are welcome to leverage it.
 `nodemon --exec python3 test.py`
 
 ## TODO
-- Write module for `return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])`
 - Report empty double lines at end of test cycle
 - Report unsorted imports
 - Report empty line should follow last import
