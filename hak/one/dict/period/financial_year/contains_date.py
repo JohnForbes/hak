@@ -9,10 +9,10 @@ from hak.pxyz import f as pxyz
 
 # contains_date
 f = lambda x: (
-  get_α_d(x['financial_year']) <= (
+  get_α_d(x) <= (
     x['date'].date() if isinstance(x['date'], dt) else
     x['date']
-  ) <= get_ω_d(x['financial_year'])
+  ) <= get_ω_d(x)
 )
 
 def t_true():
