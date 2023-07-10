@@ -5,7 +5,7 @@ from hak.one.directory.filepaths.get import f as get_filepaths
 from hak.one.directory.make import f as mkdirine
 from hak.one.directory.remove import f as rmdir
 from hak.one.file.save import f as save
-from hak.one.string.print_and_return_false import f as pf
+from hak.pxyz import f as pxyz
 
 def f(x):
   oldest = {'filepath': '', 'time': float('inf')}
@@ -45,4 +45,4 @@ def t():
   filepaths = get_filepaths(x['dir_name'], [])
   z = f(filepaths)
   dn(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
