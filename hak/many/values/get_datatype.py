@@ -1,3 +1,5 @@
+from datetime import date
+
 from hak.one.dict.rate.make import f as make_rate
 from hak.one.string.print_and_return_false import f as pf
 from hak.pxyz import f as pxyz
@@ -15,7 +17,11 @@ def f(values):
   elif _type == type(True): return 'bool'
   elif _type == type(1j): return 'complex'
   elif _type == type(make_rate(1,1)): return 'rate'
-  else: raise NotImplementedError('Code not written for this type yet.')
+  elif _type == type(date.today()): return 'date'
+  else:
+    print(f'values: {values}')
+    print(f'_type: {_type}')
+    raise NotImplementedError('Code not written for this type yet.')
 
 def t_0():
   x = ['abc', 'xyz', None]
@@ -53,6 +59,12 @@ def t_5():
   z = f(x)
   return pxyz(x, y, z)
 
+def t_6():
+  x = [date(2000, 1, 1), date(2001, 1, 1)]
+  y = 'date'
+  z = f(x)
+  return pxyz(x, y, z)
+
 def t():
   if not t_0(): return pf('t_0 failed')
   if not t_1(): return pf('t_1 failed')
@@ -60,4 +72,5 @@ def t():
   if not t_3(): return pf('t_3 failed')
   if not t_4(): return pf('t_4 failed')
   if not t_5(): return pf('t_5 failed')
+  if not t_6(): return pf('t_6 failed')
   return True
