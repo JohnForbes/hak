@@ -1,14 +1,12 @@
 from hak.one.string.print_and_return_false import f as pf
 
 # make_bar
-f = lambda x: (
-  "|-"+'-|-'.join(['-'*x['field_widths'][k] for k in x['field_names']])+"-|"
-)
+f = lambda x: "|-"+'-|-'.join(['-'*x['widths'][k] for k in x['names']])+"-|"
 
 def t():
   x = {
-    'field_widths': {'a': 2, 'b': 3, 'c': 4, 'd': 5, 'e': 6},
-    'field_names': list('abcde'),
+    'widths': {'a': 2, 'b': 3, 'c': 4, 'd': 5, 'e': 6},
+    'names': list('abcde'),
   }
   y = '|----|-----|------|-------|--------|'
   z = f(x)
