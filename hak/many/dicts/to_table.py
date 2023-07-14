@@ -1,7 +1,6 @@
 from time import time
 
 from hak.many.dicts.get_all_keys import f as get_field_names
-from hak.many.dicts.get_datatypes import f as get_field_datatypes
 from hak.many.dicts.get_keys_with_none_or_zero_vals import f as get_empty_fields
 from hak.one.dict.cell.make import f as make_cell
 from hak.one.dict.custom_order.apply import f as apply_custom_order
@@ -17,19 +16,6 @@ from hak.one.dict.quantity.make import f as make_quantity
 from hak.one.dict.quantity.is_a import f as is_quantity
 from hak.one.dict.get_or_default import f as get_or_default
 
-def _make_unit_row(x):
-  names = x['names']
-  _widths = x['widths']
-  sp = ' '
-  # return '\n'.join([
-  #   "| "+' | '.join([
-  #     f"{_f.split('_')[i]:>{_widths[_f]}}" if len(_f.split('_')) > i else
-  #     f"{sp:>{_widths[_f]}}"
-  #     for _f in names
-  #   ])+" |"
-  #   for i in range(max([len(_f.split('_')) for _f in names]))
-  # ])
-
 # src.list.dicts.to_table
 def f(x):
   records = x['records']
@@ -44,10 +30,10 @@ def f(x):
     }),
     'hidden_fields': hidden
   })
-  field_widths = get_field_widths({'records': records, 'field_names': names})
-  bar = make_bar({'field_widths': field_widths, 'field_names': names})
+  widths = get_field_widths({'records': records, 'field_names': names})
+  bar = make_bar({'widths': widths, 'names': names})
 
-  field_units = {
+  units = {
     k: (
       get_or_default(records[-1], k, {})['unit']
       if is_quantity(get_or_default(records[-1], k, {}))
@@ -57,40 +43,15 @@ def f(x):
     for k in names
   }
 
-  obj = {
-    'field_widths': field_widths,
-    'field_names': names,
-    'field_units': field_units
-  }
+  head = make_head({'widths': widths, 'names': names, 'units': units})
 
-  if all([field_units[k] == '' for k in field_units]):
-    del obj['field_units']
-
-  head = make_head(obj)
-
-  field_datatypes_by_key = get_field_datatypes(records)
   rows = [
     "| "+' | '.join([(
-      make_cell(
-        {
-          'value': r[k] if k in r else None,
-          'field_name': k,
-          'width': field_widths[k],
-          'type': (
-            field_datatypes_by_key[k] if k in field_datatypes_by_key else None
-          )
-        }
-      )
+      make_cell({'value': r[k] if k in r else None, 'width': widths[k]})
     ) for k in names])+" |"
     for r in records
   ]
-  return '\n'.join([
-    bar,
-    head,
-    bar,
-    *rows,
-    bar
-  ])
+  return '\n'.join([bar, head, bar, *rows, bar])
 
 def t_0():
   x = {'records': [{'a': 0, 'b': 1}, {'a': 2, 'b': 3}]}
