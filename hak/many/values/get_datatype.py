@@ -3,9 +3,14 @@ from datetime import date
 from hak.one.dict.rate.make import f as make_rate
 from hak.one.string.print_and_return_false import f as pf
 from hak.pxyz import f as pxyz
+from hak.one.dict.quantity.is_a import f as is_a_quantity
+from hak.one.dict.quantity.make import f as make_quantity
 
 # detect_datatype_from_values
 def f(values):
+  # consider whether field contains quantity dicts
+  if all([is_a_quantity(v) for v in values if v]): return 'quantity'
+
   _types = set([type(_) for _ in values])
   if type(None) in _types: _types.remove(type(None))
   # if len(_types) > 1: return 'mixed'
@@ -17,6 +22,7 @@ def f(values):
   elif _type == type(True): return 'bool'
   elif _type == type(1j): return 'complex'
   elif _type == type(make_rate(1,1)): return 'rate'
+
   elif _type == type(date.today()): return 'date'
   else:
     print(f'values: {values}')
@@ -65,6 +71,12 @@ def t_6():
   z = f(x)
   return pxyz(x, y, z)
 
+def t_quantity():
+  x = [make_quantity(2000, 'm'), make_quantity(2001, 'm'), None]
+  y = 'quantity'
+  z = f(x)
+  return pxyz(x, y, z)
+
 def t():
   if not t_0(): return pf('t_0 failed')
   if not t_1(): return pf('t_1 failed')
@@ -73,4 +85,5 @@ def t():
   if not t_4(): return pf('t_4 failed')
   if not t_5(): return pf('t_5 failed')
   if not t_6(): return pf('t_6 failed')
+  if not t_quantity(): return pf('t_quantity failed')
   return True
