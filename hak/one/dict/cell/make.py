@@ -2,6 +2,7 @@ from hak.one.dict.cell.to_str import f as to_str
 from hak.one.string.colour.decolour import f as decol
 from hak.one.string.print_and_return_false import f as pf
 from hak.pxyz import f as pxyz
+from hak.one.dict.quantity.make import f as make_quantity
 
 # make_cell
 # src.cell.make
@@ -12,7 +13,14 @@ def f(x):
   _field_name = x['field_name']
   
   # value = r[field_name]
-  _val_str = to_str(x['value'])
+  if 'type' in x:
+    if x['type'] == 'quantity':
+      val = x['value']['value']
+    else:
+      val = x['value']
+  else:
+    val = x['value']
+  _val_str = to_str(val)
   
   # _width = widths[_field_name]
   _width = x['width']
@@ -45,7 +53,19 @@ def t_1():
   z = f(x)
   return pxyz(x, y, z)
 
+def t_quantity():
+  x = {
+    'value': make_quantity(1, 'm'),
+    'field_name': 'A',
+    'type': 'quantity',
+    'width': 1
+  }
+  y = '1'
+  z = f(x)
+  return pxyz(x, y, z)
+
 def t():
   if not t_0(): return pf('t_0 failed')
   if not t_1(): return pf('t_1 failed')
+  if not t_quantity(): return pf('t_quantity failed')
   return True
