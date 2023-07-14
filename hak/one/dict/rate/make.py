@@ -1,5 +1,6 @@
 from hak.one.string.print_and_return_false import f as pf
 from hak.one.number.int.primes.prime_factors.get import f as get_prime_factors
+from hak.pxyz import f as pxyz
 
 # __init__
 def f(numerator, denominator):
@@ -32,37 +33,37 @@ def t_a():
   x = {'numerator': 10, 'denominator': 20}
   y = {'numerator':  1, 'denominator':  2}
   z = f(x['numerator'], x['denominator'])
-  return y == z or pf([f"x: {x}", f"y: {y}", f"z: {z}"])
+  return pxyz(x, y, z)
 
 def t_b():
   x = {'numerator': 0.1, 'denominator': 0.2}
   y = {'numerator': 1, 'denominator': 2}
   z = f(x['numerator'], x['denominator'])
-  return y == z or pf([f"x: {x}", f"y: {y}", f"z: {z}"])
+  return pxyz(x, y, z)
 
 def t_c():
   x = {'numerator': 100, 'denominator': 4}
   y = {'numerator':  25, 'denominator': 1}
   z = f(x['numerator'], x['denominator'])
-  return y == z or pf([f"x: {x}", f"y: {y}", f"z: {z}"])
+  return pxyz(x, y, z)
 
 def t_d():
   x = {'numerator': 25.0, 'denominator': 1}
   y = {'numerator': 25, 'denominator': 1}
   z = f(x['numerator'], x['denominator'])
-  return y == z or pf([f"x: {x}", f"y: {y}", f"z: {z}"])
+  return pxyz(x, y, z)
 
 def t_e():
   x = {'numerator': 80, 'denominator': 4}
   y = {'numerator': 20, 'denominator': 1}
   z = f(x['numerator'], x['denominator'])
-  return y == z or pf([f"x: {x}", f"y: {y}", f"z: {z}"])
+  return pxyz(x, y, z)
 
 def t_f():
   x = {'numerator': 0.7093094658085993, 'denominator': 1}
   y = {'numerator': 7093094658085993, 'denominator': 10**16}
   z = f(x['numerator'], x['denominator'])
-  return y == z or pf([f"x: {x}", f"y: {y}", f"z: {z}"])
+  return pxyz(x, y, z)
 
 def t():
   if not t_a(): return pf('!t_a')
