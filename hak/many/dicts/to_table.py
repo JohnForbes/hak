@@ -13,6 +13,22 @@ from hak.one.string.colour.bright.red import f as r
 from hak.one.string.colour.tgfr import f as tgfr
 from hak.one.string.print_and_return_false import f as pf
 from hak.one.string.table.bar.make import f as make_bar
+from hak.one.dict.quantity.make import f as make_quantity
+from hak.one.dict.quantity.is_a import f as is_quantity
+from hak.one.dict.get_or_default import f as get_or_default
+
+def _make_unit_row(x):
+  names = x['names']
+  _widths = x['widths']
+  sp = ' '
+  # return '\n'.join([
+  #   "| "+' | '.join([
+  #     f"{_f.split('_')[i]:>{_widths[_f]}}" if len(_f.split('_')) > i else
+  #     f"{sp:>{_widths[_f]}}"
+  #     for _f in names
+  #   ])+" |"
+  #   for i in range(max([len(_f.split('_')) for _f in names]))
+  # ])
 
 # src.list.dicts.to_table
 def f(x):
@@ -30,7 +46,28 @@ def f(x):
   })
   field_widths = get_field_widths({'records': records, 'field_names': names})
   bar = make_bar({'field_widths': field_widths, 'field_names': names})
-  head = make_head({'field_widths': field_widths, 'field_names': names})
+
+  field_units = {
+    k: (
+      get_or_default(records[-1], k, {})['unit']
+      if is_quantity(get_or_default(records[-1], k, {}))
+      else
+      ''
+    )
+    for k in names
+  }
+
+  obj = {
+    'field_widths': field_widths,
+    'field_names': names,
+    'field_units': field_units
+  }
+
+  if all([field_units[k] == '' for k in field_units]):
+    del obj['field_units']
+
+  head = make_head(obj)
+
   field_datatypes_by_key = get_field_datatypes(records)
   rows = [
     "| "+' | '.join([(
@@ -47,7 +84,13 @@ def f(x):
     ) for k in names])+" |"
     for r in records
   ]
-  return '\n'.join([bar, head, bar, *rows, bar])
+  return '\n'.join([
+    bar,
+    head,
+    bar,
+    *rows,
+    bar
+  ])
 
 def t_0():
   x = {'records': [{'a': 0, 'b': 1}, {'a': 2, 'b': 3}]}
@@ -294,6 +337,26 @@ def t_c():
   z = f(x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
+def t_quantity():
+  x = {
+    'records': [
+      {'a': make_quantity(0, 'm'), 'b': make_quantity(1, '$')},
+      {'a': make_quantity(2, 'm'), 'b': make_quantity(3, '$')}
+    ]
+  }
+  y = '\n'.join([
+    "|---|---|",
+    "| a | b |",
+    "|---|---|",
+    "| m | $ |",
+    "|---|---|",
+    "|   | 1 |",
+    "| 2 | 3 |",
+    "|---|---|",
+  ])
+  z = f(x)
+  return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
+
 def t():
   if not t_0(): return pf('t_0 failed')
   if not t_1(): return pf('t_1 failed')
@@ -308,6 +371,7 @@ def t():
   if not t_a(): return pf('t_a failed')
   if not t_b(): return pf('t_b failed')
   if not t_c(): return pf('t_c failed')
+  if not t_quantity(): return pf('t_quantity failed')
   return True
 
 if __name__ == '__main__':
