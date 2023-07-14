@@ -3,12 +3,16 @@ from hak.one.string.table.bar.make import f as make_bar
 
 # src.table.header.make
 def f(x):
-  field_units = None
-  if 'field_units' in x:
-    field_units = x['field_units']
+  if 'units' in x:
+    if all([x['units'][k] == '' for k in x['units']]):
+      del x['units']
 
-  field_names = x['field_names']
-  _widths = x['field_widths']
+  units = None
+  if 'units' in x:
+    units = x['units']
+
+  names = x['names']
+  _widths = x['widths']
 
   sp = ' '
   
@@ -16,39 +20,39 @@ def f(x):
     "| "+' | '.join([
       f"{_f.split('_')[i]:>{_widths[_f]}}" if len(_f.split('_')) > i else
       f"{sp:>{_widths[_f]}}"
-      for _f in field_names
+      for _f in names
     ])+" |"
-    for i in range(max([len(_f.split('_')) for _f in field_names]))
+    for i in range(max([len(_f.split('_')) for _f in names]))
   ])
 
   unit_section = ''
 
-  if field_units:
-    bar = make_bar({'field_widths': _widths, 'field_names': field_names})
+  if units:
+    bar = make_bar({'widths': _widths, 'names': names})
     unit_section += '\n'+bar+'\n'
     unit_section += '\n'.join([
       "| "+
-      ' | '.join([f'{field_units[n]:>{_widths[n]}}' for n in field_names]) +
+      ' | '.join([f'{units[n]:>{_widths[n]}}' for n in names]) +
       " |"
     ])
   
   return result + unit_section
 
 def t_0():
-  x = {'field_names': list('abcde')}
-  x['field_widths'] = {k: 2 for k in x['field_names']}
+  x = {'names': list('abcde')}
+  x['widths'] = {k: 2 for k in x['names']}
   y = '|  a |  b |  c |  d |  e |'
   z = f(x)
   return y == z or pf([f"x: {x}", f'y: {y}', f'z: {z}'])
 
 def t_1():
   x = {
-    'field_widths': {
+    'widths': {
       'a': 2,
       'is_revenue': len('revenue'),
       'balance_equity_retained_earnings': 8,
     },
-    'field_names': [
+    'names': [
       'a',
       'is_revenue',
       'balance_equity_retained_earnings',
@@ -66,17 +70,17 @@ def t_1():
 
 def t_2():
   x = {
-    'field_widths': {
+    'widths': {
       'a': len('lightyear'),
       'is_revenue': len('revenue'),
       'balance_equity_retained_earnings': 8,
     },
-    'field_names': [
+    'names': [
       'a',
       'is_revenue',
       'balance_equity_retained_earnings',
     ],
-    'field_units': {
+    'units': {
       'a': 'lightyear',
       'is_revenue': 'boolean',
       'balance_equity_retained_earnings': 'AUD'
