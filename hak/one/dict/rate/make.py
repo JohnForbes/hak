@@ -4,6 +4,16 @@ from hak.pxyz import f as pxyz
 
 # __init__
 def f(numerator, denominator):
+  if '.' in f'{numerator}{denominator}':
+    p = len(str(numerator).split('.')[1]) if '.' in str(numerator) else 0
+    q = len(str(denominator).split('.')[1]) if '.' in str(denominator) else 0
+    u = max(p, q)
+    numerator *= 10**u
+    denominator *= 10**u
+
+  if int(numerator) == numerator: numerator = int(numerator)
+  if int(denominator) == denominator: denominator = int(denominator)
+
   if isinstance(numerator, dict):
     numerator = numerator['numerator']/numerator['denominator']
 
@@ -65,6 +75,12 @@ def t_f():
   z = f(x['numerator'], x['denominator'])
   return pxyz(x, y, z)
 
+def t_g():
+  x = {'numerator': 5472.0, 'denominator': 7350.89}
+  y = {'numerator': 547200, 'denominator': 735089}
+  z = f(x['numerator'], x['denominator'])
+  return pxyz(x, y, z)
+
 def t():
   if not t_a(): return pf('!t_a')
   if not t_b(): return pf('!t_b')
@@ -72,4 +88,5 @@ def t():
   if not t_d(): return pf('!t_d')
   if not t_e(): return pf('!t_e')
   if not t_f(): return pf('!t_f')
+  if not t_g(): return pf('!t_g')
   return True
