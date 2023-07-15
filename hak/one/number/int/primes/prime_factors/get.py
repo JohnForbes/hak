@@ -76,6 +76,12 @@ def t_7093094658085993():
   z = f(x)
   return y == z or pf([f"x: {x}", f"y: {y}", f"z: {z}"])
 
+def t_735809():
+  x = 7093094658085993
+  y = {17929: 1, 41: 1}
+  z = f(x)
+  return y == z or pf([f"x: {x}", f"y: {y}", f"z: {z}"])
+
 def t():
   if not t_2(): return pf('!t_2')
   if not t_3(): return pf('!t_3')
