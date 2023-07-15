@@ -3,7 +3,7 @@ from hak.one.number.int.primes.prime_factors.get import f as get_prime_factors
 from hak.pxyz import f as pxyz
 
 # __init__
-def f(numerator, denominator):
+def f(numerator, denominator, unit=''):
   if '.' in f'{numerator}{denominator}':
     p = len(str(numerator).split('.')[1]) if '.' in str(numerator) else 0
     q = len(str(denominator).split('.')[1]) if '.' in str(denominator) else 0
@@ -37,7 +37,9 @@ def f(numerator, denominator):
     dpf = get_prime_factors(denominator)
     common_factors = set(npf.keys()).intersection(set(dpf.keys()))
 
-  return {'numerator': numerator, 'denominator': denominator}
+  result = {'numerator': numerator, 'denominator': denominator, 'unit': unit}
+  if not unit: del result['unit']
+  return result
 
 def t_a():
   x = {'numerator': 10, 'denominator': 20}
