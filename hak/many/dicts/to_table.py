@@ -15,6 +15,14 @@ from hak.one.string.table.bar.make import f as make_bar
 from hak.one.dict.quantity.make import f as make_quantity
 from hak.one.dict.quantity.is_a import f as is_quantity
 from hak.one.dict.get_or_default import f as get_or_default
+from hak.one.dict.rate.make import f as make_rate
+from hak.one.dict.rate.is_a import f as is_rate
+
+def _get_unit(k, last_record):
+  v = get_or_default(last_record, k, {})
+  if is_quantity(v): return v['unit']
+  if is_rate(v): return get_or_default(v, 'unit', '')
+  return ''
 
 # src.list.dicts.to_table
 def f(x):
@@ -32,19 +40,8 @@ def f(x):
   })
   widths = get_field_widths({'records': records, 'field_names': names})
   bar = make_bar({'widths': widths, 'names': names})
-
-  units = {
-    k: (
-      get_or_default(records[-1], k, {})['unit']
-      if is_quantity(get_or_default(records[-1], k, {}))
-      else
-      ''
-    )
-    for k in names
-  }
-
+  units = {k: _get_unit(k, records[-1]) for k in names}
   head = make_head({'widths': widths, 'names': names, 'units': units})
-
   rows = [
     "| "+' | '.join([(
       make_cell({'value': r[k] if k in r else None, 'width': widths[k]})
@@ -318,6 +315,28 @@ def t_quantity():
   z = f(x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
+def t_rate():
+  x = {
+    'records': [
+      {'a': make_rate(0, 1), 'b': make_rate(1, 2, '$/m')},
+      {'a': make_rate(2, 1), 'b': make_rate(3, 2, '$/m')}
+    ]
+  }
+  y = '\n'.join([
+    "|----------|----------|",
+    "|        a |        b |",
+    "|----------|----------|",
+    "|          |      $/m |",
+    "|----------|----------|",
+    "| 0.000000 | 0.500000 |",
+    "| 2.000000 | 1.500000 |",
+    "|----------|----------|",
+
+  ])
+  z = f(x)
+  return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
+
+
 def t():
   if not t_0(): return pf('t_0 failed')
   if not t_1(): return pf('t_1 failed')
@@ -333,6 +352,7 @@ def t():
   if not t_b(): return pf('t_b failed')
   if not t_c(): return pf('t_c failed')
   if not t_quantity(): return pf('t_quantity failed')
+  if not t_rate(): return pf('t_rate failed')
   return True
 
 if __name__ == '__main__':
