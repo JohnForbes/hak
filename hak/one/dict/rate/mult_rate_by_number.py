@@ -16,7 +16,7 @@ def t_a():
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
 def t_b():
-  u = {'numerator': 9, 'denominator': 7, 'unit': '1'}
+  u = {'numerator':  9, 'denominator': 7, 'unit': '1'}
   v = 5
   y = {'numerator': 45, 'denominator': 7, 'unit': '1'}
   z = f(u, v)
