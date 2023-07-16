@@ -14,20 +14,21 @@ def f(u, v):
 
   return make_rate(
     u['numerator']*v['denominator'],
-    u['denominator']*v['numerator']
+    u['denominator']*v['numerator'],
+    '1'
   )
 
 def t_a():
   u = {'numerator': 1, 'denominator': 2}
   v = {'numerator': 1, 'denominator': 3}
-  y = {'numerator': 3, 'denominator': 2}
+  y = {'numerator': 3, 'denominator': 2, 'unit': '1'}
   z = f(u, v)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
 def t_b():
   u = {'numerator':  2, 'denominator':  5}
   v = {'numerator':  7, 'denominator':  9}
-  y = {'numerator': 18, 'denominator': 35}
+  y = {'numerator': 18, 'denominator': 35, 'unit': '1'}
   z = f(u, v)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
