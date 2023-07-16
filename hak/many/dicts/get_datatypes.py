@@ -1,7 +1,7 @@
 from hak.many.dicts.get_all_keys import f as get_field_names
 from hak.many.values.get_datatype import f as detect_datatype_from_values
 from hak.one.string.print_and_return_false import f as pf
-from hak.one.dict.quantity.make import f as make_quantity
+from hak.one.dict.rate.make import f as make_rate
 
 # src.table.fields.datatypes.get
 f = lambda x: {
@@ -11,11 +11,10 @@ f = lambda x: {
 
 def t():
   x = [
-    {'a': True,  'b': 'abc', 'c': make_quantity(1.23, 'm')},
-    {'a': True,  'b': 'def', 'c': make_quantity(1.23, 'm')},
-    {'a': False, 'b': 'ghi', 'c': make_quantity(1.23, 'm')},
-    
+    {'a': True,  'b': 'abc', 'c': make_rate(1.23, 1, 'm')},
+    {'a': True,  'b': 'def', 'c': make_rate(1.23, 1, 'm')},
+    {'a': False, 'b': 'ghi', 'c': make_rate(1.23, 1, 'm')},
   ]
-  y = {'a': 'bool', 'b': 'str', 'c': 'quantity'}
+  y = {'a': 'bool', 'b': 'str', 'c': 'rate'}
   z = f(x)
   return y == z or pf([f"x: {x}", f'y: {y}', f'z: {z}'])
