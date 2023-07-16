@@ -12,15 +12,15 @@ from hak.one.string.colour.bright.red import f as r
 from hak.one.string.colour.tgfr import f as tgfr
 from hak.one.string.print_and_return_false import f as pf
 from hak.one.string.table.bar.make import f as make_bar
-from hak.one.dict.quantity.make import f as make_quantity
-from hak.one.dict.quantity.is_a import f as is_quantity
+from hak.one.dict.rate.make import f as make_rate
+from hak.one.dict.rate.is_a import f as is_rate
 from hak.one.dict.get_or_default import f as get_or_default
 from hak.one.dict.rate.make import f as make_rate
 from hak.one.dict.rate.is_a import f as is_rate
 
 def _get_unit(k, last_record):
   v = get_or_default(last_record, k, {})
-  if is_quantity(v): return v['unit']
+  if is_rate(v): return v['unit']
   if is_rate(v): return get_or_default(v, 'unit', '')
   return ''
 
@@ -295,22 +295,22 @@ def t_c():
   z = f(x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
-def t_quantity():
+def t_rate_a():
   x = {
     'records': [
-      {'a': make_quantity(0, 'm'), 'b': make_quantity(1, '$')},
-      {'a': make_quantity(2, 'm'), 'b': make_quantity(3, '$')}
+      {'a': make_rate(0, 1, 'm'), 'b': make_rate(1, 1, '$')},
+      {'a': make_rate(2, 1, 'm'), 'b': make_rate(3, 1, '$')}
     ]
   }
   y = '\n'.join([
-    "|---|---|",
-    "| a | b |",
-    "|---|---|",
-    "| m | $ |",
-    "|---|---|",
-    "|   | 1 |",
-    "| 2 | 3 |",
-    "|---|---|",
+    "|------|------|",
+    "|    a |    b |",
+    "|------|------|",
+    "|    m |    $ |",
+    "|------|------|",
+    "|      | 1.00 |",
+    "| 2.00 | 3.00 |",
+    "|------|------|",
   ])
   z = f(x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
@@ -318,19 +318,19 @@ def t_quantity():
 def t_rate():
   x = {
     'records': [
-      {'a': make_rate(0, 1), 'b': make_rate(1, 2, '$/m')},
-      {'a': make_rate(2, 1), 'b': make_rate(3, 2, '$/m')}
+      {'a': make_rate(0, 1, '1'), 'b': make_rate(1, 2, '$/m')},
+      {'a': make_rate(2, 1, '1'), 'b': make_rate(3, 2, '$/m')}
     ]
   }
   y = '\n'.join([
-    "|----------|----------|",
-    "|        a |        b |",
-    "|----------|----------|",
-    "|          |      $/m |",
-    "|----------|----------|",
-    "| 0.000000 | 0.500000 |",
-    "| 2.000000 | 1.500000 |",
-    "|----------|----------|",
+    "|------|------|",
+    "|    a |    b |",
+    "|------|------|",
+    "|    1 |  $/m |",
+    "|------|------|",
+    "|      | 0.50 |",
+    "| 2.00 | 1.50 |",
+    "|------|------|",
 
   ])
   z = f(x)
@@ -351,7 +351,7 @@ def t():
   if not t_a(): return pf('t_a failed')
   if not t_b(): return pf('t_b failed')
   if not t_c(): return pf('t_c failed')
-  if not t_quantity(): return pf('t_quantity failed')
+  if not t_rate_a(): return pf('t_rate_a failed')
   if not t_rate(): return pf('t_rate failed')
   return True
 
