@@ -8,5 +8,5 @@ f = lambda x: f"{to_float(x):.6f}"
 def t():
   x = {'numerator': 710, 'denominator': 113}
   y = '6.283186'
-  z = f(make_rate(x['numerator'], x['denominator']))
+  z = f(make_rate(x['numerator'], x['denominator'], '1'))
   return pxyz(x, y, z)
