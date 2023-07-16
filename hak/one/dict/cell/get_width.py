@@ -2,16 +2,17 @@ from hak.one.dict.cell.to_str import f as to_str
 from hak.one.string.colour.bright.red import f as red
 from hak.one.string.colour.decolour import f as decol
 from hak.one.string.print_and_return_false import f as pf
-from hak.one.dict.quantity.make import f as make_quantity
-from hak.one.dict.quantity.is_a import f as is_quantity
+from hak.one.dict.rate.make import f as make_rate
+from hak.one.dict.rate.is_a import f as is_rate
+from hak.one.dict.rate.to_float import f as to_float
 
 def f(x):
   val = x['value']
   
-  unit_width = len(val['unit']) if is_quantity(val) else 0
+  unit_width = len(val['unit']) if is_rate(val) else 0
 
-  if is_quantity(val):
-    val = val['value']
+  if is_rate(val):
+    val = to_float(val)
 
   return max([
     *[len(i) for i in x['field_name'].split('_')],
@@ -38,13 +39,13 @@ def t_2():
   return y == z or pf([f"x: {x}", f'y: {y}', f'z: {z}'])
 
 def t_quantity_short_unit():
-  x = {'value': make_quantity(12.34, 'm'), 'field_name': 'length'}
+  x = {'value': make_rate(12.34, 1, 'm'), 'field_name': 'length'}
   y = len('length')
   z = f(x)
   return y == z or pf([f"x: {x}", f'y: {y}', f'z: {z}'])
 
 def t_quantity_long_unit():
-  x = {'value': make_quantity(12.34, 'lightyear'), 'field_name': 'length'}
+  x = {'value': make_rate(12.34, 1, 'lightyear'), 'field_name': 'length'}
   y = len('lightyear')
   z = f(x)
   return y == z or pf([f"x: {x}", f'y: {y}', f'z: {z}'])
