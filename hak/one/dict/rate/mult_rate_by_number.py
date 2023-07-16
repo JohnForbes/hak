@@ -6,7 +6,7 @@ from hak.one.number.is_a import f as is_num
 def f(u, v):
   if not is_rate(u): raise ValueError(f'u: {u} is not a rate')
   if not is_num(v): raise ValueError(f'v: {v} is not a number')
-  return make_rate(u['numerator']*v, u['denominator'], '1')
+  return make_rate(u['numerator']*v, u['denominator'], u['unit'])
 
 def t_a():
   u = {'numerator': 1, 'denominator': 3, 'unit': '1'}
