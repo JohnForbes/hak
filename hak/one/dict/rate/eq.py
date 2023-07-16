@@ -12,7 +12,7 @@ def t_true_a():
   return y == z or pf([f"x_u: {x_u}", f"x_v: {x_v}", f"y: {y}", f"z: {z}"])
 
 def t_true_b():
-  x_u = {'numerator': 0.25, 'denominator': 0.5, 'unit': '1'}
+  x_u = {'numerator':  0.25, 'denominator': 0.5, 'unit': '1'}
   x_v = {'numerator': 10, 'denominator': 20, 'unit': '1'}
   y = True
   z = f(x_u, x_v)
