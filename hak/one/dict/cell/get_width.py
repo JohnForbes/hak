@@ -12,20 +12,15 @@ def f(x):
   
   unit_width = len(val['unit']) if is_rate(val) else 0
   header_word_widths = [len(i) for i in x['field_name'].split('_')]
-  
 
   if x['field_name'].startswith('rate_'):
-    pass
-    value_str_width = len(decol(to_str_frac(val)))
+    val_str = to_str_frac(val) if is_rate(val) else ''
+    value_str_width = len(decol(val_str))
   else:
     if is_rate(val): val = to_float(val)
     value_str_width = len(decol(to_str(val)))
 
-  return max([
-    *header_word_widths,
-    value_str_width,
-    unit_width
-  ])
+  return max([*header_word_widths, value_str_width, unit_width])
 
 def t_0():
   x = {'value': False, 'field_name': 'a'}
