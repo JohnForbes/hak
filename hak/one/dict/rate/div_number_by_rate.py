@@ -12,24 +12,25 @@ def f(u, v):
     print(f'v: {v}')
     raise ValueError(f'v: {v} is not a dict')
 
-  u = make_rate(u, 1)
+  u = make_rate(u, 1, '1')
 
   return make_rate(
     u['numerator']*v['denominator'],
-    u['denominator']*v['numerator']
+    u['denominator']*v['numerator'],
+    '1'
   )
 
 def t_a():
   u = 1
   v = {'numerator': 1, 'denominator': 3}
-  y = {'numerator': 3, 'denominator': 1}
+  y = {'numerator': 3, 'denominator': 1, 'unit': '1'}
   z = f(u, v)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
 def t_b():
   u = 5
   v = {'numerator':  7, 'denominator': 9}
-  y = {'numerator': 45, 'denominator': 7}
+  y = {'numerator': 45, 'denominator': 7, 'unit': '1'}
   z = f(u, v)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
