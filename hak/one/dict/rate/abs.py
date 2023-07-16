@@ -3,17 +3,17 @@ from hak.one.dict.rate.make import f as make_rate
 
 def f(x):
   if not isinstance(x, dict): raise ValueError(f'x: {x} is not a dict')
-  return make_rate(abs(x['numerator']), abs(x['denominator']))
+  return make_rate(abs(x['numerator']), abs(x['denominator']), '1')
 
 def t_a():
-  x = {'numerator': -1, 'denominator': 3}
-  y = {'numerator':  1, 'denominator': 3}
+  x = {'numerator': -1, 'denominator': 3, 'unit': '1'}
+  y = {'numerator':  1, 'denominator': 3, 'unit': '1'}
   z = f(x)
   return y == z or pf([f"x: {x}", f"y: {y}", f"z: {z}"])
 
 def t_b():
-  x = {'numerator': 45, 'denominator': -7}
-  y = {'numerator': 45, 'denominator':  7}
+  x = {'numerator': 45, 'denominator': -7, 'unit': '1'}
+  y = {'numerator': 45, 'denominator':  7, 'unit': '1'}
   z = f(x)
   return y == z or pf([f"x: {x}", f"y: {y}", f"z: {z}"])
 
