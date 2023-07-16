@@ -8,7 +8,7 @@ from hak.one.dict.rate.is_a import f as is_rate
 from hak.one.dict.rate.to_float import f as to_float
 from hak.one.dict.rate.to_num import f as to_num
 from hak.one.dict.get_or_default import f as get_or_default
-from hak.one.dict.rate.to_str_frac import f as to_str_frac
+from hak.one.dict.rate.to_str import f as rate_to_str
 
 # make_cell
 # src.cell.make
@@ -24,9 +24,10 @@ def f(x):
     if is_rate(x['value']):
       if to_num(x['value']) == 0: _val_str = ''
       else:
-        val = to_float(x['value'])
-        left_chars_len = len(str(val).split('.')[0]+'.')
-        _val_str = f'{val:.{_width-left_chars_len}f}'
+        # val = to_float(x['value'])
+        # left_chars_len = len(str(val).split('.')[0]+'.')
+        # _val_str = f'{val:.{_width-left_chars_len}f}'
+        _val_str = rate_to_str(x['value'])
     else:
       val = x['value']
       _val_str = to_str(val)
@@ -66,7 +67,7 @@ def t_description():
 
 def t_USD_rate():
   x = {'value': make_rate(5472, 1, 'USD'), 'width': 8}
-  y = '5472.000'
+  y = ' 5472.00'
   z = f(x)
   return pxyz(x, y, z)
 
