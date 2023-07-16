@@ -1,9 +1,20 @@
 from hak.one.string.print_and_return_false import f as pf
 from hak.one.number.int.primes.prime_factors.get import f as get_prime_factors
 from hak.pxyz import f as pxyz
+from hak.one.number.int.is_a import f as is_int
 
 # __init__
 def f(numerator, denominator, unit):
+  if is_int(numerator) and is_int(denominator):
+    numerator_str = str(numerator)
+    denominator_str = str(denominator)
+    if numerator_str[-1] == '0' and denominator_str[-1] == '0':
+      numerator_str = numerator_str[:-1]
+      denominator_str = denominator_str[:-1]
+      numerator = int(numerator_str)
+      denominator = int(denominator_str)
+      return f(numerator, denominator, unit)
+
   if '.' in f'{numerator}{denominator}':
     p = len(str(numerator).split('.')[1]) if '.' in str(numerator) else 0
     q = len(str(denominator).split('.')[1]) if '.' in str(denominator) else 0
@@ -87,8 +98,22 @@ def t_g():
   return pxyz(x, y, z)
 
 def t_h():
-  x = {'numerator': 4491.36, 'denominator': 48, 'unit': '1', 'unit': '1'}
-  y = {'numerator': 9357, 'denominator': 100, 'unit': '1', 'unit': '1'}
+  x = {'numerator': 4491.36, 'denominator': 48, 'unit': 'h'}
+  y = {'numerator': 9357, 'denominator': 100, 'unit': 'h'}
+  z = f(**x)
+  return pxyz(x, y, z)
+
+def t_i():
+  x = {
+    'numerator': 3293392164473685000,
+    'denominator':  2500000000000000,
+    'unit': 'i'
+  }
+  y = {
+    'numerator':     658678432894737,
+    'denominator':      500000000000,
+    'unit': 'i'
+  }
   z = f(**x)
   return pxyz(x, y, z)
 
@@ -101,4 +126,5 @@ def t():
   if not t_f(): return pf('!t_f')
   if not t_g(): return pf('!t_g')
   if not t_h(): return pf('!t_h')
+  if not t_i(): return pf('!t_i')
   return True
