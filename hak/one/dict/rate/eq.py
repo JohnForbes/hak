@@ -25,8 +25,16 @@ def t_false():
   z = f(x_u, x_v)
   return y == z or pf([f"x_u: {x_u}", f"x_v: {x_v}", f"y: {y}", f"z: {z}"])
 
+def t_false_different_units():
+  x_u = {'numerator': 1, 'denominator': 2, 'unit': 'a'}
+  x_v = {'numerator': 2, 'denominator': 3, 'unit': 'b'}
+  y = False
+  z = f(x_u, x_v)
+  return y == z or pf([f"x_u: {x_u}", f"x_v: {x_v}", f"y: {y}", f"z: {z}"])
+
 def t():
   if not t_true_a(): return pf('!t_true()')
   if not t_true_b(): return pf('!t_true()')
   if not t_false(): return pf('!t_false()')
+  if not t_false_different_units(): return pf('!t_false_different_units')
   return True
