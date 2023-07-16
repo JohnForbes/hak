@@ -3,13 +3,13 @@ from datetime import date
 from hak.one.dict.rate.make import f as make_rate
 from hak.one.string.print_and_return_false import f as pf
 from hak.pxyz import f as pxyz
-from hak.one.dict.quantity.is_a import f as is_a_quantity
-from hak.one.dict.quantity.make import f as make_quantity
+from hak.one.dict.rate.is_a import f as is_a_rate
+from hak.one.dict.rate.make import f as make_rate
 
 # detect_datatype_from_values
 def f(values):
-  # consider whether field contains quantity dicts
-  if all([is_a_quantity(v) for v in values if v]): return 'quantity'
+  # consider whether field contains rate dicts
+  if all([is_a_rate(v) for v in values if v]): return 'rate'
 
   _types = set([type(_) for _ in values])
   if type(None) in _types: _types.remove(type(None))
@@ -21,7 +21,7 @@ def f(values):
   elif _type == type(1.0): return 'float'
   elif _type == type(True): return 'bool'
   elif _type == type(1j): return 'complex'
-  elif _type == type(make_rate(1,1)): return 'rate'
+  elif _type == type(make_rate(1, 1, '1')): return 'rate'
 
   elif _type == type(date.today()): return 'date'
   else:
@@ -60,7 +60,7 @@ def t_4():
   return pxyz(x, y, z)
 
 def t_5():
-  x = [make_rate(110, 72), make_rate(72, 111), None]
+  x = [make_rate(110, 72, '1'), make_rate(72, 111, '1'), None]
   y = 'rate'
   z = f(x)
   return pxyz(x, y, z)
@@ -71,9 +71,9 @@ def t_6():
   z = f(x)
   return pxyz(x, y, z)
 
-def t_quantity():
-  x = [make_quantity(2000, 'm'), make_quantity(2001, 'm'), None]
-  y = 'quantity'
+def t_rate():
+  x = [make_rate(2000, 1, 'm'), make_rate(2001, 1, 'm'), None]
+  y = 'rate'
   z = f(x)
   return pxyz(x, y, z)
 
@@ -85,5 +85,5 @@ def t():
   if not t_4(): return pf('t_4 failed')
   if not t_5(): return pf('t_5 failed')
   if not t_6(): return pf('t_6 failed')
-  if not t_quantity(): return pf('t_quantity failed')
+  if not t_rate(): return pf('t_rate failed')
   return True
