@@ -17,8 +17,8 @@ def f(u, v):
 
   return make_rate(
     (
-      u['numerator'] * v['denominator'] -
-      v['numerator'] * u['denominator']
+      u[  'numerator'] * v['denominator'] -
+      u['denominator'] * v[  'numerator']
     ),
     u['denominator'] * v['denominator'],
     u['unit']
