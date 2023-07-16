@@ -21,7 +21,7 @@ def f(u, v):
       v['numerator'] * u['denominator']
     ),
     u['denominator'] * v['denominator'],
-    '1'
+    u['unit']
   )
 
 def t_a():
@@ -32,9 +32,9 @@ def t_a():
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
 def t_b():
-  u = make_rate( 2,  5, '1')
-  v = make_rate( 7,  9, '1')
-  y = make_rate(53, 45, '1')
+  u = make_rate( 2,  5, 'a')
+  v = make_rate( 7,  9, 'a')
+  y = make_rate(53, 45, 'a')
   z = f(u, v)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
