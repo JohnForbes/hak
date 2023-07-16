@@ -5,23 +5,25 @@ from hak.one.dict.rate.is_a import f as is_rate
 def f(u, v):
   if not is_rate(u): raise ValueError(f'u: {u} is not a rate')
   if not is_rate(v): raise ValueError(f'v: {v} is not a rate')
+  unit_str = f"{u['unit']}.{v['unit']}"
+  unit_str = unit_str.replace('1.1', '1')
   return make_rate(
     u[  'numerator']*v[  'numerator'],
     u['denominator']*v['denominator'],
-    '1'
+    unit_str
   )
 
 def t_a():
-  u = {'numerator': 1, 'denominator': 3, 'unit': '1'}
-  v = {'numerator': 3, 'denominator': 1, 'unit': '1'}
-  y = {'numerator': 1, 'denominator': 1, 'unit': '1'}
+  u = {'numerator': 1, 'denominator': 3, 'unit': 'm'}
+  v = {'numerator': 3, 'denominator': 1, 'unit': 'm'}
+  y = {'numerator': 1, 'denominator': 1, 'unit': 'm.m'}
   z = f(u, v)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
 def t_b():
-  u = {'numerator':  2, 'denominator':  3, 'unit': '1'}
-  v = {'numerator':  5, 'denominator':  7, 'unit': '1'}
-  y = {'numerator': 10, 'denominator': 21, 'unit': '1'}
+  u = {'numerator':  2, 'denominator':  3, 'unit': 's'}
+  v = {'numerator':  5, 'denominator':  7, 'unit': 's'}
+  y = {'numerator': 10, 'denominator': 21, 'unit': 's.s'}
   z = f(u, v)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
