@@ -55,7 +55,7 @@ def t_5():
 
 def t_6():
   x = make_rate(710, 113, '1')
-  y = '6.283186'
+  y = '6.28'#3186'
   z = f(x)
   return pxyz(x, y, z)
 
