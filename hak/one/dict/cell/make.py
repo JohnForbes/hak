@@ -7,20 +7,25 @@ from datetime import date
 from hak.one.dict.rate.is_a import f as is_rate
 from hak.one.dict.rate.to_float import f as to_float
 from hak.one.dict.rate.to_num import f as to_num
+from hak.one.dict.get_or_default import f as get_or_default
 
 # make_cell
 # src.cell.make
 def f(x):
   _width = x['width']
-  if is_rate(x['value']):
-    if to_num(x['value']) == 0: _val_str = ''
-    else:
-      val = to_float(x['value'])
-      left_chars_len = len(str(val).split('.')[0]+'.')
-      _val_str = f'{val:.{_width-left_chars_len}f}'
+  _format = get_or_default(x, 'format', None)
+  if _format:
+    _val_str = _format(x['value'])
   else:
-    val = x['value']
-    _val_str = to_str(val)
+    if is_rate(x['value']):
+      if to_num(x['value']) == 0: _val_str = ''
+      else:
+        val = to_float(x['value'])
+        left_chars_len = len(str(val).split('.')[0]+'.')
+        _val_str = f'{val:.{_width-left_chars_len}f}'
+    else:
+      val = x['value']
+      _val_str = to_str(val)
   
   _ = _width - len(decol(f'{_val_str:>{_width}}'))
   left_pad = ' '*_
