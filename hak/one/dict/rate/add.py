@@ -17,20 +17,21 @@ def f(u, v):
       u['numerator'] * v['denominator'] +
       v['numerator'] * u['denominator']
     ),
-    u['denominator'] * v['denominator']
+    u['denominator'] * v['denominator'],
+    '1'
   )
 
 def t_a():
   u = {'numerator': 1, 'denominator': 2}
   v = {'numerator': 1, 'denominator': 3}
-  y = {'numerator': 5, 'denominator': 6}
+  y = {'numerator': 5, 'denominator': 6, 'unit': '1'}
   z = f(u, v)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
 def t_b():
   u = {'numerator':  2, 'denominator':  5}
   v = {'numerator':  7, 'denominator':  9}
-  y = {'numerator': 53, 'denominator': 45}
+  y = {'numerator': 53, 'denominator': 45, 'unit': '1'}
   z = f(u, v)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
