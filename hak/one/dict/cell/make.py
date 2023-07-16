@@ -6,13 +6,22 @@ from hak.one.dict.rate.make import f as make_rate
 from datetime import date
 from hak.one.dict.rate.is_a import f as is_rate
 from hak.one.dict.rate.to_float import f as to_float
+from hak.one.dict.rate.to_num import f as to_num
 
 # make_cell
 # src.cell.make
 def f(x):
-  val = to_float(x['value']) if is_rate(x['value']) else x['value']
-  _val_str = to_str(val)
   _width = x['width']
+  if is_rate(x['value']):
+    if to_num(x['value']) == 0: _val_str = ''
+    else:
+      val = to_float(x['value'])
+      left_chars_len = len(str(val).split('.')[0]+'.')
+      _val_str = f'{val:.{_width-left_chars_len}f}'
+  else:
+    val = x['value']
+    _val_str = to_str(val)
+  
   _ = _width - len(decol(f'{_val_str:>{_width}}'))
   left_pad = ' '*_
   return left_pad + f'{_val_str:>{_width}}'
@@ -27,7 +36,7 @@ def t_0():
 def t_rate():
   x = {
     'value': make_rate(numerator=1, denominator=1, unit='m'),
-    'width': 1
+    'width': 4
   }
   y = '1.00'
   z = f(x)
@@ -48,7 +57,7 @@ def t_description():
 
 def t_USD_rate():
   x = {'value': make_rate(5472, 1, 'USD'), 'width': 8}
-  y = ' 5472.00'
+  y = '5472.000'
   z = f(x)
   return pxyz(x, y, z)
 
@@ -58,6 +67,15 @@ def t_asset_nabtrade_cash_AUD():
   z = f(x)
   return pxyz(x, y, z)
 
+def t_rate_0():
+  x = {
+    'value': make_rate(numerator=0, denominator=1, unit='m'),
+    'width': 4
+  }
+  y = ' '*x['width']
+  z = f(x)
+  return pxyz(x, [y], [z])
+
 def t():
   if not t_0(): return pf('t_0 failed')
   if not t_rate(): return pf('t_rate failed')
@@ -65,4 +83,5 @@ def t():
   if not t_description(): return pf('!t_description')
   if not t_USD_rate(): return pf('!t_USD_rate')
   if not t_asset_nabtrade_cash_AUD(): return pf('!t_asset_nabtrade_cash_AUD')
+  if not t_rate_0(): return pf('!t_rate_0')
   return True
