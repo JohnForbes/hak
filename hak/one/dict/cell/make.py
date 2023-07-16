@@ -8,6 +8,7 @@ from hak.one.dict.rate.is_a import f as is_rate
 from hak.one.dict.rate.to_float import f as to_float
 from hak.one.dict.rate.to_num import f as to_num
 from hak.one.dict.get_or_default import f as get_or_default
+from hak.one.dict.rate.to_str_frac import f as to_str_frac
 
 # make_cell
 # src.cell.make
@@ -15,7 +16,10 @@ def f(x):
   _width = x['width']
   _format = get_or_default(x, 'format', None)
   if _format:
-    _val_str = _format(x['value'])
+    if x['value']:
+      _val_str = _format(x['value'])
+    else:
+      _val_str = ''
   else:
     if is_rate(x['value']):
       if to_num(x['value']) == 0: _val_str = ''
