@@ -5,10 +5,11 @@ def f(x):
   if not isinstance(x, dict): return False
   if not 'numerator' in x: return False
   if not 'denominator' in x: return False
+  if not 'unit' in x: return False
   return True
 
 def t_true():
-  x = make_rate(1, 2)
+  x = make_rate(1, 2, '1')
   y = True
   z = f(x)
   return y == z or pf([f"x: {x}", f"y: {y}", f"z: {z}"])
