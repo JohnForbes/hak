@@ -4,19 +4,18 @@ from hak.many.dicts.get_all_keys import f as get_field_names
 from hak.many.dicts.get_keys_with_none_or_zero_vals import f as get_empty_fields
 from hak.one.dict.cell.make import f as make_cell
 from hak.one.dict.custom_order.apply import f as apply_custom_order
+from hak.one.dict.get_or_default import f as get_or_default
 from hak.one.dict.header.to_str import f as make_head
 from hak.one.dict.hidden_fields.hide import f as hide_fields
+from hak.one.dict.rate.is_a import f as is_rate
+from hak.one.dict.rate.make import f as make_rate
 from hak.one.dict.table.get_field_widths import f as get_field_widths
 from hak.one.string.colour.bright.green import f as g
 from hak.one.string.colour.bright.red import f as r
 from hak.one.string.colour.tgfr import f as tgfr
 from hak.one.string.print_and_return_false import f as pf
 from hak.one.string.table.bar.make import f as make_bar
-from hak.one.dict.rate.make import f as make_rate
-from hak.one.dict.rate.is_a import f as is_rate
-from hak.one.dict.get_or_default import f as get_or_default
-from hak.one.dict.rate.make import f as make_rate
-from hak.one.dict.rate.is_a import f as is_rate
+from hak.one.dict.rate.to_str_frac import f as to_str_frac
 
 def _get_unit(k, last_record):
   v = get_or_default(last_record, k, {})
@@ -44,7 +43,11 @@ def f(x):
   head = make_head({'widths': widths, 'names': names, 'units': units})
   rows = [
     "| "+' | '.join([(
-      make_cell({'value': r[k] if k in r else None, 'width': widths[k]})
+      make_cell({
+        'value': r[k] if k in r else None,
+        'width': widths[k],
+        'format': to_str_frac if k.startswith('rate_') else None
+      })
     ) for k in names])+" |"
     for r in records
   ]
