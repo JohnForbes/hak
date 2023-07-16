@@ -20,13 +20,13 @@ def t_0():
   return pxyz(x, y, z)
 
 def t_1():
-  x = {'a': 0, 'b': 1, 'rate_a': make_rate(1, 2)}
-  y = {'b': 1, 'rate_a': make_rate(1, 2)}
+  x = {'a': 0, 'b': 1, 'rate_a': make_rate(1, 2, '1')}
+  y = {'b': 1, 'rate_a': make_rate(1, 2, '1')}
   z = f(x)
   return pxyz(x, y, z)
 
 def t_2():
-  x = {'a': 0, 'b': 1, 'rate_a': make_rate(0, 2)}
+  x = {'a': 0, 'b': 1, 'rate_a': make_rate(0, 2, '1')}
   y = {'b': 1}
   z = f(x)
   return pxyz(x, y, z)
