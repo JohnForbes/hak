@@ -19,15 +19,15 @@ def t_a():
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
 def t_b():
-  u = {'numerator': 2, 'denominator': 3, 'unit': '1'}
-  v = {'numerator': 5, 'denominator': 7, 'unit': '1'}
+  u = {'numerator':  2, 'denominator':  3, 'unit': '1'}
+  v = {'numerator':  5, 'denominator':  7, 'unit': '1'}
   y = {'numerator': 10, 'denominator': 21, 'unit': '1'}
   z = f(u, v)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
 def t_c():
-  u = {'numerator': 13, 'denominator': 11, 'unit': '1'}
-  v = {'numerator': 19, 'denominator': 17, 'unit': '1'}
+  u = {'numerator':  13, 'denominator':  11, 'unit': '1'}
+  v = {'numerator':  19, 'denominator':  17, 'unit': '1'}
   y = {'numerator': 247, 'denominator': 187, 'unit': '1'}
   z = f(u, v)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
