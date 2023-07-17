@@ -45,7 +45,7 @@ def t_0():
 
 def t_rate():
   x = {
-    'value': make_rate(numerator=1, denominator=1, unit='m'),
+    'value': make_rate(numerator=1, denominator=1, unit={'m': 1}),
     'width': 4
   }
   y = '1.00'
@@ -66,20 +66,20 @@ def t_description():
   return pxyz(x, y, z)
 
 def t_USD_rate():
-  x = {'value': make_rate(5472, 1, 'USD'), 'width': 8}
+  x = {'value': make_rate(5472, 1, {'USD': 1}), 'width': 8}
   y = ' 5472.00'
   z = f(x)
   return pxyz(x, y, z)
 
 def t_asset_nabtrade_cash_AUD():
-  x = {'value': make_rate(-7350.89, 1, 'AUD'), 'width': 8}
+  x = {'value': make_rate(-7350.89, 1, {'AUD': 1}), 'width': 8}
   y = '-7350.89'
   z = f(x)
   return pxyz(x, y, z)
 
 def t_rate_0():
   x = {
-    'value': make_rate(numerator=0, denominator=1, unit='m'),
+    'value': make_rate(numerator=0, denominator=1, unit={'m': 1}),
     'width': 4
   }
   y = ' '*x['width']
