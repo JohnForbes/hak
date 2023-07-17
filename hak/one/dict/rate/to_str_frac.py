@@ -5,7 +5,7 @@ from hak.pxyz import f as pxyz
 f = lambda x: f"{x['numerator']}/{x['denominator']}"
 
 def t():
-  x = make_rate(710, 113, '1')
+  x = make_rate(710, 113, {'a': 1})
   y = '710/113'
-  z = f(make_rate(x['numerator'], x['denominator'], '1'))
+  z = f(x)
   return pxyz(x, y, z)
