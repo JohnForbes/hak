@@ -1,5 +1,6 @@
 from hak.one.string.print_and_return_false import f as pf
 from hak.one.dict.rate.make import f as make_rate
+from hak.pxyz import f as pxyz
 
 def f(x):
   if not isinstance(x, dict): return False
@@ -9,18 +10,25 @@ def f(x):
   return True
 
 def t_true():
-  x = make_rate(1, 2, '1')
+  x = make_rate(1, 2, {})
   y = True
   z = f(x)
-  return y == z or pf([f"x: {x}", f"y: {y}", f"z: {z}"])
+  return pxyz(x, y, z)
+
+def t_true_units():
+  x = make_rate(1, 2, {'m': 2, 's': -1})
+  y = True
+  z = f(x)
+  return pxyz(x, y, z)
 
 def t_false():
   x = 'abc'
   y = False
   z = f(x)
-  return y == z or pf([f"x: {x}", f"y: {y}", f"z: {z}"])
+  return pxyz(x, y, z)
 
 def t():
   if not t_true(): return pf('!t_true()')
+  if not t_true_units(): return pf('!t_true_units()')
   if not t_false(): return pf('!t_false()')
   return True
