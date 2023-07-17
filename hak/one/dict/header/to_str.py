@@ -1,5 +1,6 @@
 from hak.one.string.print_and_return_false import f as pf
 from hak.one.string.table.bar.make import f as make_bar
+from hak.pxyz import f as pxyz
 
 # src.table.header.make
 def f(x):
@@ -32,7 +33,7 @@ def f(x):
     unit_section += '\n'+bar+'\n'
     unit_section += '\n'.join([
       "| "+
-      ' | '.join([f'{units[n]:>{_widths[n]}}' for n in names]) +
+      ' | '.join([f'{str(units[n]):>{_widths[n]}}' for n in names]) +
       " |"
     ])
   
@@ -43,7 +44,7 @@ def t_0():
   x['widths'] = {k: 2 for k in x['names']}
   y = '|  a |  b |  c |  d |  e |'
   z = f(x)
-  return y == z or pf([f"x: {x}", f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
 
 def t_1():
   x = {
