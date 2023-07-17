@@ -1,5 +1,5 @@
 from copy import deepcopy
-from hak.one.string.print_and_return_false import f as pf
+from hak.pxyz import f as pxyz
 
 # apply_custom_order
 def f(x):
@@ -11,4 +11,4 @@ def t():
   x = {'field_order': list('cba'), 'field_names': list('abcdef')}
   y = ['c', 'b', 'a', 'd', 'e', 'f']
   z = f(x)
-  return y == z or pf([f"x: {x}", f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
