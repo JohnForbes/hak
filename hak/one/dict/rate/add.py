@@ -15,37 +15,31 @@ def f(u, v):
   if u['unit'] != v['unit']:
     raise ValueError(f"u['unit']: {u['unit']} != v['unit']: {v['unit']}")
 
-  return make_rate(
-    (
-      u['numerator'] * v['denominator'] +
-      v['numerator'] * u['denominator']
-    ),
-    u['denominator'] * v['denominator'],
-    u['unit']
-  )
+  n = 'numerator'
+  d = 'denominator'
+
+  return make_rate((u[n] * v[d] + v[n] * u[d]), u[d] * v[d], u['unit'])
 
 def t_a():
-  u = make_rate(1, 2, '1')
-  v = make_rate(1, 3, '1')
-  y = make_rate(5, 6, '1')
+  u = make_rate(1, 2, {'a': 1})
+  v = make_rate(1, 3, {'a': 1})
+  y = make_rate(5, 6, {'a': 1})
   z = f(u, v)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
 def t_b():
-  u = make_rate( 2,  5, 'a')
-  v = make_rate( 7,  9, 'a')
-  y = make_rate(53, 45, 'a')
+  u = make_rate( 2,  5, {'b': 1})
+  v = make_rate( 7,  9, {'b': 1})
+  y = make_rate(53, 45, {'b': 1})
   z = f(u, v)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
 def t_different_units():
-  u = make_rate( 2,  5, 'a')
-  v = make_rate( 7,  9, 'b')
-  y = "u['unit']: a != v['unit']: b"
-  try:
-    z = f(u, v)
-  except ValueError as ve:
-    z = str(ve)
+  u = make_rate( 2,  5, {'a': 1})
+  v = make_rate( 7,  9, {'b': 1})
+  y = "u['unit']: {'a': 1} != v['unit']: {'b': 1}"
+  try: z = f(u, v)
+  except ValueError as ve: z = str(ve)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
 def t():
