@@ -9,23 +9,23 @@ def f(u, v):
   return make_rate(u['numerator']*v, u['denominator'], u['unit'])
 
 def t_a():
-  u = {'numerator': 1, 'denominator': 3, 'unit': '1'}
+  u = make_rate(1, 3, {'a': 1})
   v = 1
-  y = {'numerator': 1, 'denominator': 3, 'unit': '1'}
+  y = make_rate(1, 3, {'a': 1})
   z = f(u, v)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
 def t_b():
-  u = {'numerator':  9, 'denominator': 7, 'unit': '1'}
+  u = make_rate( 9, 7, {'b': 1})
   v = 5
-  y = {'numerator': 45, 'denominator': 7, 'unit': '1'}
+  y = make_rate(45, 7, {'b': 1})
   z = f(u, v)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
 def t_c():
-  u = {'numerator': 1, 'denominator': 3, 'unit': '1'}
+  u = make_rate(1, 3, {'c': 1})
   v = 3
-  y = {'numerator': 1, 'denominator': 1, 'unit': '1'}
+  y = make_rate(1, 1, {'c': 1})
   z = f(u, v)
   return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
 
