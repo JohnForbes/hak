@@ -21,7 +21,7 @@ def f(values):
   elif _type == type(1.0): return 'float'
   elif _type == type(True): return 'bool'
   elif _type == type(1j): return 'complex'
-  elif _type == type(make_rate(1, 1, '1')): return 'rate'
+  elif _type == type(make_rate(1, 1, {})): return 'rate'
 
   elif _type == type(date.today()): return 'date'
   else:
@@ -60,7 +60,7 @@ def t_4():
   return pxyz(x, y, z)
 
 def t_5():
-  x = [make_rate(110, 72, '1'), make_rate(72, 111, '1'), None]
+  x = [make_rate(110, 72, {}), make_rate(72, 111, {}), None]
   y = 'rate'
   z = f(x)
   return pxyz(x, y, z)
@@ -72,7 +72,7 @@ def t_6():
   return pxyz(x, y, z)
 
 def t_rate():
-  x = [make_rate(2000, 1, 'm'), make_rate(2001, 1, 'm'), None]
+  x = [make_rate(2000, 1, {'m': 1}), make_rate(2001, 1, {'m': 1}), None]
   y = 'rate'
   z = f(x)
   return pxyz(x, y, z)
