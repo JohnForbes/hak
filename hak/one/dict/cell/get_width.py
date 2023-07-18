@@ -7,11 +7,11 @@ from hak.one.dict.rate.is_a import f as is_rate
 from hak.one.dict.rate.to_float import f as to_float
 from hak.one.dict.rate.to_str_frac import f as to_str_frac
 from hak.pxyz import f as pxyz
+from hak.one.dict.unit.to_str import f as unit_to_str
 
 def f(x):
   val = x['value']
-  
-  unit_width = len(str(val['unit'])) if is_rate(val) else 0
+  unit_width = len(unit_to_str(val['unit'])) if is_rate(val) else 0
   header_word_widths = [len(i) for i in x['field_name'].split('_')]
 
   if x['field_name'].startswith('rate_'):
@@ -43,7 +43,7 @@ def t_2():
 
 def t_quantity_short_unit():
   x = {'value': make_rate(12.34, 1, {'m': 1}), 'field_name': 'length'}
-  y = len(str({'m': 1}))
+  y = len('length')
   z = f(x)
   return pxyz(x, y, z)
 
@@ -56,7 +56,7 @@ def t_quantity_long_unit():
     ),
     'field_name': 'length'
   }
-  y = len(str({'lightyear': 1}))
+  y = len('(lightyear)')
   z = f(x)
   return pxyz(x, y, z)
 
@@ -65,7 +65,7 @@ def t_k_starts_with_rate():
     'value': make_rate(547200, 735089, {'USD': 1, 'AUD': -1}),
     'field_name': 'rate_USD_per_AUD'
   }
-  y = len(str(x['value']['unit']))
+  y = len('547200/735089')
   z = f(x)
   return pxyz(x, y, z)
 
