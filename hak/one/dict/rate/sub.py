@@ -7,12 +7,11 @@ def f(u, v):
   
   if u['unit'] != v['unit']:
     raise ValueError(f"u['unit']: {u['unit']} != v['unit']: {v['unit']}")
+  
+  n = 'numerator'
+  d = 'denominator'
 
-  return make_rate(
-    u[  'numerator'] * v['denominator'] - u['denominator'] * v[  'numerator'],
-    u['denominator'] * v['denominator'],
-    u['unit']
-  )
+  return make_rate(u[n] * v[d] - u[d] * v[n], u[d] * v[d], u['unit'])
 
 def t_a():
   u = make_rate(1, 2, {'a': 1})
