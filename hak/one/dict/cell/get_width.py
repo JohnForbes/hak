@@ -56,7 +56,7 @@ def t_quantity_long_unit():
     ),
     'field_name': 'length'
   }
-  y = len('(lightyear)')
+  y = len('lightyear')
   z = f(x)
   return pxyz(x, y, z)
 
