@@ -2,15 +2,8 @@ from hak.one.string.print_and_return_false import f as pf
 from hak.one.dict.rate.make import f as make_rate
 
 def f(u, v):
-  if not isinstance(u, dict):
-    print(f'u: {u}')
-    print(f'v: {v}')
-    raise ValueError(f'u: {u} is not a dict')
-  
-  if not isinstance(v, dict):
-    print(f'u: {u}')
-    print(f'v: {v}')
-    raise ValueError(f'v: {v} is not a dict')
+  if not isinstance(u, dict): raise ValueError(f'u: {u} is not a dict')
+  if not isinstance(v, dict): raise ValueError(f'v: {v} is not a dict')
 
   if u['unit'] != v['unit']:
     raise ValueError(f"u['unit']: {u['unit']} != v['unit']: {v['unit']}")
@@ -18,7 +11,7 @@ def f(u, v):
   n = 'numerator'
   d = 'denominator'
 
-  return make_rate((u[n] * v[d] + v[n] * u[d]), u[d] * v[d], u['unit'])
+  return make_rate(u[n] * v[d] + v[n] * u[d], u[d] * v[d], u['unit'])
 
 def t_a():
   u = make_rate(1, 2, {'a': 1})
