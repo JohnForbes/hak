@@ -16,6 +16,7 @@ from hak.one.string.colour.tgfr import f as tgfr
 from hak.one.string.print_and_return_false import f as pf
 from hak.one.string.table.bar.make import f as make_bar
 from hak.one.dict.rate.to_str_frac import f as to_str_frac
+from hak.one.dict.unit.to_str import f as unit_to_str
 
 def _get_unit(k, last_record):
   v = get_or_default(last_record, k, {})
@@ -39,7 +40,7 @@ def f(x):
   })
   widths = get_field_widths({'records': records, 'field_names': names})
   bar = make_bar({'widths': widths, 'names': names})
-  units = {k: _get_unit(k, records[-1]) for k in names}
+  units = {k: unit_to_str(_get_unit(k, records[-1])) for k in names}
   head = make_head({'widths': widths, 'names': names, 'units': units})
   rows = [
     "| "+' | '.join([(
@@ -306,14 +307,14 @@ def t_rate_a():
     ]
   }
   y = '\n'.join([
-    "|----------|----------|",
-    "|        a |        b |",
-    "|----------|----------|",
-    "| {'m': 1} | {'$': 1} |",
-    "|----------|----------|",
-    "|          |     1.00 |",
-    "|     2.00 |     3.00 |",
-    "|----------|----------|",
+    "|------|------|",
+    "|    a |    b |",
+    "|------|------|",
+    "|    m |    $ |",
+    "|------|------|",
+    "|      | 1.00 |",
+    "| 2.00 | 3.00 |",
+    "|------|------|",
   ])
   z = f(x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
@@ -326,14 +327,14 @@ def t_rate():
     ]
   }
   y = '\n'.join([
-    "|------|-------------------|",
-    "|    a |                 b |",
-    "|------|-------------------|",
-    "|   {} | {'$': 1, 'm': -1} |",
-    "|------|-------------------|",
-    "|      |              0.50 |",
-    "| 2.00 |              1.50 |",
-    "|------|-------------------|",
+    "|------|------|",
+    "|    a |    b |",
+    "|------|------|",
+    "|      |  $/m |",
+    "|------|------|",
+    "|      | 0.50 |",
+    "| 2.00 | 1.50 |",
+    "|------|------|",
 
   ])
   z = f(x)
