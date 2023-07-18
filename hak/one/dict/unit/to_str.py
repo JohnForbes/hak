@@ -9,7 +9,7 @@ s = [
 def _f_side(x):
   z = ''
   for k in sorted(x):
-    z += f'({k})' if len(k) > 1 else f'{k}'
+    z += f'{k}' if len(k) > 1 else f'{k}'
     if x[k] == 1: return z
     z += ''.join([s[int(j)] for j in str(x[k])])
   return z
@@ -66,13 +66,13 @@ def t_m_3():
 
 def t_USD_per_AUD():
   x = {'USD': 1, 'AUD': -1}
-  y = '(USD)/(AUD)'
+  y = 'USD/AUD'
   z = f(x)
   return pxyz(x, y, z)
 
 def t_USD_2_per_AUD():
   x = {'USD': 2, 'AUD': -1}
-  y = '(USD)\u00B2/(AUD)'
+  y = 'USD\u00B2/AUD'
   z = f(x)
   return pxyz(x, y, z)
 
