@@ -1,13 +1,10 @@
 from time import time
 
-from hak.many.dicts.get_all_keys import f as get_field_names
+from hak.many.dicts.get_all_keys import f as get_names
 from hak.many.dicts.get_keys_with_none_or_zero_vals import f as get_empty_fields
-from hak.one.dict.cell.make import f as make_cell
-from hak.one.dict.custom_order.apply import f as apply_custom_order
-from hak.one.dict.get_or_default import f as get_or_default
+from hak.one.dict.custom_order.apply import f as apply_order
 from hak.one.dict.header.to_str import f as make_head
-from hak.one.dict.hidden_fields.hide import f as hide_fields
-from hak.one.dict.rate.is_a import f as is_rate
+from hak.one.dict.hidden_fields.hide import f as hide
 from hak.one.dict.rate.make import f as make_rate
 from hak.one.dict.table.get_field_widths import f as get_field_widths
 from hak.one.string.colour.bright.green import f as g
@@ -15,47 +12,28 @@ from hak.one.string.colour.bright.red import f as r
 from hak.one.string.colour.tgfr import f as tgfr
 from hak.one.string.print_and_return_false import f as pf
 from hak.one.string.table.bar.make import f as make_bar
-from hak.one.dict.rate.to_str_frac import f as to_str_frac
-from hak.one.dict.unit.to_str import f as unit_to_str
+from hak.one.string.table.row.make import f as make_row
+from hak.one.dict.rate.get_unit_str_if_rate_else_empty_str import f as get_unit
 
-def _get_unit(k, last_record):
-  v = get_or_default(last_record, k, {})
-  if is_rate(v): return v['unit']
-  if is_rate(v): return get_or_default(v, 'unit', '')
-  return ''
-
-# src.list.dicts.to_table
-def f(x):
-  records = x['records']
-  order = x['field_order'] if 'field_order' in x else []
-  hidden = x['hidden_fields'] if 'hidden_fields' in x else []
-  empty = get_empty_fields(x['records']+[{k: None for k in order}])
-  for k in empty: hidden.append(k)
-  names = hide_fields({
-    'field_names': apply_custom_order({
-      'field_names': get_field_names(records),
-      'field_order': order
-    }),
-    'hidden_fields': hidden
+def f(records, order, hidden):
+  hidden += get_empty_fields(records+[{k: None for k in order}])
+  names = hide({
+    'names': apply_order({'names': get_names(records), 'order': order}),
+    'hidden': hidden
   })
-  widths = get_field_widths({'records': records, 'field_names': names})
+  widths = get_field_widths({'records': records, 'names': names})
   bar = make_bar({'widths': widths, 'names': names})
-  units = {k: unit_to_str(_get_unit(k, records[-1])) for k in names}
+  units = {k: get_unit(k, records[-1]) for k in names}
   head = make_head({'widths': widths, 'names': names, 'units': units})
-  rows = [
-    "| "+' | '.join([(
-      make_cell({
-        'value': r[k] if k in r else None,
-        'width': widths[k],
-        'format': to_str_frac if k.startswith('rate_') else None
-      })
-    ) for k in names])+" |"
-    for r in records
-  ]
+  rows = [make_row(widths, r, names) for r in records]
   return '\n'.join([bar, head, bar, *rows, bar])
 
 def t_0():
-  x = {'records': [{'a': 0, 'b': 1}, {'a': 2, 'b': 3}]}
+  x = {
+    'records': [{'a': 0, 'b': 1}, {'a': 2, 'b': 3}],
+    'order': [],
+    'hidden': []
+  }
   y = '\n'.join([
     "|---|---|",
     "| a | b |",
@@ -64,11 +42,15 @@ def t_0():
     "| 2 | 3 |",
     "|---|---|",
   ])
-  z = f(x)
+  z = f(**x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
 def t_1():
-  x = {'records': [{'a': 0, 'b': 1, 'c': 2}, {'a': 2, 'b': 3}]}
+  x = {
+    'records': [{'a': 0, 'b': 1, 'c': 2}, {'a': 2, 'b': 3}],
+    'order': [],
+    'hidden': []
+  }
   y = '\n'.join([
     "|---|---|---|",
     "| a | b | c |",
@@ -77,11 +59,15 @@ def t_1():
     "| 2 | 3 |   |",
     "|---|---|---|",
   ])
-  z = f(x)
+  z = f(**x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
 def t_2():
-  x = {'records': [{'a': 0, 'b': 1}, {'a': 2, 'b': 3, 'c': 4}]}
+  x = {
+    'records': [{'a': 0, 'b': 1}, {'a': 2, 'b': 3, 'c': 4}],
+    'order': [],
+    'hidden': []
+  }
   y = '\n'.join([
     "|---|---|---|",
     "| a | b | c |",
@@ -90,11 +76,15 @@ def t_2():
     "| 2 | 3 | 4 |",
     "|---|---|---|",
   ])
-  z = f(x)
+  z = f(**x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
 def t_3():
-  x = {'records': [{'aa': 0, 'b': 1}, {'aa': 2, 'b': 3}]}
+  x = {
+    'records': [{'aa': 0, 'b': 1}, {'aa': 2, 'b': 3}],
+    'order': [],
+    'hidden': []
+  }
   y = '\n'.join([
     "|----|---|",
     "| aa | b |",
@@ -103,11 +93,15 @@ def t_3():
     "|  2 | 3 |",
     "|----|---|",
   ])
-  z = f(x)
+  z = f(**x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
 def t_4():
-  x = {'records': [{'a': 10, 'b': 11}, {'a': 12, 'b': 13}]}
+  x = {
+    'records': [{'a': 10, 'b': 11}, {'a': 12, 'b': 13}],
+    'order': [],
+    'hidden': []
+  }
   y = '\n'.join([
     "|----|----|",
     "|  a |  b |",
@@ -116,11 +110,15 @@ def t_4():
     "| 12 | 13 |",
     "|----|----|",
   ])
-  z = f(x)
+  z = f(**x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
 def t_5():
-  x = {'records': [{'a': 10, 'b': 1}, {'a': 2, 'b': 13}]}
+  x = {
+    'records': [{'a': 10, 'b': 1}, {'a': 2, 'b': 13}],
+    'order': [],
+    'hidden': []
+  }
   y = '\n'.join([
     "|----|----|",
     "|  a |  b |",
@@ -129,7 +127,7 @@ def t_5():
     "|  2 | 13 |",
     "|----|----|",
   ])
-  z = f(x)
+  z = f(**x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
 def t_6():
@@ -139,7 +137,8 @@ def t_6():
       {'a': 2, 'b': 13},
       {'a': 3, 'b': 12, 'c': 15}
     ],
-    'field_order': ['c', 'b']
+    'order': ['c', 'b'],
+    'hidden': []
   }
   y = '\n'.join([
     "|----|----|----|",
@@ -150,13 +149,14 @@ def t_6():
     "| 15 | 12 |  3 |",
     "|----|----|----|",
   ])
-  z = f(x)
+  z = f(**x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
 def t_7():
   x = {}
   x['records'] = [{'a': 10 }, {'a': 2}, {'a': 3, 'c': 15}]
-  x['field_order'] = ['c', 'b']
+  x['order'] = ['c', 'b']
+  x['hidden'] = []
   y = '\n'.join([
     "|----|----|",
     "|  c |  a |",
@@ -166,7 +166,7 @@ def t_7():
     "| 15 |  3 |",
     "|----|----|",
   ])
-  z = f(x)
+  z = f(**x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
 def t_8():
@@ -176,8 +176,8 @@ def t_8():
     {'a': 2, 'b': 13},
     {'a': 3, 'b': 12, 'c': 15}
   ]
-  x['field_order'] = ['c', 'b']
-  x['hidden_fields'] = ['c']
+  x['order'] = ['c', 'b']
+  x['hidden'] = ['c']
   y = '\n'.join([
     "|----|----|",
     "|  b |  a |",
@@ -187,7 +187,7 @@ def t_8():
     "| 12 |  3 |",
     "|----|----|",
   ])
-  z = f(x)
+  z = f(**x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
 def t_9():
@@ -197,8 +197,8 @@ def t_9():
     {'a': False, 'b': 13},
     {'a': False, 'b': 12, 'c': 15}
   ]
-  x['field_order'] = ['c', 'b']
-  x['hidden_fields'] = ['c']
+  x['order'] = ['c', 'b']
+  x['hidden'] = ['c']
   y = '\n'.join([
     "|----|---|",
     "|  b | a |",
@@ -208,7 +208,7 @@ def t_9():
     f"| 12 | {r('N')} |",
     "|----|---|",
   ])
-  z = f(x)
+  z = f(**x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
 def t_a():
@@ -218,8 +218,8 @@ def t_a():
     {'is_revenue': False, 'b': 13},
     {'is_revenue': False, 'b': 12, 'c': 15}
   ]
-  x['field_order'] = ['c', 'b']
-  x['hidden_fields'] = ['c']
+  x['order'] = ['c', 'b']
+  x['hidden'] = ['c']
   y = '\n'.join([
     "|----|---------|",
     "|  b |      is |",
@@ -230,7 +230,7 @@ def t_a():
     f"| 12 |       {r('N')} |",
     "|----|---------|"
   ])
-  z = f(x)
+  z = f(**x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
 def t_b():
@@ -239,8 +239,8 @@ def t_b():
     {'balance_a': 1.0, 'b': 13},
     {'balance_a': 1.1, 'b': 12, 'c': 15}
   ]
-  x['field_order'] = ['c', 'b']
-  x['hidden_fields'] = ['c']
+  x['order'] = ['c', 'b']
+  x['hidden'] = ['c']
   y = '\n'.join([
     "|----|---------|",
     "|  b | balance |",
@@ -250,7 +250,7 @@ def t_b():
     "| 12 |    1.10 |",
     "|----|---------|"
   ])
-  z = f(x)
+  z = f(**x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
 def t_c():
@@ -271,14 +271,14 @@ def t_c():
         'flag_asset_usd_cash_as_aud': 1
       }
     ],
-    'field_order': [
+    'order': [
       'description', 'rate_USD_per_AUD', 'flow_AUD', 'flow_USD', 'total_AUD',
       'total_USD', 'equiv_AUD', 'flag_asset_aud_cash',
       'flag_asset_usd_cash_as_aud', 'flag_equity_retained_earnings',
       'balance_asset_aud_cash', 'balance_asset_usd_cash_as_aud',
       'balance_equity_retained_earnings'
     ],
-    'hidden_fields': [
+    'hidden': [
       'flag_liability', 'balance_liability', 'flow_USD', 'total_USD',
       'flag_asset_usd_cash_as_aud', 'balance_asset_usd_cash_as_aud',
       'rate_USD_per_AUD'
@@ -296,7 +296,7 @@ def t_c():
     "| Exchanged 1000 AUD for 100 USD | -1000.00 |    -1 |          |",
     "|--------------------------------|----------|-------|----------|"
   ])
-  z = f(x)
+  z = f(**x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
 def t_rate_a():
@@ -304,7 +304,9 @@ def t_rate_a():
     'records': [
       {'a': make_rate(0, 1, {'m': 1}), 'b': make_rate(1, 1, {'$': 1})},
       {'a': make_rate(2, 1, {'m': 1}), 'b': make_rate(3, 1, {'$': 1})}
-    ]
+    ],
+    'order': [],
+    'hidden': []
   }
   y = '\n'.join([
     "|------|------|",
@@ -316,15 +318,17 @@ def t_rate_a():
     "| 2.00 | 3.00 |",
     "|------|------|",
   ])
-  z = f(x)
+  z = f(**x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
-def t_rate():
+def t_rate_b():
   x = {
     'records': [
       {'a': make_rate(0, 1, {}), 'b': make_rate(1, 2, {'$': 1, 'm': -1})},
       {'a': make_rate(2, 1, {}), 'b': make_rate(3, 2, {'$': 1, 'm': -1})}
-    ]
+    ],
+    'order': [],
+    'hidden': []
   }
   y = '\n'.join([
     "|------|------|",
@@ -337,9 +341,43 @@ def t_rate():
     "|------|------|",
 
   ])
-  z = f(x)
+  z = f(**x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
+def t_nested():
+  x = {
+    'records': [
+      {
+        'prices': {
+          'apples': make_rate(0, 1, {'$': 1, 'apple': -1}),
+          'bananas': make_rate(1, 2, {'$': 1, 'banana': -1})
+        }
+      },
+      {
+        'prices': {
+          'apples': make_rate(2, 1, {'$': 1, 'apple': -1}),
+          'bananas': make_rate(3, 2, {'$': 1, 'banana': -1})
+        }
+      }
+    ],
+    'order': [],
+    'hidden': []
+  }
+  y = '\n'.join([
+    "|--------------------|",
+    "|             prices |",
+    "|---------|----------|",
+    "|  apples |  bananas |",
+    "|---------|----------|",
+    "| $/apple | $/banana |",
+    "|---------|----------|",
+    "|         |     0.50 |",
+    "|    2.00 |     1.50 |",
+    "|---------|----------|",
+
+  ])
+  z = f(**x)
+  return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
 
 def t():
   if not t_0(): return pf('t_0 failed')
@@ -356,7 +394,8 @@ def t():
   if not t_b(): return pf('t_b failed')
   if not t_c(): return pf('t_c failed')
   if not t_rate_a(): return pf('t_rate_a failed')
-  if not t_rate(): return pf('t_rate failed')
+  if not t_rate_b(): return pf('t_rate_b failed')
+  # if not t_nested(): return pf('t_nested failed')
   return True
 
 if __name__ == '__main__':
