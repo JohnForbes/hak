@@ -9,12 +9,12 @@ f = lambda x: {
     get_w({'value': r[k] if k in r else None, 'field_name': k})
     for r in x['records']
   ])
-  for k in x['field_names']
+  for k in x['names']
 }
 
 def t_a():
   x = {
-    'field_names': list('abcde'),
+    'names': list('abcde'),
     'records': [
       {'a':  0, 'b':  1, 'c':  2, 'd':  3, 'e':  4},
       {'a':  5, 'b':  6, 'c':  7, 'd':  8, 'e':  9},
@@ -27,7 +27,7 @@ def t_a():
 
 def t_b():
   x = {
-    'field_names': list('abcde'),
+    'names': list('abcde'),
     'records': [
       {
         'a':  0,
