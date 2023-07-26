@@ -1,5 +1,3 @@
-from time import time
-
 from hak.many.dicts.get_all_keys import f as get_names
 from hak.many.dicts.get_keys_with_none_or_zero_vals import f as get_empty_fields
 from hak.one.dict.custom_order.apply import f as apply_order
@@ -9,7 +7,6 @@ from hak.one.dict.rate.make import f as make_rate
 from hak.one.dict.table.get_field_widths import f as get_field_widths
 from hak.one.string.colour.bright.green import f as g
 from hak.one.string.colour.bright.red import f as r
-from hak.one.string.colour.tgfr import f as tgfr
 from hak.one.string.print_and_return_false import f as pf
 from hak.one.string.table.bar.make import f as make_bar
 from hak.one.string.table.row.make import f as make_row
@@ -397,7 +394,3 @@ def t():
   if not t_rate_b(): return pf('t_rate_b failed')
   # if not t_nested(): return pf('t_nested failed')
   return True
-
-if __name__ == '__main__':
-  print(tgfr(t()))
-  print(time())
