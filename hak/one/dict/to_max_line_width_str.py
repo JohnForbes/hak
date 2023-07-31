@@ -3,7 +3,18 @@ from hak.one.string.print_and_return_false import f as pf
 from hak.one.string.colour.bright.cyan import f as cy
 from hak.one.string.colour.bright.blue import f as bl
 from hak.one.string.colour.bright.magenta import f as mg
-from hak.one.string.char.last.find import f as find_last
+from hak.many.strings.get_last_line_width import f as get_last_line_width
+from hak.insert_new_line_at_best_location import f as insert_new_line_at_best_location
+
+def f(x, w=80):
+  _x = str(x)
+  if len(_x) <= w: return _x
+
+  result = ', '.join([f"'{k}': {x[k]}" for k in x])
+  while get_last_line_width(result) > w-2:
+    result = insert_new_line_at_best_location(result)
+
+  return '{\n  '+result+'\n}'
 
 def t_short():
   x = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8}
@@ -117,31 +128,3 @@ def t():
   if not t_too_long_d(): return pf('t_too_long_d() failed')
   if not t_too_long_e(): return pf('t_too_long_e() failed')
   return True
-
-def get_last_line_width(x):
-  return (len(x) - find_last(x, '\n')) if '\n' in x else len(x)
-
-def insert_nl_at_best_location(x):
-  last_new_line_index = (len(x) - x[::-1].find('\n') -1) if '\n' in x else 0
-  raw_comma_indices = [x.find(', ', last_new_line_index+i) for i in range(80)]
-  comma_indices = [
-    _ for _ in raw_comma_indices if all([_ >= 0, _-last_new_line_index < 78])
-  ]
-  q = max(comma_indices)+1
-  l = x[:q]
-  r = x[q+1:]
-  x = l+'\n  '+r
-  return x
-
-def f_d(x, w=80):
-  _x = str(x)
-  if len(_x) <= w: return _x
-
-  result = ', '.join([f"'{k}': {x[k]}" for k in x])
-  
-  while get_last_line_width(result) > w-2:
-    result = insert_nl_at_best_location(result)
-
-  return '{\n  '+result+'\n}'
-
-f = lambda x: f_d(x)
