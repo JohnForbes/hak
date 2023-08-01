@@ -1,7 +1,7 @@
 # ignore_overlength_lines
-from hak.cell_val_widths_to_aggregate_width import f as cell_val_widths_to_aggregate_width
-from ..records_k_branch_k_leaf_to_leaf_col_width import f as records_k_branch_k_leaf_to_leaf_col_width
+from ..k_branch_and_k_leaf.to_leaf_col_width import f as records_k_branch_k_leaf_to_leaf_col_width
 from .to_sorted_leaf_keys import f as records_k_branch_to_sorted_leaf_keys
+from hak.cell_val_widths_to_aggregate_width import f as cell_val_widths_to_aggregate_width
 from hak.one.string.print_and_return_false import f as pf
 from hak.pxyz import f as pxyz
 
