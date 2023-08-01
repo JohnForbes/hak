@@ -2,18 +2,15 @@
 
 from datetime import date
 
-from hak.one.dict.period.financial_year.get_end_date import f as f_fy
-from hak.one.dict.period.financial_year.make import f as mkfy
-from hak.one.dict.period.month.get_end_date import f as get_col_hor_line_from_records_k_branch_k_leaf
+from .financial_year.get_end_date import f as f_fy
+from .financial_year.make import f as mkfy
+from .month.get_end_date import f as get_col_hor_line_from_records
+
 from hak.one.string.print_and_return_false import f as pf
 from hak.pxyz import f as pxyz
 
 # get_ω
-f = lambda x: (
-  get_col_hor_line_from_records_k_branch_k_leaf
-  if 'month' in x else
-  f_fy
-)(x)
+f = lambda x: (get_col_hor_line_from_records if 'month' in x else f_fy)(x)
 
 def t_fy():
   x = {'financial_year': mkfy({'start_year': 2022})}
@@ -50,7 +47,6 @@ def t_4():
   y = date(2021, 12, 31)
   z = f(x)
   return pxyz(x, y, z)
-
 
 def t():
   if not t_0(): return pf('!t_0')
