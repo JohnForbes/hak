@@ -1,17 +1,18 @@
 # ignore_overlength_lines
 from hak.one.string.print_and_return_false import f as pf
 from hak.many.strings.get_last_line_width import f as get_last_line_width
-from hak.dict_string_to_dict_string_limited_width import f as dict_string_to_dict_string_limited_width
+from hak.dict_string_to_limited_width_dict_string import f as dict_string_to_limited_width_dict_string
 from hak.pxyz import f as pxyz
+
+def _f(x, w):
+  result = ', '.join([f"'{k}': {x[k]}" for k in x])
+  while get_last_line_width(result) > w-2:
+    result = dict_string_to_limited_width_dict_string(result)
+  return result
 
 def f(x, w=80):
   if len(str(x)) <= w: return str(x)
-
-  result = ', '.join([f"'{k}': {x[k]}" for k in x])
-  while get_last_line_width(result) > w-2:
-    result = dict_string_to_dict_string_limited_width(result)
-
-  return '{\n  '+result+'\n}'
+  return '{\n  '+_f(x, w)+'\n}'
 
 def t_short():
   x = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8}
