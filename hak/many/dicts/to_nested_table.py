@@ -2,7 +2,7 @@
 from datetime import date
 from hak.records_to_horizontal_line import f as records_to_horizontal_line
 from hak.records_to_k_branch_row import f as records_to_k_branch_row
-from hak.f_row_values import f as f_row_values
+from hak.records_to_value_rows import f as records_to_value_rows
 from hak.f_sub_header import f as f_sub_header
 from hak.f_top_border import f as f_top_border
 from hak.f_units import f as f_units
@@ -15,7 +15,7 @@ f = lambda x: '\n'.join([
   records_to_horizontal_line(x),
   *f_sub_header(x),
   *f_units(x),
-  *f_row_values(x),
+  *records_to_value_rows(x),
   records_to_horizontal_line(x)
 ])
 
