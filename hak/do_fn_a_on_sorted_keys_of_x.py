@@ -1,11 +1,11 @@
 from hak.many.dicts.get_sorted_keys_of_first_dict import f as get_K
 from hak.many.dicts.get_top_heading_field_width import f as get_top_head_width
 from hak.one.string.print_and_return_false import f as pf
-from hak.f_q import f as f_q
+from hak.records_to_pad_k_branch import f as records_to_pad_k_branch
 from hak.pxyz import f as pxyz
 
 # do_fn_a_on_sorted_keys_of_x
-f = lambda x, a: [a(x, k) for k in get_K(x)]
+f = lambda records, fn_a: [fn_a(records, k) for k in get_K(records)]
 
 _records = [
   {
@@ -49,17 +49,15 @@ _records = [
 ]
 
 def t_0():
-  x = _records
-  a = get_top_head_width
+  x = {'records': _records, 'fn_a': get_top_head_width}
   y = [18, 33, 6]
-  z = f(x, a)
+  z = f(**x)
   return pxyz(x, y, z)
 
 def t_1():
-  x = _records
-  a = f_q
+  x = {'records': _records, 'fn_a': records_to_pad_k_branch}
   y = ['            prices', '                          volumes', 'zloops']
-  z = f(x, a)
+  z = f(**x)
   return pxyz(x, y, z)
 
 def t():
