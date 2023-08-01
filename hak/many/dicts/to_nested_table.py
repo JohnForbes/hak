@@ -3,7 +3,7 @@ from datetime import date
 from hak.records_to_horizontal_line import f as records_to_horizontal_line
 from hak.records_to_k_branch_row import f as records_to_k_branch_row
 from hak.records_to_value_rows import f as records_to_value_rows
-from hak.f_sub_header import f as f_sub_header
+from hak.records_to_sub_header_and_underline import f as records_to_sh
 from hak.f_top_border import f as f_top_border
 from hak.f_units import f as f_units
 from hak.one.dict.rate.make import f as make_rate
@@ -13,7 +13,7 @@ f = lambda x: '\n'.join([
   f_top_border(x),
   records_to_k_branch_row(x),
   records_to_horizontal_line(x),
-  *f_sub_header(x),
+  *records_to_sh(x),
   *f_units(x),
   *records_to_value_rows(x),
   records_to_horizontal_line(x)
