@@ -1,6 +1,6 @@
 # ignore_overlength_lines
 from datetime import date
-from hak.f_horizontal_line import f as f_horizontal_line
+from hak.records_to_horizontal_line import f as records_to_horizontal_line
 from hak.f_root_header import f as f_root_header
 from hak.f_row_values import f as f_row_values
 from hak.f_sub_header import f as f_sub_header
@@ -12,11 +12,11 @@ from hak.one.string.print_and_return_false import f as pf
 f = lambda x: '\n'.join([
   f_top_border(x),
   f_root_header(x),
-  f_horizontal_line(x),
+  records_to_horizontal_line(x),
   *f_sub_header(x),
   *f_units(x),
   *f_row_values(x),
-  f_horizontal_line(x)
+  records_to_horizontal_line(x)
 ])
 
 def t_nested():
