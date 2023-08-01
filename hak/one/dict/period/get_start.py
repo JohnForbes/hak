@@ -1,13 +1,13 @@
 from datetime import date
 
-from hak.one.dict.period.financial_year.get_start_date import f as f_fy
-from hak.one.dict.period.financial_year.make import f as mkfy
-from hak.one.dict.period.month.get_start_date import f as f_m
+from .financial_year.get_start_date import f as f_fy
+from .financial_year.make import f as mkfy
+from .month.get_start_date import f as get_month_start_date
 from hak.one.string.print_and_return_false import f as pf
 from hak.pxyz import f as pxyz
 
 # get_α
-f = lambda x: (f_m if 'month' in x else f_fy)(x)
+f = lambda x: (get_month_start_date if 'month' in x else f_fy)(x)
 
 def t_a():
   x = {'financial_year': mkfy({'start_year': 2022})}
