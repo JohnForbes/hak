@@ -4,6 +4,7 @@ from .to_sorted_leaf_keys import f as records_k_branch_to_sorted_leaf_keys
 from hak.cell_val_widths_to_aggregate_width import f as cell_val_widths_to_aggregate_width
 from hak.one.string.print_and_return_false import f as pf
 from hak.pxyz import f as pxyz
+from hak.one.dict.rate.make import f as make_rate
 
 # records_k_branch_to_branch_col_width
 f = lambda records, k_branch: cell_val_widths_to_aggregate_width([
@@ -16,33 +17,27 @@ def t_prices():
   records = [
     {
       'prices': {
-        'apples': {
-          'numerator': 1,
-          'denominator': 4,
-          'unit': {'$': 1, 'apple': -1}
-        },
-        'bananas': {
-          'numerator': 1,
-          'denominator': 2,
-          'unit': {'$': 1, 'banana': -1}
-        }
+        'apples': make_rate(1, 4, {'$': 1, 'apple': -1}),
+        'bananas': make_rate(2, 4, {'$': 1, 'banana': -1})
       },
-      '...': {}
-    }, 
+      'volumes': {
+        'applezzz': make_rate(1, 1, {'apple': 1}),
+        'bananazzz': make_rate(2, 1, {'banana': 1}),
+        'pearzzzzzz': make_rate(3, 1, {'pear': 1})
+      },
+      'zloops': {'zloop': make_rate(7, 1, {'zloop': 1})}
+    },
     {
       'prices': {
-        'apples': {
-          'numerator': 3,
-          'denominator': 4,
-          'unit': {'$': 1, 'apple': -1}
-        },
-        'bananas': {
-          'numerator': 1,
-          'denominator': 1,
-          'unit': {'$': 1, 'banana': -1}
-        }
+        'apples': make_rate(3, 4, {'$': 1, 'apple': -1}),
+        'bananas': make_rate(4, 4, {'$': 1, 'banana': -1})
       },
-      '...': {}
+      'volumes': {
+        'applezzz': make_rate(4, 1, {'apple': 1}),
+        'bananazzz': make_rate(5, 1, {'banana': 1}),
+        'pearzzzzzz': make_rate(6, 1, {'pear': 1})
+      },
+      'zloops': {'zloop': make_rate(7, 1, {'zloop': 1})}
     }
   ]
   x = {
