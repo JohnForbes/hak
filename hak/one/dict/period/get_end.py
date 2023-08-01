@@ -1,13 +1,19 @@
+# ignore_overlength_lines
+
 from datetime import date
 
 from hak.one.dict.period.financial_year.get_end_date import f as f_fy
 from hak.one.dict.period.financial_year.make import f as mkfy
-from hak.one.dict.period.month.get_end_date import f as f_m
+from hak.one.dict.period.month.get_end_date import f as get_col_hor_line_from_records_k_branch_k_leaf
 from hak.one.string.print_and_return_false import f as pf
 from hak.pxyz import f as pxyz
 
 # get_ω
-f = lambda x: (f_m if 'month' in x else f_fy)(x)
+f = lambda x: (
+  get_col_hor_line_from_records_k_branch_k_leaf
+  if 'month' in x else
+  f_fy
+)(x)
 
 def t_fy():
   x = {'financial_year': mkfy({'start_year': 2022})}
