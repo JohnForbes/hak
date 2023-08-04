@@ -13,8 +13,8 @@ def f(content):
   return content
 
 def t():
-  y_0 = 'from src.foo import run\n\nxyz'
-  z_0 = f('from src.foo import run\nxyz')
+  y_0 = 'from hak.foo import run\n\nxyz'
+  z_0 = f('from hak.foo import run\nxyz')
   y_1 = 'abc\nxyz'
   z_1 = f('abc\nxyz')
   y_2 = 'abc\n\nxyz'
