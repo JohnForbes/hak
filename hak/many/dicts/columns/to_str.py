@@ -7,8 +7,8 @@ def f(columns, separator='|'):
   column_strings = [column_to_str(c) for c in columns]
   rows = '\n'.join([
     separator.join([
-      column_strings[_].split('\n')[i]
-      for _
+      column_strings[column_index].split('\n')[i]
+      for column_index
       in range(len(columns))
     ])
     for i in range(len(column_strings[0].split('\n')))
