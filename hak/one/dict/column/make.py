@@ -1,17 +1,36 @@
 from hak.one.string.print_and_return_false import f as pf
 from hak.pxyz import f as pxyz
 from hak.many.values.detect_type import f as detect_type
+from hak.one.tup.is_a import f as is_tuple
+from hak.one.string.is_a import f as is_string
 
-f = lambda heading, values, path=None: {
-  'heading': heading,
-  'values': values,
-  'type': detect_type(values),
-  'path': path or tuple()
-}
+def f(heading, values, path=None):
+  if path and not is_tuple(path):
+    if is_string(path):
+      path = tuple([path])
+    else:
+      raise TypeError(f'path should be tuple, path: {path}')
+  return {
+    'heading': heading,
+    'values': values,
+    'type': detect_type(values),
+    'path': path or tuple()
+  }
 
 def t_0():
   x = {'heading': 'abc', 'values': [0, 1, 2]}
   y = {'heading': 'abc', 'values': [0, 1, 2], 'type': 'int', 'path': ()}
+  z = f(**x)
+  return pxyz(x, y, z)
+
+def t_single_element_path_as_str():
+  x = {'heading': 'abc', 'values': [0, 1, 2], 'path': 'root'}
+  y = {
+    'heading': 'abc',
+    'values': [0, 1, 2],
+    'type': 'int',
+    'path': ('root',)
+  }
   z = f(**x)
   return pxyz(x, y, z)
 
