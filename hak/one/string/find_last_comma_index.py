@@ -1,6 +1,7 @@
 from hak.one.string.print_and_return_false import f as pf
+from hak.one.string.find_last_char import f as find_last_char
 
-f = lambda x: len(x)-x[::-1].find(',')-1
+f = lambda x: find_last_char(x, ',')
 
 def t():
   x = 'a,b,c,de'
