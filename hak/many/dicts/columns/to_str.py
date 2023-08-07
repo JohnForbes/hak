@@ -1,14 +1,12 @@
 from datetime import date
+from hak.cell_val_widths_to_aggregate_width import f as g
+from hak.many.strings.lines._anon_0 import f as h
 from hak.one.dict.column.get_width import f as get_column_width
 from hak.one.dict.column.make import f as make_column
 from hak.one.dict.column.to_str import f as column_to_str
+from hak.one.list.remove_duplicates import f as remove_duplicates
 from hak.one.string.print_and_return_false import f as pf
 from hak.pxyz import f as pxyz
-from hak.one.list.remove_duplicates import f as remove_duplicates
-from hak.many.strings.lines._anon_0 import f as h
-
-def g(x):
-  return sum(x) + (len(x)-1)*len('-|-')
 
 def _f_a(columns, separator='|'):
   column_strings = [column_to_str(c) for c in columns]
