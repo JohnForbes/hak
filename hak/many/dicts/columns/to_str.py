@@ -5,6 +5,7 @@ from hak.one.dict.column.to_str import f as column_to_str
 from hak.one.string.print_and_return_false import f as pf
 from hak.pxyz import f as pxyz
 from hak.one.list.remove_duplicates import f as remove_duplicates
+from hak.many.strings.lines._anon_0 import f as h
 
 def g(x):
   return sum(x) + (len(x)-1)*len('-|-')
@@ -29,20 +30,20 @@ def _f_b(columns, separator='|'):
     path_width_lists[p].append(get_column_width(c))
   
   path_widths = {
-    p: g(path_width_lists[p]) for p in path_width_lists
+    p: max(g(path_width_lists[p]), len(p)) for p in path_width_lists
   }
 
   _rows = _f_a(columns, separator).split('\n')
-  width = len(_rows[0])
 
-  path_header_bar = '-'+'-|-'.join(['-'*path_widths[p] for p in paths])+'-'
-  path_header = ' | '.join([f'{p:>{path_widths[p]}}' for p in paths])+' '
+  path_head_bar = '-'+'-|-'.join([   '-'*path_widths[p]    for p in paths])+'-'
+  path_head     = ' '+' | '.join([f'{p:>{path_widths[p]}}' for p in paths])+' '
 
-  return '\n'.join([
-    path_header_bar,
-    f'{path_header:>{width}}',
+  return '\n'.join(h([
+    path_head_bar,
+    path_head,
     *_rows
-  ])
+  ]))
+
 
 f = lambda columns, separator='|': (
   _f_a if set([c['path'] for c in columns]) == {()} else
@@ -172,10 +173,36 @@ def t_numbers_let_paths():
   z = f(**x)
   return pxyz(x, '\n'+y, '\n'+z)
 
+def t_numbers_letters_paths():
+  x = {
+    'columns': [
+      make_column('abc', [0,  1,   2,    3], 'numbers'),
+      make_column('ghi', [0, 10, 200, 3000], 'numbers'),
+      make_column('jkl', list('abcd'), 'letters'),
+    ],
+    'separator': '|'
+  }
+  y = '\n'.join([
+    '------------|---------',
+    '    numbers | letters ',
+    '-----|------|---------',
+    ' abc |  ghi |     jkl ',
+    '-----|------|---------',
+    '   0 |    0 |       a ',
+    '   1 |   10 |       b ',
+    '   2 |  200 |       c ',
+    '   3 | 3000 |       d ',
+    '-----|------|---------',
+  ])
+  z = f(**x)
+  return pxyz(x, '\n'+y, '\n'+z)
+  # return pxyz(x, [y], [z])
+
 def t():
   if not t_0(): return pf('!t_0')
   if not t_1(): return pf('!t_1')
   if not t_date(): return pf('!t_date')
   if not t_common_path(): return pf('!t_common_path')
   if not t_numbers_let_paths(): return pf('!t_numbers_let_paths')
+  if not t_numbers_letters_paths(): return pf('!t_numbers_letters_paths')
   return True
