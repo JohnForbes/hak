@@ -21,29 +21,20 @@ def _f_a(columns, separator='|'):
     for i in range(len(column_strings[0].split('\n')))
   ])
 
+_get_path_widths = lambda paths, columns: {
+  p: max(g([get_column_width(c) for c in columns if c['path'][0] == p]), len(p))
+  for p
+  in paths
+}
+
 def _f_b(columns, separator='|'):
-  paths = remove_duplicates(c['path'] for c in columns)
-  path_width_lists = {p: [] for p in paths}
-
-  for c in columns:
-    p = c['path']
-    path_width_lists[p].append(get_column_width(c))
-  
-  path_widths = {
-    p: max(g(path_width_lists[p]), len(p)) for p in path_width_lists
-  }
-
-  _rows = _f_a(columns, separator).split('\n')
-
-  path_head_bar = '-'+'-|-'.join([   '-'*path_widths[p]    for p in paths])+'-'
-  path_head     = ' '+' | '.join([f'{p:>{path_widths[p]}}' for p in paths])+' '
-
+  paths = remove_duplicates(c['path'][0] for c in columns)
+  path_widths = _get_path_widths(paths, columns)
   return '\n'.join(h([
-    path_head_bar,
-    path_head,
-    *_rows
+    '-'+'-|-'.join([   '-'*path_widths[p]    for p in paths])+'-',
+    ' '+' | '.join([f'{p:>{path_widths[p]}}' for p in paths])+' ',
+    *_f_a(columns, separator).split('\n')
   ]))
-
 
 f = lambda columns, separator='|': (
   _f_a if set([c['path'] for c in columns]) == {()} else
@@ -147,7 +138,6 @@ def t_common_path():
   ])
   z = f(**x)
   return pxyz(x, '\n'+y, '\n'+z)
-  # return pxyz(x, [y], [z])
 
 def t_numbers_let_paths():
   x = {
@@ -178,7 +168,7 @@ def t_numbers_letters_paths():
     'columns': [
       make_column('abc', [0,  1,   2,    3], 'numbers'),
       make_column('ghi', [0, 10, 200, 3000], 'numbers'),
-      make_column('jkl', list('abcd'), 'letters'),
+      make_column('jkl', list('abcd'), 'letters')
     ],
     'separator': '|'
   }
@@ -196,7 +186,31 @@ def t_numbers_letters_paths():
   ])
   z = f(**x)
   return pxyz(x, '\n'+y, '\n'+z)
-  # return pxyz(x, [y], [z])
+
+def t_numbers_letters_paths_2():
+  x = {
+    'columns': [
+      make_column('abc', [0,  1,   2,    3], 'numbers'),
+      make_column('ghi', [0, 10, 200, 3000], 'numbers'),
+      make_column('jkl', list('abcd'), 'letters'),
+      make_column('mno', ['a', 'bb', 'ccc', 'dddd'], 'letters')
+    ],
+    'separator': '|'
+  }
+  y = '\n'.join([
+    '------------|------------',
+    '    numbers |    letters ',
+    '-----|------|-----|------',
+    ' abc |  ghi | jkl |  mno ',
+    '-----|------|-----|------',
+    '   0 |    0 |   a |    a ',
+    '   1 |   10 |   b |   bb ',
+    '   2 |  200 |   c |  ccc ',
+    '   3 | 3000 |   d | dddd ',
+    '-----|------|-----|------',
+  ])
+  z = f(**x)
+  return pxyz(x, '\n'+y, '\n'+z)
 
 def t():
   if not t_0(): return pf('!t_0')
@@ -205,4 +219,5 @@ def t():
   if not t_common_path(): return pf('!t_common_path')
   if not t_numbers_let_paths(): return pf('!t_numbers_let_paths')
   if not t_numbers_letters_paths(): return pf('!t_numbers_letters_paths')
+  if not t_numbers_letters_paths_2(): return pf('!t_numbers_letters_paths_2')
   return True
