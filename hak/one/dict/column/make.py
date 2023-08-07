@@ -2,14 +2,12 @@ from hak.one.string.print_and_return_false import f as pf
 from hak.pxyz import f as pxyz
 from hak.many.values.detect_type import f as detect_type
 from hak.one.tup.is_a import f as is_tuple
-from hak.one.string.is_a import f as is_string
+from hak.one.string.is_a import f as is_str
 
 def f(heading, values, path=None):
   if path and not is_tuple(path):
-    if is_string(path):
-      path = tuple([path])
-    else:
-      raise TypeError(f'path should be tuple, path: {path}')
+    if not is_str(path): raise TypeError(f'path should be tuple, path: {path}')
+    path = tuple([path])
   return {
     'heading': heading,
     'values': values,
