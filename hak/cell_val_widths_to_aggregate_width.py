@@ -2,7 +2,7 @@ from hak.one.string.print_and_return_false import f as pf
 from hak.pxyz import f as pxyz
 
 # cell_val_widths_to_aggregate_width
-f = lambda cell_val_widths: sum(cell_val_widths)+(len(cell_val_widths)-1)*3
+f = lambda x: sum(x)+(len(x)-1)*len(' | ')
 
 def t_6():
   x = [6] # | 123456 |
