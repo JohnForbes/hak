@@ -19,6 +19,7 @@ excludables = set([
   './start.py',
   './gitter.py',
   './hak/data/months.py',
+  './hak/data/kana.py',
 ])
 
 def make_Pi_t(python_filepaths, test_all, prev, last_mods):
