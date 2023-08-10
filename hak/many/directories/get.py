@@ -3,7 +3,7 @@ from os.path import isdir
 from hak.one.directory.filepaths.get import f as get_filepaths
 from hak.one.directory.make import f as mkd
 from hak.one.directory.remove import f as rmd
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 f = lambda root: set([p for p in get_filepaths(root=root) if isdir(p)])
 
