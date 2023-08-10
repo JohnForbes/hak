@@ -1,7 +1,7 @@
 from requests import get
 from hak.one.file.pickle.load_if_exists import f as load
 from hak.one.dict.make_from_key_value_lists import f as make_from_key_val_lists
-from hak.pf import f as pf
+from hak.pxyz import f as pxyz
 
 def f(name, response=None):
   response = response or get(f"https://pypi.org/project/{name}/")
@@ -24,4 +24,4 @@ def t():
   }
   y = {'major': 0, 'minor': 0, 'patch': 4}
   z = f(**x) 
-  return y == z or pf([f'y == z: {y == z}', f'x: {x}', f'y: {y}', f'z: {z}'])
+  return pxyz(x, y, z)
