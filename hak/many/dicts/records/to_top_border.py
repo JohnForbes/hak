@@ -3,7 +3,7 @@ from .k_branch.to_branch_col_width import f as get_top_head_width
 from .fn.to_fn_applied_to_sorted_keys_of_records import f as records_and_fn_to_fn_applied_to_sorted_keys_of_records
 from hak.many.strings.to_table_row import f as cell_strings_to_table_row_string
 from hak.pxyz import f as pxyz
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from datetime import date
 
 # records_to_top_border
