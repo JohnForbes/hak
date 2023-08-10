@@ -2,7 +2,7 @@ from hak.many.strings.contain.version import f as k
 from hak.other.pip.version.to_str import f as make_v_str
 from hak.pf import f as pf
 
-def _k(x): return 'hak/pip/version' not in x
+_k = lambda x: 'hak/pip/version' not in x
 
 f = lambda v, _L: [
   (f"  version='{make_v_str(v)}'," if k(_l) and _k(_l) else _l) for _l in _L
