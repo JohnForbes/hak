@@ -6,7 +6,7 @@ from os.path import exists
 from hak.one.file.get_next_line_as_int import f as get_next_prime
 from hak.one.file.zip.extract import f as extract
 from hak.one.number.int.primes.download_prime_10 import f as download_prime_10
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 def build_freq_dict(x, primes):
