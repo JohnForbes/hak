@@ -1,6 +1,6 @@
 from numbers import Number
 
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 f = lambda x: isinstance(x, Number)
