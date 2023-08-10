@@ -15,22 +15,22 @@ from hak.one.dict.rate.to_str import f as rate_to_str
 def f(x):
   _width = x['width']
   _format = get_or_default(x, 'format', None)
-  if _format:
-    if x['value']:
-      _val_str = _format(x['value'])
-    else:
-      _val_str = ''
-  else:
-    if is_rate(x['value']):
-      if to_num(x['value']) == 0: _val_str = ''
-      else:
-        # val = to_float(x['value'])
-        # left_chars_len = len(str(val).split('.')[0]+'.')
-        # _val_str = f'{val:.{_width-left_chars_len}f}'
-        _val_str = rate_to_str(x['value'])
-    else:
-      val = x['value']
-      _val_str = to_str(val)
+  _val_str = (
+    (
+      _format(x['value'])
+      if x['value'] else
+      ''
+    )
+    if _format else (
+      (
+        rate_to_str(x['value'])
+        if to_num(x['value']) else
+        ''
+      )
+      if is_rate(x['value']) else
+      to_str(x['value'])
+    )
+  )
   
   _ = _width - len(decol(f'{_val_str:>{_width}}'))
   left_pad = ' '*_
