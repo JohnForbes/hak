@@ -1,6 +1,6 @@
 from datetime import date
 
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 # get_first_date_of_month
