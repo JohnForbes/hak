@@ -1,6 +1,6 @@
 from math import sqrt
 from hak.one.string.colour.bright.cyan import f as cy
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 f = lambda x: all([x%i for i in range(2, x)])
 
