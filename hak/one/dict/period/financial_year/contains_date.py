@@ -4,7 +4,7 @@ from datetime import datetime as dt
 from hak.one.dict.period.financial_year.get_end_date import f as get_ω_d
 from hak.one.dict.period.financial_year.get_start_date import f as get_α_d
 from hak.one.dict.period.financial_year.make import f as mkfy
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 # contains_date
