@@ -1,36 +1,37 @@
 from hak.pf import f as pf
 from hak.one.dict.rate.make import f as make_rate
+from hak.puvyz import f as puvyz
 
 # __eq__
 f = lambda u, v: make_rate(**u) == make_rate(**v)
 
 def t_true_a():
-  x_u = make_rate(  1,   2, {'1': 0})
-  x_v = make_rate(1.0, 2.0, {'1': 0})
+  u = make_rate(  1,   2, {'1': 0})
+  v = make_rate(1.0, 2.0, {'1': 0})
   y = True
-  z = f(x_u, x_v)
-  return y == z or pf([f"x_u: {x_u}", f"x_v: {x_v}", f"y: {y}", f"z: {z}"])
+  z = f(u, v)
+  return puvyz(u, v, y, z)
 
 def t_true_b():
-  x_u = make_rate( 0.25, 0.5, {'1': 0})
-  x_v = make_rate(10, 20, {'1': 0})
+  u = make_rate( 0.25, 0.5, {'1': 0})
+  v = make_rate(10, 20, {'1': 0})
   y = True
-  z = f(x_u, x_v)
-  return y == z or pf([f"x_u: {x_u}", f"x_v: {x_v}", f"y: {y}", f"z: {z}"])
+  z = f(u, v)
+  return puvyz(u, v, y, z)
 
 def t_false():
-  x_u = make_rate(1, 2, {'1': 0})
-  x_v = make_rate(2, 3, {'1': 0})
+  u = make_rate(1, 2, {'1': 0})
+  v = make_rate(2, 3, {'1': 0})
   y = False
-  z = f(x_u, x_v)
-  return y == z or pf([f"x_u: {x_u}", f"x_v: {x_v}", f"y: {y}", f"z: {z}"])
+  z = f(u, v)
+  return puvyz(u, v, y, z)
 
 def t_false_different_units():
-  x_u = make_rate(1, 2, {'a': 1})
-  x_v = make_rate(2, 3, {'b': 1})
+  u = make_rate(1, 2, {'a': 1})
+  v = make_rate(2, 3, {'b': 1})
   y = False
-  z = f(x_u, x_v)
-  return y == z or pf([f"x_u: {x_u}", f"x_v: {x_v}", f"y: {y}", f"z: {z}"])
+  z = f(u, v)
+  return puvyz(u, v, y, z)
 
 def t():
   if not t_true_a(): return pf('!t_true()')
