@@ -1,6 +1,6 @@
 # ignore_overlength_lines
 from hak.one.string.char.last.find import f as find_last
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 # get_last_line_width
