@@ -1,10 +1,8 @@
 from datetime import date
-
+from hak.one.dict.rate.is_a import f as is_a_rate
 from hak.one.dict.rate.make import f as make_rate
 from hak.pf import f as pf
 from hak.pxyz import f as pxyz
-from hak.one.dict.rate.is_a import f as is_a_rate
-from hak.one.dict.rate.make import f as make_rate
 
 # detect_datatype_from_values
 def f(values):
