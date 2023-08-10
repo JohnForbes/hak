@@ -1,6 +1,6 @@
 from hak.one.number.int.is_a import f as is_int
 from hak.one.number.int.primes.prime_factors.get import f as get_prime_factors
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 # __init__
