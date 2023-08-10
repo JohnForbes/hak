@@ -13,7 +13,7 @@ from hak.one.string.colour.dark.red import f as dr
 from hak.one.string.colour.dark.white import f as dw
 from hak.one.string.colour.dark.yellow import f as dy
 
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 # src.string.decolour
 def f(x):
