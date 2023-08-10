@@ -1,5 +1,5 @@
 from hak.one.system.screen.clear import f as clear_screen
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 class Terminal:
   __init__ = lambda self, mode='run': self.reset(mode)
