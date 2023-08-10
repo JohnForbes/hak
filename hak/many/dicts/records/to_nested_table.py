@@ -7,7 +7,7 @@ from .to_units_row_with_underline import f as records_to_units_row_with_underlin
 from .to_value_rows import f as records_to_value_rows
 from datetime import date
 from hak.one.dict.rate.make import f as make_rate
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 f = lambda x: '\n'.join([
   records_to_top_border(x),
