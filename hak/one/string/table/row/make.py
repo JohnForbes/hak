@@ -1,7 +1,7 @@
 from hak.one.dict.cell.make import f as make_cell
 from hak.one.dict.rate.to_str_frac import f as to_str_frac
 from hak.pxyz import f as pxyz
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.one.string.colour.bright.green import f as g
 from hak.one.string.colour.bright.red import f as r
 
