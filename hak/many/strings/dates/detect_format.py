@@ -71,8 +71,8 @@ def f(x):
     elif year_index == 1:
       raise NotImplementedError('!A')
     elif year_index == 0:
-      month_index = 1
       day_index = 2
+      month_index = 1
     else:
       raise NotImplementedError('!B: Should be impossible')
 
