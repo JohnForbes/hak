@@ -1,6 +1,6 @@
 from hak.one.file.pickle.load_if_exists import f as load_if_exists
 from hak.one.file.pickle.save import f as save
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from os import remove
 from os.path import exists
 from copy import deepcopy
