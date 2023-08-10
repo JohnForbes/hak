@@ -3,7 +3,7 @@ from ..k_branch.to_branch_col_width import f as get_top_head_width
 from ..to_first_record_sorted_keys import f as get_K
 from ..to_pad_k_branch import f as records_to_pad_k_branch
 from hak.one.dict.rate.make import f as make_rate
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 from datetime import date
 
