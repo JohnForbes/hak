@@ -5,7 +5,7 @@ from pickle import dump
 from hak.one.directory.remove import f as rmdir_if_exists
 from hak.one.file.pickle.load_if_exists import f as load_if_exists
 from hak.one.file.remove import f as remove
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 def f(data, path):
   if '/' in path:
