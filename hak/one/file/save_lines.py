@@ -3,7 +3,7 @@ from os import remove
 from os import mkdir
 from hak.none.nop import f as nopx
 from os import rmdir
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 def f(filepath, lines):
   with open(filepath, 'w') as _file: _file.writelines(lines)
