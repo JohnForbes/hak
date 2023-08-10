@@ -5,7 +5,7 @@ from hak.many.strings.date_pieces.separate_day import f as separate_day
 from hak.many.strings.date_pieces.separate_year import f as separate_year
 from hak.one.string.date.separator.get import f as get_separator
 from hak.one.string.month.to_number import f as to_number
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 # src.string.to_date
