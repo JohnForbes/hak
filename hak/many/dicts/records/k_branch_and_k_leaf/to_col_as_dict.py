@@ -1,5 +1,5 @@
 from hak.one.dict.rate.make import f as make_rate
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 from hak.one.dict.unit.to_str import f as unit_to_str
 
