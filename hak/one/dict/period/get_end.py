@@ -6,7 +6,7 @@ from .financial_year.get_end_date import f as f_fy
 from .financial_year.make import f as mkfy
 from .month.get_end_date import f as get_col_hor_line_from_records
 
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 # get_ω
