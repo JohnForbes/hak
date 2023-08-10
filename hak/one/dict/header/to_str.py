@@ -53,11 +53,7 @@ def t_1():
       'is_revenue': len('revenue'),
       'balance_equity_retained_earnings': 8,
     },
-    'names': [
-      'a',
-      'is_revenue',
-      'balance_equity_retained_earnings',
-    ],
+    'names': ['a', 'is_revenue', 'balance_equity_retained_earnings'],
   }
 
   y = '\n'.join([
@@ -76,11 +72,7 @@ def t_2():
       'is_revenue': len('revenue'),
       'balance_equity_retained_earnings': 8,
     },
-    'names': [
-      'a',
-      'is_revenue',
-      'balance_equity_retained_earnings',
-    ],
+    'names': ['a', 'is_revenue', 'balance_equity_retained_earnings'],
     'units': {
       'a': 'lightyear',
       'is_revenue': 'boolean',
