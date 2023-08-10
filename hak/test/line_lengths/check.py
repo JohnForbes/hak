@@ -1,7 +1,7 @@
 from hak.one.string.colour.bright.green import f as success
 from hak.many.strings.filepaths.py.testables.get import f as list_testables
 from hak.one.file.load import f as load
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.one.string.colour.bright.red import f as danger
 from hak.one.file.save import f as save
 from hak.one.terminal import Terminal
