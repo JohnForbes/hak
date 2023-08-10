@@ -5,7 +5,7 @@ from hak.one.directory.make import f as mkdir
 from hak.one.directory.remove import f as rmdir
 from hak.one.file.save import f as save
 from hak.one.file.zip.extract import f as extract
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 def f(x):
   x = deepcopy(x)
