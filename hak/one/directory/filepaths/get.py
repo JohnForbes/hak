@@ -5,7 +5,7 @@ from os.path import isdir
 from hak.one.directory.make import f as mkdir
 from hak.one.directory.remove import f as remove_dir
 from hak.one.file.save import f as save
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 def f(root, filepaths=[], condition=lambda x: True):
   for item in listdir(root):
