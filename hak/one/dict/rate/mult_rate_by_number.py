@@ -2,6 +2,7 @@ from hak.pf import f as pf
 from hak.one.dict.rate.make import f as make_rate
 from hak.one.dict.rate.is_a import f as is_rate
 from hak.one.number.is_a import f as is_num
+from hak.puvyz import f as puvyz
 
 def f(u, v):
   if not is_rate(u): raise ValueError(f'u: {u} is not a rate')
@@ -13,21 +14,21 @@ def t_a():
   v = 1
   y = make_rate(1, 3, {'a': 1})
   z = f(u, v)
-  return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
+  return puvyz(u, v, y, z)
 
 def t_b():
   u = make_rate( 9, 7, {'b': 1})
   v = 5
   y = make_rate(45, 7, {'b': 1})
   z = f(u, v)
-  return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
+  return puvyz(u, v, y, z)
 
 def t_c():
   u = make_rate(1, 3, {'c': 1})
   v = 3
   y = make_rate(1, 1, {'c': 1})
   z = f(u, v)
-  return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
+  return puvyz(u, v, y, z)
 
 def t():
   if not t_a(): return pf('!t_a')
