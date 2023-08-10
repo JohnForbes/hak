@@ -4,7 +4,7 @@ from hak.one.directory.make import f as mkdir
 from hak.one.directory.empty import f as empty_directory
 from hak.one.directory.remove import f as rmdirie
 from hak.one.file.save import f as save
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 from copy import deepcopy
 
