@@ -1,6 +1,6 @@
 from hak.one.string.day.is_a import f as is_day
 from hak.one.string.month.is_a import f as is_month
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 def f(x):
