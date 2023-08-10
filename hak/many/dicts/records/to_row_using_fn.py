@@ -4,7 +4,7 @@ from .k_branch_and_k_leaf.to_leaf_cell import f as records_k_branch_k_leaf_to_le
 from .k_branch_and_k_leaf.to_unit_cell_str import f as records_k_branch_k_leaf_to_unit_cell_str
 from .to_k_branch_k_leaf_pairs import f as records_to_k_b_k_l_pairs
 from hak.one.dict.rate.make import f as make_rate
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 from hak.row_as_cells_to_row_as_str import f as row_as_cells_to_row_as_str
 
