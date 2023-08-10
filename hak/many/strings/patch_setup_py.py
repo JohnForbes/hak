@@ -1,6 +1,6 @@
 from hak.many.strings.contain.version import f as k
 from hak.other.pip.version.to_str import f as make_v_str
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 def _k(x): return 'hak/pip/version' not in x
 
