@@ -5,7 +5,7 @@ from string import punctuation as p
 from random import choice
 from random import shuffle
 from hak.one.string.colour.tgfr import f as tgfr
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 def f(n=8):
   base = [choice(_) for _ in [d, l, p, u]]
