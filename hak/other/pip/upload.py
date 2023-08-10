@@ -3,7 +3,7 @@ from hak.fake.subprocess.run import f as fake_sprun
 from hak.one.directory.make import f as mkdirine
 from hak.one.directory.remove import f as rmdirie
 from hak.one.file.load import f as load
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 _dir = '../start_upload'
 
