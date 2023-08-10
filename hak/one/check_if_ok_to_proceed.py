@@ -1,5 +1,5 @@
 from queue import Queue as Q
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 def t_proceed():
   try: f(FakeInput(['y'])); return True
