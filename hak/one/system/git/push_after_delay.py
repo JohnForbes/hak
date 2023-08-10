@@ -1,7 +1,7 @@
 from subprocess import run as sprun
 from time import sleep
 from time import time
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 def f(delay_s=5):
   sleep(delay_s)
