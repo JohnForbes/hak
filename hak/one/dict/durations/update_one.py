@@ -1,4 +1,4 @@
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 def f(durations, name, δt_ms):
   durations[name] = (
