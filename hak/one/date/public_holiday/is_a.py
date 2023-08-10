@@ -6,7 +6,7 @@ from hak.one.date.year.easter_sunday.get import f as get_easter_sunday
 from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
-def is_sunday(δ: date): return δ.weekday() == 6
+is_sunday = lambda δ: δ.weekday() == 6
 
 def f(x):
   easter = get_easter_sunday(x.year)
