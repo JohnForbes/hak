@@ -7,7 +7,7 @@ from hak.one.dict.rate.make import f as make_rate
 from hak.one.dict.table.get_field_widths import f as get_field_widths
 from hak.one.string.colour.bright.green import f as g
 from hak.one.string.colour.bright.red import f as r
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.one.string.table.bar.make import f as make_bar
 from hak.one.string.table.row.make import f as make_row
 from hak.one.dict.rate.get_unit_str_if_rate_else_empty_str import f as get_unit
