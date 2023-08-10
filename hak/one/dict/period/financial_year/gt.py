@@ -1,4 +1,4 @@
-from hak.pf import f as pf
+from hak.puvyz import f as puvyz
 from hak.one.dict.period.financial_year.make import f as mkfy
 
 # gt
@@ -9,4 +9,4 @@ def t():
   v = mkfy({'final_year': 2023})
   y = True
   z = f(u, v)
-  return y == z or pf([f'u: {u}', f'v: {v}', f'y: {y}', f'z: {z}'])
+  return puvyz(u, v, y, z)
