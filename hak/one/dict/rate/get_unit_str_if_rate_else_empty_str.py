@@ -1,6 +1,6 @@
 from hak.one.dict.get_or_default import f as get_or_default
 from hak.one.dict.rate.is_a import f as is_rate
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.one.dict.unit.to_str import f as to_str
 from hak.pxyz import f as pxyz
 
