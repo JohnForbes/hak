@@ -1,7 +1,7 @@
 # ignore_overlength_lines
 from hak.pxyz import f as pxyz
 from hak.one.dict.get_sorted_keys import f as get_sorted_keys
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.one.dict.rate.make import f as make_rate
 from datetime import date
 
