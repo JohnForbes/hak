@@ -8,8 +8,8 @@ from hak.one.number.float.is_a import f as is_float
 from hak.one.number.int.is_a import f as is_int
 from hak.one.set.is_a import f as is_set
 from hak.one.string.is_a import f as is_str
-from hak.one.tup.is_a import f as is_tup
-from hak.one.string.print_and_return_false import f as pf
+from hak.one.tuple.is_a import f as is_tup
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 from hak.one.dict.rate.is_a import f as is_rate
 from hak.one.dict.rate.make import f as make_rate
