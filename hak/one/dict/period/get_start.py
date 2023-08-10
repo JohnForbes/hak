@@ -3,7 +3,7 @@ from datetime import date
 from .financial_year.get_start_date import f as f_fy
 from .financial_year.make import f as mkfy
 from .month.get_start_date import f as get_month_start_date
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 # get_α
