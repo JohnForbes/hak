@@ -10,7 +10,6 @@ f = lambda durations: save(durations, 'durations.pickle')
 dir_path = '.'
 file_path = f'{dir_path}/durations.pickle'
 
-
 def up():
   if exists(file_path):
     backup = load_if_exists(file_path)
