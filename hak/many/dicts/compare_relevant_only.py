@@ -1,5 +1,5 @@
 from hak.many.dicts.compare import f as compare
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 # src.list.dicts.get_relevant_differences
 # get_relevant_differences
