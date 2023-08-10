@@ -1,6 +1,4 @@
-from math import sqrt
-from hak.one.string.colour.bright.cyan import f as cy
-from hak.pf import f as pf
+from hak.pxyz import f as pxyz
 
 f = lambda x: all([x%i for i in range(2, x)])
 
@@ -10,5 +8,6 @@ def t():
     *[(_, True) for _ in [2, 3, 5, 7, 11, 13, 17]]
   ]:
     z = f(x)
-    if z != y: return pf([cy(f'x: {x}'), cy(f'y: {y}'), cy(f'z: {z}'), ''])
+    if y != z: return pxyz(x, y, z)
+
   return True
