@@ -5,7 +5,7 @@ from hak.one.dict.column.get_width import f as get_column_width
 from hak.one.dict.column.make import f as make_column
 from hak.one.dict.column.to_str import f as column_to_str
 from hak.one.list.remove_duplicates import f as remove_duplicates
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 def _f_a(columns, separator='|'):
