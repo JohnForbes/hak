@@ -1,7 +1,7 @@
 from requests import get
 from hak.one.file.pickle.load_if_exists import f as load
 from hak.one.dict.make_from_key_value_lists import f as make_from_key_val_lists
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 def f(name, response=None):
   response = response or get(f"https://pypi.org/project/{name}/")
