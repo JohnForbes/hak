@@ -5,7 +5,7 @@ from ..k_branch_and_k_leaf.to_unit_cell_str import f as records_k_branch_k_leaf_
 from ..to_horizontal_line import f as records_to_horizontal_line
 from ..to_row_using_fn import f as records_to_row_using_fn
 from hak.one.dict.rate.make import f as make_rate
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 # records_and_fn_to_underlined_row
