@@ -2,7 +2,7 @@ from hak.many.numbers.ints.mode.get import f as get_mode
 from hak.one.string.date.separator.get import f as get_separator
 from hak.one.string.day.is_a import f as is_day
 from hak.one.string.month.is_a import f as is_month
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.one.string.year.is_a import f as is_year
 from hak.pxyz import f as pxyz
 
