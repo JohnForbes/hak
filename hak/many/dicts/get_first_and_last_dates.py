@@ -1,5 +1,5 @@
 from datetime import date
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 # get_α_and_ω_dates_from_records
 def f(x):
