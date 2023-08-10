@@ -3,7 +3,7 @@
 from .to_leaf_col_width import f as records_k_branch_k_leaf_to_leaf_col_width
 from .to_unpadded_unit_str import f as records_k_branch_k_leaf_to_unpadded_unit_str
 from hak.one.dict.rate.make import f as make_rate
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 # f_w
