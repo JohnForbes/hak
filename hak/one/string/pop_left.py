@@ -1,6 +1,6 @@
 from hak.pxyz import f as pxyz
 
-def f(x): return (x[1:], x[:1])
+f = lambda x: (x[1:], x[:1])
 
 def t():
   x = 'abcd'
