@@ -1,6 +1,6 @@
 from datetime import date
 from datetime import datetime as dt
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from time import timezone
 
 f = lambda x: dt(x.year, x.month, x.day).timestamp() - timezone
