@@ -1,5 +1,5 @@
 # ignore_overlength_lines
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.many.strings.get_last_line_width import f as get_last_line_width
 from hak.dict_string_to_limited_width_dict_string import f as dict_string_to_limited_width_dict_string
 from hak.pxyz import f as pxyz
