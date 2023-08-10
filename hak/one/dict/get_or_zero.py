@@ -1,5 +1,5 @@
 from hak.one.dict.get_or_default import f as get_or_default
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 # get_value_by_key_or_zero
