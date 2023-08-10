@@ -3,7 +3,7 @@ from datetime import timedelta as td
 
 from hak.one.date.is_monday import f as is_monday
 from hak.one.date.year.easter_sunday.get import f as get_easter_sunday
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 def is_sunday(δ: date): return δ.weekday() == 6
