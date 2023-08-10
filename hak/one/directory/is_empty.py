@@ -1,7 +1,7 @@
 from hak.one.directory.filepaths.get import f as get_filepaths
 from hak.one.directory.make import f as mkdir
 from hak.one.directory.remove import f as rmdir
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 f = lambda x: len(get_filepaths(root=x, filepaths=[])) <= 0
