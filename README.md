@@ -5,6 +5,7 @@ Mostly for my own use but others are welcome to leverage it.
 ## Required configuration
 `git config --global user.email "you@example.com"`
 `git config --global user.name "Your Name`
+`pip install xgu`
 
 ## Required packages
 * `sudo apt install twine`
