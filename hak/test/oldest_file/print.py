@@ -9,7 +9,7 @@ from hak.one.file.remove import f as remove
 from hak.one.file.save import f as save
 from hak.one.file.save import f as save_file
 from hak.many.strings.filepaths.py.get import f as list_py_files
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.one.terminal import Terminal
 from hak.other.ternary import f as tern
 
