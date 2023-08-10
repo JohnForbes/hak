@@ -2,7 +2,7 @@ from hak.one.string.colour.bright.cyan import f as cy
 from hak.one.string.colour.bright.magenta import f as mg
 from hak.one.string.colour.bright.yellow import f as yl
 from hak.many.strings.find_first_diff import f as find_first_diff
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 
 # show_diff
 
