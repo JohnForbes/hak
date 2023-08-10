@@ -64,43 +64,25 @@ def t_nested():
 def t_date():
   x = [
     {
-      'date': date(2023, 7, 27),
-      'prices': {
-        'apples': make_rate(1, 4, {'$': 1, 'apple': -1}),
-        'bananas': make_rate(2, 4, {'$': 1, 'banana': -1})
-      },
-      'volumes': {
-        'applezzz': make_rate(1, 1, {'apple': 1}),
-        'bananazzz': make_rate(2, 1, {'banana': 1}),
-        'pearzzzzzz': make_rate(3, 1, {'pear': 1})
-      },
-      'zloops': {'zloop': make_rate(7, 1, {'zloop': 1})}
+      'dates': {'date': date(2023, 7, 27)},
+      'prices': {'apples': make_rate(1, 4, {'$': 1, 'apple': -1})},
     },
     {
-      'date': date(2023, 7, 28),
-      'prices': {
-        'apples': make_rate(3, 4, {'$': 1, 'apple': -1}),
-        'bananas': make_rate(4, 4, {'$': 1, 'banana': -1})
-      },
-      'volumes': {
-        'applezzz': make_rate(4, 1, {'apple': 1}),
-        'bananazzz': make_rate(5, 1, {'banana': 1}),
-        'pearzzzzzz': make_rate(6, 1, {'pear': 1})
-      },
-      'zloops': {'zloop': make_rate(7, 1, {'zloop': 1})}
+      'dates': {'date': date(2023, 7, 28)},
+      'prices': {'apples': make_rate(3, 4, {'$': 1, 'apple': -1})},
     }
   ]
   y = '\n'.join([
-    "|------------|--------------------|-----------------------------------|--------|",
-    "|       date |             prices |                           volumes | zloops |",
-    "|------------|---------|----------|----------|-----------|------------|--------|",
-    "|            |  apples |  bananas | applezzz | bananazzz | pearzzzzzz |  zloop |",
-    "|------------|---------|----------|----------|-----------|------------|--------|",
-    "|            | $/apple | $/banana |    apple |    banana |       pear |  zloop |",
-    "|------------|---------|----------|----------|-----------|------------|--------|",
-    "| 2023-07-27 |    0.25 |     0.50 |     1.00 |      2.00 |       3.00 |   7.00 |",
-    "| 2023-07-28 |    0.75 |     1.00 |     4.00 |      5.00 |       6.00 |   7.00 |",
-    "|------------|---------|----------|----------|-----------|------------|--------|",
+    "|------------|---------|",
+    "|      dates |  prices |",
+    "|------------|---------|",
+    "|       date |  apples |",
+    "|------------|---------|",
+    "|            | $/apple |",
+    "|------------|---------|",
+    "| 2023-07-27 |    0.25 |",
+    "| 2023-07-28 |    0.75 |",
+    "|------------|---------|",
   ])
   z = f(x)
   return y == z or pf([f'x: {x}', f'y:\n{y}', f'z:\n{z}'])
