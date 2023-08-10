@@ -2,7 +2,7 @@
 from ..k_branch_k_leaf_and_record_index.to_cell_str import f as records_k_branch_k_leaf_record_index_to_cell_str
 from ..to_k_branch_k_leaf_pairs import f as recs_to_k_b_k_l_pairs
 from hak.one.dict.rate.make import f as make_rate
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 # f_y
