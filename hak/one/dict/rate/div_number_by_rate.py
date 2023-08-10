@@ -1,6 +1,7 @@
 from hak.pf import f as pf
 from hak.one.dict.rate.make import f as make_rate
 from hak.one.dict.rate.div_rate_by_rate import f as div_rate_by_rate
+from hak.puvyz import f as puvyz
 
 def f(u, v):
   if not any([isinstance(u, int), isinstance(u, float)]):
@@ -16,14 +17,14 @@ def t_a():
   v = make_rate(1, 3, {'a': 1})
   y = {'numerator': 3, 'denominator': 1, 'unit': {'a': -1}}
   z = f(u, v)
-  return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
+  return puvyz(u, v, y, z)
 
 def t_b():
   u = 5
   v = make_rate( 7, 9, {'b': 1})
   y = make_rate(45, 7, {'b': -1})
   z = f(u, v)
-  return y == z or pf([f"u: {u}", f"v: {v}", f"y: {y}", f"z: {z}"])
+  return puvyz(u, v, y, z)
 
 def t():
   if not t_a(): return pf('!t_a')
