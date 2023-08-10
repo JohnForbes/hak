@@ -4,11 +4,11 @@ from hak.one.directory.make import f as mkdir
 from hak.one.directory.remove import f as rmdirie
 from hak.one.file.load import f as load
 from hak.one.file.save import f as save
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.one.system.git.commit.run import f as add_to_git
 from hak.one.system.git.commit.run import t as t_add_to_git
-from hak.other.pip.dist_tar.make import f as generate_new_dist_tar
-from hak.other.pip.dist_tar.make import t as t_generate_new_dist_tar
+from hak.other.pip.dist_tar.make import f as make_new_dist_tar
+from hak.other.pip.dist_tar.make import t as t_make_new_dist_tar
 from hak.other.pip.dist_tar.remove import t as t_remove_dist_tar
 from hak.other.pip.upload import f as start_upload
 from hak.other.pip.upload import t as t_start_upload
@@ -103,7 +103,7 @@ def f(x):
   update_setup_py({'v': z['v'], 'filename': z['py_path']})
   empty_directory('./dist/')
   
-  generate_new_dist_tar(x)
+  make_new_dist_tar(x)
   # add_to_git(cwd=_root, cap_out=True)
   if 'local_test_only' not in x: z['upload_result'] = start_upload(x)
   return z
@@ -244,8 +244,8 @@ def t():
   if not t_remove_dist_tar():
     return pf([f"t_remove_dist_tar()", f'x: {x}', f'y: {y}', f'z: {z}'])
 
-  if not t_generate_new_dist_tar():
-    print(f"t_generate_new_dist_tar()")
+  if not t_make_new_dist_tar():
+    print(f"t_make_new_dist_tar()")
     print(f'x: {x}')
     for k in (set(y.keys()) | set(z.keys())):
       if y[k] != z[k]:
