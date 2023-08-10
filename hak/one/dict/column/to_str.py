@@ -2,7 +2,7 @@ from datetime import date
 
 from hak.one.dict.column.get_width import f as get_width
 from hak.one.dict.column.make import f as make_column
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 def f(x):
