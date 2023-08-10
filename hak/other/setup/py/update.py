@@ -3,7 +3,7 @@ from hak.one.file.save import f as save
 from hak.many.strings.patch_setup_py import f as increment_patch_in_setup_py
 from hak.one.directory.make import f as mkdirine
 from hak.one.directory.remove import f as rmdirie
-from hak.one.string.print_and_return_false import f as pf
+from hak.pf import f as pf
 from copy import deepcopy
 
 def f(x):
