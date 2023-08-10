@@ -1,5 +1,6 @@
 from datetime import date
 from hak.pf import f as pf
+from hak.pxyz import f as pxyz
 
 # get_α_and_ω_dates_from_records
 def f(x):
@@ -14,7 +15,7 @@ def t_0():
   ]
   y = (date(2016,11,14), date(2016,12,31))
   z = f(x)
-  return y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}' ])
+  return pxyz(x, y, z)
 
 def t():
   if not t_0(): return pf('!t_0')
