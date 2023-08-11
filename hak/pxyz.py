@@ -1,7 +1,9 @@
 from hak.pf import f as pf
 from hak.fake.printer import f as FP
 
-f = lambda x, y, z, p=print: y == z or pf([f'x: {x}', f'y: {y}', f'z: {z}'], p)
+def f(x, y, z, p=print, new_line=False):
+  q = '\n' if new_line else ' '
+  return y == z or pf([f'x:{q}{x}', f'y:{q}{y}', f'z:{q}{z}'], p)
 
 def t_true():
   _fake_printer = FP()
@@ -18,6 +20,7 @@ def t_false():
   return y == z and _fake_printer.history == ['x: 1\ny: 1\nz: 2']
 
 def t():
+  # TODO: Insufficient test coverage: Skipped additional test for new line code
   if not t_true(): return pf('!t_true')
   if not t_false(): return pf('!t_false')
   return True
