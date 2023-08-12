@@ -1,12 +1,10 @@
 from hak.pxyz import f as pxyz
 from copy import deepcopy
 
-def f(x):
-  _x = deepcopy(x)
-  return {'list': _x, 'popped': _x.pop()}
+f = lambda x: (x[1:], x[:1][0])
 
 def t():
   x = ['a', 'b', 'c']
-  y = {'list': ['a', 'b'], 'popped': 'c'}
+  y = ['b', 'c'], 'a'
   z = f(x)
   return pxyz(x, y, z)
