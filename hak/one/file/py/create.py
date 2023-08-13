@@ -5,16 +5,17 @@ from hak.one.file.remove import f as remove
 from hak.one.file.save import f as save
 
 f = lambda filename, data: save(filename, data)
-_dirname = './temp'
-_filename = f'{_dirname}/foo.py'
-_data = '\n'.join(["f = lambda: None", "t = lambda: False", ""])
-up = lambda: mkdirine(_dirname)
-dn = lambda: [remove(_filename), rmdir(_dirname)]
+
+up = lambda: mkdirine('./temp')
+
+dn = lambda dirname, filename: [remove(filename), rmdir(dirname)]
 
 def t():
-  up()
+  dirname = up()
+  _data = '\n'.join(["f = lambda: None", "t = lambda: False", ""])
   y = _data
-  f(_filename, _data)
-  z = load(_filename)
-  dn()
+  filename = f'{dirname}/foo.py'
+  f(filename, _data)
+  z = load(filename)
+  dn(dirname, filename)
   return y == z
