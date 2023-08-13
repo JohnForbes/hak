@@ -2,13 +2,20 @@ from hak.one.system.git.push_after_delay import f as push_commits_after_delay
 from hak.many.strings.filepaths.py.get import f as list_py_files
 from hak.many.strings.pyfiles.filter_out_items import f as filter_out_items
 from hak.many.pyfiles.format import f as auto_format_py_filenames
+from hak.pxyz import f as pxyz
 
-def f(_L_pi, fn_a=auto_format_py_filenames, fn_b=push_commits_after_delay):
-  a = fn_a(_L_pi)
-  b = fn_b(5)
-  return a, b
+def f(x, fn_a=auto_format_py_filenames, fn_b=push_commits_after_delay):
+  return fn_a(x), fn_b(5)
 
-t = lambda: f(list('abc'), lambda x: x, lambda x: x)==(list('abc'), 5)
+def t():
+  x = {
+    'x': list('abc'),
+    'fn_a': lambda x: x,
+    'fn_b': lambda x: x
+  }
+  y = (list('abc'), 5)
+  z = f(**x)
+  return pxyz(x, y, z)
 
 if __name__ == '__main__':
   f(
