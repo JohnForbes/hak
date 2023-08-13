@@ -5,7 +5,7 @@ from hak.one.directory.make import f as mkd
 from hak.one.directory.remove import f as rmd
 from hak.pxyz import f as pxyz
 
-f = lambda root: set([p for p in get_filepaths(root=root) if isdir(p)])
+f = lambda root: set([p for p in get_filepaths(root, []) if isdir(p)])
 
 def up():
   x = {'root': mkd('./_temp')}
