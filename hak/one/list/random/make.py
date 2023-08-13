@@ -11,5 +11,4 @@ def t():
   for z_i in z:
     if not is_list(z_i):
       return pf(f'not is_list(z_i); z_i: {z_i}; type(z_i): {type(z_i)};')
-
   return True
