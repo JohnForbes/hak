@@ -1,7 +1,7 @@
 # ignore_overlength_lines
 from hak.pf import f as pf
 from hak.many.strings.get_last_line_width import f as get_last_line_width
-from hak.dict_string_to_limited_width_dict_string import f as dict_string_to_limited_width_dict_string
+from hak.one.string.dict.to_limited_width_dict_string import f as dict_string_to_limited_width_dict_string
 from hak.pxyz import f as pxyz
 
 def _f(x, w):
