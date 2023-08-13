@@ -1,5 +1,5 @@
 from hak.one.string.to_cond_freq_dict import f as to_cond_freq_dict
-from hak.many.dicts.merge_freq_dicts import f as merge_freq_dicts
+from hak.many.dicts.frequencies.merge import f as merge_freq_dicts
 
 def f(x):
   d = {}
