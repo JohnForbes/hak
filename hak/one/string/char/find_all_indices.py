@@ -1,12 +1,9 @@
 from hak.pxyz import f as pxyz
 
-f = lambda x_str, x_char: [i for (i, c) in enumerate(x_str) if c == x_char]
+f = lambda string, char: [i for (i, c) in enumerate(string) if c == char]
 
 def t():
-  x = {
-    'x_str': 'a,b,c,defg',
-    'x_char': ','
-  }
+  x = {'string': 'a,b,c,defg', 'char': ','}
   y = [1, 3, 5]
   z = f(**x)
   return pxyz(x, y, z)
