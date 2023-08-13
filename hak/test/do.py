@@ -1,7 +1,7 @@
 from os.path import getmtime
 from time import time
 
-from hak.one.dict.durations.to_tuple_list_sorted_by_duration import f as srt
+from hak.one.dict.durations.to_tuple_list_sorted_by_duration import f as sort
 from hak.one.file.pickle.load_if_exists import f as load_pickle
 from hak.one.file.pickle.save import f as save
 from hak.one.file.remove import f as remove
@@ -54,7 +54,7 @@ def f(test_all=False, t_0=time()):
   except EOFError as _: remove('./last_modified.pickle'); prev = set()
   last_mods = {py_filename: getmtime(py_filename) for py_filename in testables}
   save(last_mods, './last_modified.pickle')
-  _A = [_[0] for _ in srt(last_mods)[::-1]]
+  _A = [_[0] for _ in sort(last_mods)[::-1]]
   _B = set(make_Pi_t(testables, test_all, prev, last_mods))
   Pi_t = [a for a in _A if a in _B]
   pyfile_data = pyfiles_to_dict(Pi_t)
