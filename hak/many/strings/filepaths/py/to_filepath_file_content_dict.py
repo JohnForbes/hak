@@ -3,6 +3,7 @@ from hak.one.file.save import f as save
 from hak.one.directory.make import f as mkdir
 from hak.one.file.remove import f as remove
 from hak.one.directory.remove import f as remove_dir
+from hak.pxyz import f as pxyz
 
 f = lambda x: {φ: load(φ) for φ in x}
 
@@ -15,7 +16,8 @@ up = lambda: [mkdir(_root), *[save(_pi_f, _pi_d) for _pi_f, _pi_d in _Pi]]
 
 def t():
   up()
+  x = [f'{_root}/foo.py', f'{_root}/bar.py']
   y = {f'{_root}/foo.py': 'foo', f'{_root}/bar.py': 'bar'}
-  z = f([f'{_root}/foo.py', f'{_root}/bar.py'])
+  z = f(x)
   dn()
-  return y == z
+  return pxyz(x, y, z)
