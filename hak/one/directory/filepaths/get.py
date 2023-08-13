@@ -45,7 +45,7 @@ def dn(x):
 def t():
   x = up()
   y = x['y']
-  z = set(f(x['temp_dir_0']))
+  z = set(f(x['temp_dir_0'], []))
   dn(x)
   return y == z or pf([
     f'x: {x}',
