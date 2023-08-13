@@ -5,7 +5,7 @@ from hak.pxyz import f as pxyz
 f = lambda records: get_sorted_keys(records[0])
 
 def t():
-  x = [{'z': 0, 'y': 1, 'x': 2}, {}]
-  y = ['x', 'y', 'z']
+  x = [{'c': 0, 'b': 1, 'a': 2}, {}]
+  y = list('abc')
   z = f(x)
   return pxyz(x, y, z)
