@@ -1,4 +1,4 @@
-from hak.many.strings.contain.version import f as k
+from hak.one.string.contains.version import f as k
 from hak.other.pip.version.to_str import f as make_v_str
 
 f = lambda v, _L: [
