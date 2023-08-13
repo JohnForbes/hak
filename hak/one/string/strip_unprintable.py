@@ -1,6 +1,7 @@
 from string import printable
-# strip_unprintable
+from hak.pxyz import f as pxyz
 
+# strip_unprintable
 f = lambda ζ: ''.join(filter(lambda z: z in printable, ζ))
 
 def t():
@@ -10,4 +11,4 @@ def t():
     'MNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~'
   ])
   z = f(x)
-  return y == z
+  return pxyz([x], [y], [z])
