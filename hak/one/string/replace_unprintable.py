@@ -1,5 +1,5 @@
 from string import printable
-from hak.pf import f as pf
+from hak.pxyz import f as pxyz
 
 # replace_unprintable
 
@@ -12,4 +12,4 @@ def t():
     '<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~*'
   ])
   z = f(x)
-  return y == z or pf(['y != z', f'[y]: {[y]}', f'[z]: {[z]}'])
+  return pxyz([x], [y], [z])
