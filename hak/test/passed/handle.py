@@ -1,10 +1,11 @@
-from hak.one.string.colour.bright.green import f as success
+from os.path import exists
 from time import time
-from hak.one.file.remove import f as remove
+
 from hak.one.directory.make import f as mkdirine
 from hak.one.directory.remove import f as rmdirie
 from hak.one.file.pickle.save import f as save_pickle
-from os.path import exists
+from hak.one.file.remove import f as remove
+from hak.one.string.colour.bright.green import f as success
 
 def f(t_0, _Pi_to_test, t_now=None):
   t_now = t_now or time()
