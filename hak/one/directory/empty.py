@@ -6,12 +6,17 @@ from os import listdir
 from hak.one.file.remove import f as remove
 from hak.pf import f as pf
 from os.path import isfile
+from os.path import exists
+
+def f(x):
+  if exists(x):
+    for n in listdir(x):
+      filepath = f'{x}/{n}'
+      if isfile(filepath):
+        remove(filepath)
 
 up = lambda x: [mkdir(x), *[save(f'{x}/{_}.txt', _) for _ in az]]
 dn = lambda x: rmdir(x)
-
-f = lambda x: [remove(f'{x}/{n}') for n in listdir(x) if isfile(f'{x}/{n}')]
-# f = lambda x: [remove(f'{x}/{n}') for n in listdir(x)]
 
 def t():
   x = './temp'
