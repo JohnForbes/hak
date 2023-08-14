@@ -19,6 +19,7 @@ def f(x):
   if is_complex(x): return 'complex'
   if is_date(x): return 'date'
   if is_rate(x): return 'rate'
+  if x is None: return 'none'
   raise NotImplementedError(f'! This condition not yet considered; x: {x}')
 
 def t_0():
@@ -63,6 +64,12 @@ def t_rate():
   z = f(x)
   return pxyz(x, y, z)
 
+def t_none():
+  x = None
+  y = 'none'
+  z = f(x)
+  return pxyz(x, y, z)
+
 def t():
   if not t_0(): return pf('t_0 failed')
   if not t_1(): return pf('t_1 failed')
@@ -71,4 +78,5 @@ def t():
   if not t_4(): return pf('t_4 failed')
   if not t_6(): return pf('t_6 failed')
   if not t_rate(): return pf('t_rate failed')
+  if not t_none(): return pf('t_none failed')
   return True
