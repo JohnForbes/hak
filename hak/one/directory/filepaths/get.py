@@ -1,6 +1,7 @@
 from os import listdir
 from os import remove
 from os.path import isdir
+from os.path import exists
 
 from hak.one.directory.make import f as mkdir
 from hak.one.directory.remove import f as remove_dir
@@ -8,10 +9,11 @@ from hak.one.file.save import f as save
 from hak.pf import f as pf
 
 def f(root, filepaths=[], condition=lambda x: True):
-  for item in listdir(root):
-    _pi = root+'/'+item
-    if isdir(_pi): f(_pi, filepaths, condition)
-    if condition(item): filepaths.append(_pi)
+  if exists(root):
+    for item in listdir(root):
+      _pi = root+'/'+item
+      if isdir(_pi): f(_pi, filepaths, condition)
+      if condition(item): filepaths.append(_pi)
   return filepaths
 
 def up():
