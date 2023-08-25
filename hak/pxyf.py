@@ -1,10 +1,14 @@
 from hak.pf import f as pf
 from hak.fake.printer import f as FP
 
-def f(x, y, function, p=print, new_line=False):
+def f(x, y, function, p=print, new_line=False, show_as_lists=False):
   q = '\n' if new_line else ' '
   z = function(x)
-  return y == z or pf([f'x:{q}{x}', f'y:{q}{y}', f'z:{q}{z}'], p)
+  return y == z or (
+    pf([f'x:{q}{[x]}', f'[y]:{q}{[y]}', f'[z]:{q}{[z]}'], p)
+    if show_as_lists else
+    pf([f'x:{q}{x}', f'y:{q}{y}', f'z:{q}{z}'], p)
+  )
 
 def t_true():
   _fake_printer = FP()
