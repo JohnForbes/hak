@@ -5,7 +5,7 @@ from hak.puvyz import f as puvyz
 
 def f(u, v):
   if not any([isinstance(u, int), isinstance(u, float)]):
-    raise ValueError(f'u: {u} is not a dict')
+    raise ValueError(f'u: {u} is not a number')
 
   if not isinstance(v, dict):
     raise ValueError(f'v: {v} is not a dict')
