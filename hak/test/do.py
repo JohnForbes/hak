@@ -21,6 +21,7 @@ excludables = set([
   './hak/data/months.py',
   './hak/data/kana.py',
   './hak/data/macbook_screen_resolutions.py',
+  './hak/data/si_prefixes.py',
 ])
 
 def make_Pi_t(python_filepaths, test_all, prev, last_mods):
