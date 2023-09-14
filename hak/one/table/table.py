@@ -7,6 +7,7 @@ from hak.one.dict.record.get_leaf_keypaths import f as get_leaf_keypaths
 from hak.one.dict.to_node_tree import f as dict_to_node_tree
 from hak.one.rate.rate import Rate
 from hak.pf import f as pf
+from hak.many.strings.block.add_pipes_to_subseq_lines import f as add_pipes
 
 class Table:
   def __init__(s):
@@ -42,7 +43,8 @@ class Table:
   def __str__(s):
     root = list(s.last_record.keys())[0]
     nodes = dict_to_node_tree(s.last_record, root=None, nodes={}, table=s)
-    header_str = block_to_str(nodes[root].block[1:])
+    header_block = add_pipes(nodes[root].block[1:])
+    header_str = block_to_str(header_block)
     table_str = block_to_str(s.block)
     return '\n'.join([header_str, table_str])
 
