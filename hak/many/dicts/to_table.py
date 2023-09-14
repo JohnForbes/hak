@@ -97,9 +97,47 @@ def t_b():
   z = f(x)
   return pxyz(x, y, z, new_line=1)
 
+def t_c():
+  x = [
+    {
+      'date': date(2023, 1, 1),
+      'A': {'cash': {'primary': 0, 'secondary': 1}},
+      'cash_flow': {'amount': 2, 'name': 'three', 'type': 'four'}
+    },
+    {
+      'date': date(2023, 1, 1),
+      'A': {'cash': {'primary': 5, 'secondary': 6}},
+      'cash_flow': {'amount': 7, 'name': 'eight', 'type': 'nine'}
+    },
+    {
+      'date': date(2023, 1, 1),
+      'A': {'cash': {'primary': 10, 'secondary': 11}},
+      'cash_flow': {'amount': 12, 'name': 'thirteen', 'type': 'fourteen'}
+    }
+  ]
+  y = '\n'.join([
+    '-----------------------------------------------------------------',
+    '          A          |          cash_flow           |    date    ',
+    '---------------------|------------------------------|            ',
+    '        cash         | amount |   name   |   type   |            ',
+    '---------------------|        |          |          |            ',
+    ' primary | secondary |        |          |          |            ',
+    '---------|-----------|--------|----------|----------|------------',
+    '         |           |        |          |          |            ',
+    '---------|-----------|--------|----------|----------|------------',
+    '         |         1 |      2 |    three |     four | 2023-01-01 ',
+    '       5 |         6 |      7 |    eight |     nine | 2023-01-01 ',
+    '      10 |        11 |     12 | thirteen | fourteen | 2023-01-01 ',
+    '---------|-----------|--------|----------|----------|------------',
+  ])
+
+  z = f(x)
+  return pxyz(x, y, z, new_line=1)
+
 def t():
   if not t_a(): return pf('!t_a')
   if not t_b(): return pf('!t_b')
+  if not t_c(): return pf('!t_c')
   return 1
 
 if __name__ == '__main__':
