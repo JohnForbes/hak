@@ -4,10 +4,16 @@ from datetime import date
 from hak.one.rate.rate import Rate
 from hak.one.table.table import Table
 from hak.pxyz import f as pxyz
+from hak.pf import f as pf
+from hak.many.dicts.flat.homogenise import f as homogenise_dicts
 
-f = lambda x: str(Table().add_records(x))
+f = lambda x: str(Table().add_records(homogenise_dicts(x)))
+# def f(x):
+#   _x = []
+#   y = str(Table().add_records(x))
+#   return y
 
-def t():
+def t_a():
   x = [
     {
       'date': date(2023, 1, 1),
@@ -60,6 +66,41 @@ def t():
 
   z = f(x)
   return pxyz(x, y, z)
+
+def t_b():
+  x = [
+    {
+      'date': date(2023, 1, 1),
+      # This dict is missing the key 'notes'
+    },
+    {
+      'date': date(2023, 1, 1),
+      'notes': 'This note is longer than the heading.'
+    },
+    {
+      'date': date(2023, 1, 1),
+      'notes': ''
+    }
+  ]
+  y = '\n'.join([
+    '----------------------------------------------------',
+    '    date    |                 notes                 ',
+    '------------|---------------------------------------',
+    '            |                                       ',
+    '------------|---------------------------------------',
+    ' 2023-01-01 |                                       ',
+    ' 2023-01-01 | This note is longer than the heading. ',
+    ' 2023-01-01 |                                       ',
+    '------------|---------------------------------------'
+  ])
+
+  z = f(x)
+  return pxyz(x, y, z, new_line=1)
+
+def t():
+  if not t_a(): return pf('!t_a')
+  if not t_b(): return pf('!t_b')
+  return 1
 
 if __name__ == '__main__':
   result = t()
