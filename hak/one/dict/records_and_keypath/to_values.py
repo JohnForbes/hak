@@ -1,7 +1,7 @@
 from hak.pxyf import f as pxyf
 from hak.pf import f as pf
 
-from hak.one.dict.record_and_keypath.to_value import f as r_kp_to_val
+from hak.one.dict.record_and_keypath.get import f as r_kp_to_val
 
 # get_values
 # f = lambda records, keypath: [_f(record, keypath) for record in records]
