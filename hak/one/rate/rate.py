@@ -14,7 +14,10 @@ def _g(a, b):
   return a, b
 
 class Rate:
-  def __init__(self, numerator, denominator, unit):
+  def __init__(self, numerator, denominator=None, unit=None):
+    if not denominator: denominator = 1
+    if not unit: unit = {}
+    
     numerator, denominator = _g(numerator, denominator)
     denominator, numerator = _g(denominator, numerator)
 
