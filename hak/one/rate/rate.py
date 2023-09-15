@@ -1,6 +1,7 @@
 from hak.one.number.int.primes.prime_factors.get import f as get_prime_factors
 from hak.pf import f as pf
 from hak.pxyz import f as pxyz
+from hak.one.number.is_a import f as is_number
 
 get_decimal_place_count = lambda x: len(str(x).split('.')[1].rstrip('0'))
 
@@ -82,6 +83,8 @@ class Rate:
     return Rate(u.n * v.d - u.d * v.n, u.d * v.d, u.unit)
 
   def __mul__(u, v):
+    if is_number(v): v = Rate(v, 1, {})
+
     _unit = {k: 0 for k in sorted(set(u.unit.keys()) | set(v.unit.keys()))}
 
     for k in u.unit: _unit[k] += u.unit[k]
@@ -133,10 +136,19 @@ def t_rate_b():
   z = Rate(**x)
   return pxyz(x, y, z)
 
+def t_rate_by_integer():
+  x = {'numerator': 2, 'denominator': 3, 'unit': {'$': 1, 'm': -1}}
+  x_rate = Rate(**x)
+  x_int = 2
+  y = Rate(4, 3, {'$': 1, 'm': -1})
+  z = x_rate * x_int
+  return pxyz(x, y, z)
+
 def t():
   if not t_rate_simplifies_at_init(): return pf('!t_rate_simplifies_at_init')
   if not t_rate_numerator_float(): return pf('!t_rate_numerator_float')
   if not t_rate_denominator_float(): return pf('!t_rate_denominator_float')
   if not t_rate_a(): return pf('!t_rate_a')
   if not t_rate_b(): return pf('!t_rate_b')
+  if not t_rate_by_integer(): return pf('!t_rate_by_integer')
   return 1
