@@ -57,9 +57,17 @@ class Rate:
   d = property(lambda self: self.denominator)
 
   def __add__(u, v):
-    if u.unit != v.unit:
-      raise ValueError(f"u.unit: {u.unit} != v.unit: {v.unit}")
-    return Rate(u.n * v.d + v.n * u.d, u.d * v.d, u.unit)
+    if isinstance(v, Rate):
+      if u.unit != v.unit:
+        raise ValueError(f"u.unit: {u.unit} != v.unit: {v.unit}")
+      return Rate(u.n * v.d + v.n * u.d, u.d * v.d, u.unit)
+    elif isinstance(v, (int, float)):
+      return u + Rate(v, 1, u.unit)
+    else:
+      raise TypeError('Unsupported operand type for +')
+  
+  def __radd__(u, v):
+    return u.__add__(v)
 
   def __truediv__(u, v):
     _unit = {k: 0 for k in sorted(set(u.unit.keys()) | set(v.unit.keys()))}
@@ -144,6 +152,12 @@ def t_rate_by_integer():
   z = x_rate * x_int
   return pxyz(x, y, z)
 
+def t_rate_sum():
+  x = [Rate(2, 3, {'$': 1}), Rate(4, 3, {'$': 1})]
+  y = Rate(2, 1, {'$': 1})
+  z = sum(x)
+  return pxyz(x, y, z)
+
 def t():
   if not t_rate_simplifies_at_init(): return pf('!t_rate_simplifies_at_init')
   if not t_rate_numerator_float(): return pf('!t_rate_numerator_float')
@@ -151,4 +165,5 @@ def t():
   if not t_rate_a(): return pf('!t_rate_a')
   if not t_rate_b(): return pf('!t_rate_b')
   if not t_rate_by_integer(): return pf('!t_rate_by_integer')
+  if not t_rate_sum(): return pf('!t_rate_sum')
   return 1
