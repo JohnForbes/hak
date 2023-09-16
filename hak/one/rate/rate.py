@@ -69,8 +69,7 @@ class Rate:
     else:
       raise TypeError('Unsupported operand type for +')
   
-  def __radd__(u, v):
-    return u.__add__(v)
+  def __radd__(u, v): return u.__add__(v)
 
   def __truediv__(u, v):
     _unit = {k: 0 for k in sorted(set(u.unit.keys()) | set(v.unit.keys()))}
@@ -114,6 +113,11 @@ class Rate:
   
   __abs__ = lambda s: Rate(abs(s.numerator), abs(s.denominator), s.unit)
   __float__ = lambda self: self.numerator / self.denominator
+
+  def to_dict(self):
+    return {'numerator': self.n, 'denominator': self.d, 'unit': self.unit}
+
+  def __repr__(self): return str(self.to_dict())
 
 f = lambda numerator, denominator, unit: Rate(numerator, denominator, unit)
 
