@@ -1,6 +1,6 @@
-from hak.string.contains.version import f as k
 from hak.other.pip.version.to_str import f as make_v_str
 from hak.pf import f as pf
+from hak.string.contains.version import f as k
 
 _k = lambda x: 'hak/pip/version' not in x
 
@@ -18,4 +18,4 @@ def t():
     (['.', "  version='4.5.6',"], f(v, ['.', "  version='x.x.x',"])),
   ]:
     if y != z: return pf([f'y: {y}', f'z: {z}'])
-  return True
+  return 1
