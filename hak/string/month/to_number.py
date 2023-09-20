@@ -11,6 +11,6 @@ def f(x):
   return int(_x)
 
 def t():
-  if not pxyf('January', 1, f): return pf('t_0 failed')
-  if not pxyf('12', 12, f): return pf('t_1 failed')
+  if not pxyf(     '12', 12, f): return pf('!t_0')
+  if not pxyf('January',  1, f): return pf('!t_1')
   return 1
