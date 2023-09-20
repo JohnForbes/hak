@@ -1,10 +1,5 @@
-from hak.pxyz import f as pxyz
+from hak.pxyf import f as pxyf
 
 # def f(x): return (x[:len(x)-1], x[len(x)-1:])
 f = lambda x: (x[:len(x)-1], x[len(x)-1:])
-
-def t():
-  x = 'abc'
-  y = ('ab', 'c')
-  z = f(x)
-  return pxyz(x, y, z)
+t = lambda: pxyf('abc', ('ab', 'c'), f)
