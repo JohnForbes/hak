@@ -44,4 +44,4 @@ def t():
     return pf(f'{result} != {x_content}')
 
   dn()
-  return True
+  return 1
