@@ -6,21 +6,15 @@ f = lambda u, v: u['start_year'] <= v['start_year']
 
 def t_expected_true_a():
   x = {'u': mkfy({'start_year': 2022}), 'v': mkfy({'start_year': 2022})}
-  y = 1
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, 1, f(**x))
 
 def t_expected_true_b():
   x = {'u': mkfy({'start_year': 2022}), 'v': mkfy({'start_year': 2024})}
-  y = 1
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, 1, f(**x))
 
 def t_expected_false():
   x = {'u': mkfy({'start_year': 2024}), 'v': mkfy({'start_year': 2022})}
-  y = 0
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, 0, f(**x))
 
 def t():
   if not t_expected_true_a(): return pf('!t_expected_true_a()')
