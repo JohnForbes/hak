@@ -66,7 +66,9 @@ def t_table_add_record():
   
   cell = table.cells[(('α', 'a', 'b'), 0)]
   
-  if cell.value.numerator != 1: return pf('cell.value.numerator != 1')
+  if cell.value.numerator != 1:
+    print(f'cell.value.numerator: {cell.value.numerator}')
+    return pf('cell.value.numerator != 1')
   
   if cell.value.denominator != 3: return pf("cell.value.denominator != 3")
   
