@@ -21,4 +21,4 @@ def t_default_to_zero():
 def t():
   if not t_successful_retrieval(): return pf('!t_successful_retrieval')
   if not t_default_to_zero(): return pf('!t_default_to_zero')
-  return True
+  return 1
