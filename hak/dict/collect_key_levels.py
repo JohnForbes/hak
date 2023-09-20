@@ -1,5 +1,5 @@
 from hak.pf import f as pf
-from hak.pxyz import f as pxyz
+from hak.pxyf import f as pxyf
 
 def f(x):
   result = _f({'': x}, -1, {})
@@ -14,19 +14,18 @@ def _f(x, level, result):
     result[level] |= _f(x[k], level+1, result)[level]
   return result
 
-def t_a():
-  x = {'k': {'u': {}, 'b': {}}, 'm': {}}
-  y = {0: {'k', 'm'},1: {'u', 'b'}}
-  z = f(x)
-  return pxyz(x, y, z)
+t_a = lambda: pxyf(
+  {'k': {'u': {}, 'b': {}}, 'm': {}},
+  {0: {'k', 'm'},1: {'u', 'b'}},
+  f
+)
 
-def t_b():
-  x = {'k': {'p': {'s': {}, 'l': {}}, 'k': {}}, 'n': {}}
-  y = {0: {'k', 'n'}, 1: {'p', 'k'}, 2: {'l', 's'}}
-  z = f(x)
-  return pxyz(x, y, z)
-
+t_b = lambda: pxyf(
+  {'k': {'p': {'s': {}, 'l': {}}, 'k': {}}, 'n': {}},
+  {0: {'k', 'n'}, 1: {'p', 'k'}, 2: {'l', 's'}},
+  f
+)
 def t():
   if not t_a(): return pf('!t_a')
   if not t_b(): return pf('!t_b')
-  return True
+  return 1
