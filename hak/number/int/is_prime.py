@@ -9,4 +9,4 @@ def t():
   ]:
     z = f(x)
     if y != z: return pxyz(x, y, z)
-  return True
+  return 1
