@@ -1,9 +1,9 @@
 from datetime import date
 from datetime import timedelta
 
+from hak.dict.period.month.make import f as _m
 from hak.pf import f as pf
 from hak.pxyf import f as pxyf
-from hak.dict.period.month.make import f as _m
 
 # get_ω_date_of_month
 f = lambda x: (
