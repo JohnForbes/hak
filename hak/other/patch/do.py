@@ -250,7 +250,7 @@ def t():
     for k in (set(y.keys()) | set(z.keys())):
       if y[k] != z[k]:
         print('\n'.join([f'y[{k}]: {y[{k}]}', f'z[{k}]: {z[{k}]}', '']))
-    return False
+    return 0
 
   if not t_add_to_git():
     return pf([f"t_add_to_git()", f'x: {x}', f'y: {y}', f'z: {z}'])
@@ -258,4 +258,4 @@ def t():
   if not t_start_upload():
     return pf([f"t_start_upload()", f'x: {x}', f'y: {y}', f'z: {z}'])
 
-  return True
+  return 1
