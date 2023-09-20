@@ -24,7 +24,7 @@ def f(x):
       if tokens_to_substitute:
         token_to_substitute = tokens_to_substitute[-1]
       else:
-        return False, x
+        return 0, x
 
       token_value = previous_line.split('=')[-1]
 
