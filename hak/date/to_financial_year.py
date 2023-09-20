@@ -2,21 +2,15 @@ from datetime import date
 
 from hak.dict.period.financial_year.make import f as mkfy
 from hak.pf import f as pf
-from hak.pxyz import f as pxyz
+from hak.pxyf import f as pxyf
 
 f = lambda x: mkfy({'final_year': x.year + (x.month > 6)})
 
 def t_july():
-  x = date(2022, 7, 1)
-  y = {'start_year': 2022, 'final_year': 2023}
-  z = f(x)
-  return pxyz(x, y, z)
+  return pxyf(date(2022, 7, 1), {'start_year': 2022, 'final_year': 2023}, f)
 
 def t_june():
-  x = date(2022, 6, 30)
-  y = {'start_year': 2021, 'final_year': 2022}
-  z = f(x)
-  return pxyz(x, y, z)
+  return pxyf(date(2022, 6, 30), {'start_year': 2021, 'final_year': 2022}, f)
 
 t_barrage = lambda: all([
   f(date(1999,  1,  1)) == {'start_year': 1998, 'final_year': 1999},
