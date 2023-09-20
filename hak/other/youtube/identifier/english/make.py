@@ -14,4 +14,4 @@ def t():
     if char not in romaji:
       return pf(f"char not in x['chars']: {char} not in {x['chars']}")
 
-  return True
+  return 1
