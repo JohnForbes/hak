@@ -1,8 +1,8 @@
-from hak.strings.filepaths.py.testables.get import f as list_testables
 from hak.file.load import f as load
 from hak.pf import f as pf
-from hak.string.colour.bright.red import f as danger
 from hak.string.colour.bright.green import f as success
+from hak.string.colour.bright.red import f as danger
+from hak.strings.filepaths.py.testables.get import f as list_testables
 
 def f(_Pi=None):
   print('Checking line lengths...', end='\r')
@@ -18,4 +18,4 @@ def f(_Pi=None):
       ])
   print(f"{success('PASS')} Line Lengths "+' '*20)
 
-def t(): return True # TODO
+def t(): return 1 # TODO
