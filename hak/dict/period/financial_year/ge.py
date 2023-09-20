@@ -8,23 +8,17 @@ f = lambda u, v: u['start_year'] >= v['start_year']
 def t_true_a():
   u = mkfy({'start_year': 2022})
   v = mkfy({'final_year': 2023})
-  y = 1
-  z = f(u, v)
-  return puvyz(u, v, y, z)
+  return puvyz(u, v, 1, f(u, v))
 
 def t_true_b():
   u = mkfy({'start_year': 2023})
   v = mkfy({'final_year': 2023})
-  y = 1
-  z = f(u, v)
-  return puvyz(u, v, y, z)
+  return puvyz(u, v, 1, f(u, v))
 
 def t_false():
   u = mkfy({'start_year': 2021})
   v = mkfy({'final_year': 2023})
-  y = 0
-  z = f(u, v)
-  return puvyz(u, v, y, z)
+  return puvyz(u, v, 0, f(u, v))
 
 def t():
   if not t_true_a(): return pf('!t_true_a()')
