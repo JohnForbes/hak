@@ -55,13 +55,12 @@ def t_term_print():
     f'[data]:   {[data]}'
   ])
   
-  return True
+  return 1
 
 def t_term_input():
   terminal = f('test')
   terminal.input_stream_as_list.append('response text')
-  returned_value = terminal.input('prompt text')
-  return returned_value == 'response text'
+  return terminal.input('prompt text') == 'response text'
 
 def t_term_reset():
   terminal = f('test')
@@ -107,4 +106,4 @@ def t():
   if not t_term_reset_stdi(): return pf(['!t_term_reset_stdi()'])
   if not t_term_reset_strm_lists(): return pf(['not t_term_reset_strm_lists()'])
   if not t_clear(): return pf(['not t_clear()'])
-  return True
+  return 1
