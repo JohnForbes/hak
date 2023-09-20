@@ -1,0 +1,11 @@
+from hak.pxyf import f as pxyf
+from hak.pf import f as pf
+
+def f(x):
+  pass
+
+t_a = lambda: pxyf(x, y, f)
+
+def t():
+  if not t_a(): return pf('!t_a')
+  return 1
