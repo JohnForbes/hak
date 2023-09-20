@@ -1,17 +1,13 @@
 # ignore_overlength_lines
 
 from datetime import date
-from hak.rate.rate import Rate
-from hak.table.table import Table
-from hak.pxyz import f as pxyz
-from hak.pf import f as pf
 from hak.dicts.flat.homogenise import f as homogenise_dicts
+from hak.pf import f as pf
+from hak.pxyz import f as pxyz
+from hak.rate import Rate
+from hak.table.table import Table
 
 f = lambda x: str(Table().add_records(homogenise_dicts(x)))
-# def f(x):
-#   _x = []
-#   y = str(Table().add_records(x))
-#   return y
 
 def t_a():
   x = [
