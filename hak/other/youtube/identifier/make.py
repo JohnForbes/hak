@@ -1,6 +1,7 @@
-from hak.data.kana import romaji
-from string import digits
 from random import choice
+from string import digits
+
+from hak.data.kana import romaji
 from hak.pf import f as pf
 
 # id_generator
@@ -17,4 +18,4 @@ def t():
     if char not in x['chars']:
       return pf(f"char not in x['chars']: {char} not in {x['chars']}")
 
-  return True
+  return 1
