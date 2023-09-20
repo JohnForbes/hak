@@ -5,7 +5,7 @@ from hak.dict.period.financial_year.get_end_date import f as get_ω_d
 from hak.dict.period.financial_year.get_start_date import f as get_α_d
 from hak.dict.period.financial_year.make import f as mkfy
 from hak.pf import f as pf
-from hak.pxyz import f as pxyz
+from hak.pxyf import f as pxyf
 
 # contains_date
 f = lambda x: (
@@ -15,19 +15,19 @@ f = lambda x: (
   ) <= get_ω_d(x)
 )
 
-def t_true():
-  x = {'financial_year': mkfy({'start_year': 2022}), 'date': date(2022, 7, 5)}
-  y = True
-  z = f(x)
-  return pxyz(x, y, z)
+t_true = lambda: pxyf(
+  {'financial_year': mkfy({'start_year': 2022}), 'date': date(2022, 7, 5)},
+  1,
+  f
+)
 
-def t_false():
-  x = {'financial_year': mkfy({'start_year': 2022}), 'date': date(2022, 6, 5)}
-  y = False
-  z = f(x)
-  return pxyz(x, y, z)
+t_false = lambda: pxyf(
+  {'financial_year': mkfy({'start_year': 2022}), 'date': date(2022, 6, 5)},
+  0,
+  f
+)
 
 def t():
   if not t_true(): return pf('!t_true()')
   if not t_false(): return pf('!t_false()')
-  return True
+  return 1
