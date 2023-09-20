@@ -4,10 +4,10 @@ from hak.pf import f as pf
 
 def t_proceed():
   try: f(FakeInput(['y'])); return 1
-  except RuntimeError: return pf('t_proceed failed')
+  except RuntimeError: return pf('!t_proceed')
 
 def t_do_not_proceed():
-  try: f(FakeInput(['n'])); return pf('t_do_not_proceed failed')
+  try: f(FakeInput(['n'])); return pf('!t_do_not_proceed')
   except RuntimeError: return 1
 
 t_silent = lambda: f(silent=True) == 'silent'
