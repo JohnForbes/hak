@@ -1,4 +1,4 @@
-from hak.pxyz import f as pxyz
+from hak.pxyf import f as pxyf
 
 def f(x):
   observed = set()
@@ -9,8 +9,8 @@ def f(x):
       result.append(x_i)
   return result
 
-def t():
-  x = [0, 0, 0, 1, 1, 2, 3, 3, 3, 4, 5, 6, 7, 7, 8, 10]
-  y = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10]
-  z = f(x)
-  return pxyz(x, y, z)
+t = lambda: pxyf(
+  [0, 0, 0, 1, 1, 2, 3, 3, 3, 4, 5, 6, 7, 7, 8, 10],
+  [0, 1, 2, 3, 4, 5, 6, 7, 8, 10],
+  f
+)
