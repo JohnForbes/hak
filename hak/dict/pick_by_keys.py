@@ -7,6 +7,4 @@ def t():
     'obj': {'a': 'AAA', 'b': 'BBB', 'c': "CCC", 'd': "DDD"},
     'keys': ['a', 'c', 'e']
   }
-  y = {'a': 'AAA', 'c': "CCC"}
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, {'a': 'AAA', 'c': "CCC"}, f(**x))
