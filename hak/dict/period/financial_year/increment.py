@@ -1,16 +1,12 @@
 from hak.pf import f as pf
 from hak.dict.period.financial_year.make import f as mkfy
-from hak.pxyz import f as pxyz
+from hak.pxyf import f as pxyf
 
 # increment
 f = lambda x: mkfy({'final_year': x['final_year']+1})
 
-def t_a():
-  x = mkfy({'start_year': 2022})
-  y = mkfy({'start_year': 2023})
-  z = f(x)
-  return pxyz(x, y, z)
+t_a = lambda: pxyf(mkfy({'start_year': 2022}), mkfy({'start_year': 2023}), f)
 
 def t():
   if not t_a(): return pf('!t_a')
-  return True
+  return 1
