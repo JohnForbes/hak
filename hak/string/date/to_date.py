@@ -37,13 +37,11 @@ def t_4():
   x_date_string_format = {'year_index': 0, 'month_index': 1, 'day_index': 2}
   return pxyz(x, date(2022, 5, 6), f(x, x_date_string_format))
 
-t_5 = lambda: f('2016-11-14') == date(2016, 11, 14)
-
 def t():
-  if not pxyf('19 Nov 2021', date(2021, 11, 19), f): return pf('t_0 failed')
-  if not pxyf('2021-11-19', date(2021, 11, 19), f): return pf('t_1 failed')
-  if not pxyf('28/03/2022', date(2022, 3, 28), f): return pf('t_2 failed')
-  if not t_3(): return pf('t_3 failed')
-  if not t_4(): return pf('t_4 failed')
-  if not t_5(): return pf('t_5 failed')
+  if not pxyf('19 Nov 2021', date(2021, 11, 19), f): return pf('!t_0')
+  if not pxyf('2021-11-19', date(2021, 11, 19), f): return pf('!t_1')
+  if not pxyf('28/03/2022', date(2022, 3, 28), f): return pf('!t_2')
+  if not t_3(): return pf('!t_3')
+  if not t_4(): return pf('!t_4')
+  if not f('2016-11-14') == date(2016, 11, 14): return pf('!t_5')
   return 1
