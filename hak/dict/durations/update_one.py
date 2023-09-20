@@ -12,15 +12,11 @@ def f(durations, name, δt_ms):
 
 def t_value_update():
   x = {'durations': {'a': 0, 'b': 1}, 'name': 'b', 'δt_ms': 2}
-  y = {'a': 0, 'b': 1.5}
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, {'a': 0, 'b': 1.5}, f(**x))
 
 def t_value_create():
   x = {'durations': {'a': 0, 'b': 1}, 'name': 'c', 'δt_ms': 2}
-  y = {'a': 0, 'b': 1, 'c': 2}
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, {'a': 0, 'b': 1, 'c': 2}, f(**x))
 
 def t():
   if not t_value_update(): return pf('!t_value_update')
