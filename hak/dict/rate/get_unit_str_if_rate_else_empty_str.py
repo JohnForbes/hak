@@ -1,7 +1,7 @@
 from hak.dict.get_or_default import f as get_or_default
 from hak.dict.rate.is_a import f as is_rate
-from hak.pf import f as pf
 from hak.dict.unit.to_str import f as to_str
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 
 # get_unit
@@ -17,9 +17,7 @@ def t_a():
       'b': {'numerator': 3, 'denominator': 1, 'unit': {'$': 1}}
     }
   }
-  y = 'm'
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, 'm', f(**x))
 
 def t_b():
   x = {
@@ -29,19 +27,9 @@ def t_b():
       'b': {'numerator': 3, 'denominator': 2, 'unit': {'$': 1, 'm': -1}}
     }
   }
-  y = '$/m'
-  z = f(**x)
-  return pxyz(x, y, z)
-
-record = {
-  'description': 'Exchanged 1000 AUD for 100 USD',
-  'flow_AUD': -1000.0,
-  'flow_USD': 100.0,
-  'flag_asset_aud_cash': -1,
-  'flag_asset_usd_cash_as_aud': 1
-}
+  return pxyz(x, '$/m', f(**x))
 
 def t():
   if not t_a(): return pf('!t_a')
   if not t_b(): return pf('!t_b')
-  return True
+  return 1
