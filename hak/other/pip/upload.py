@@ -1,7 +1,8 @@
 from subprocess import run as sprun
-from hak.fake.subprocess.run import f as fake_sprun
+
 from hak.directory.make import f as mkdirine
 from hak.directory.remove import f as rmdirie
+from hak.fake.subprocess.run import f as fake_sprun
 from hak.file.load import f as load
 from hak.pf import f as pf
 
@@ -52,4 +53,4 @@ def t():
       "'distributions to https://upload.pypi.org' in z['stdout'].decode()"
     )
 
-  return True
+  return 1
