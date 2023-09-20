@@ -8,15 +8,11 @@ f = lambda d, k: get_or_default(d, k, 0)
 
 def t_successful_retrieval():
   x = {'d': {'a': 1}, 'k': 'a'}
-  y = x['d'][x['k']]
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, x['d'][x['k']], f(**x))
 
 def t_default_to_zero():
   x = {'d': {'a': 1}, 'k': 'b'}
-  y = 0
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, 0, f(**x))
 
 def t():
   if not t_successful_retrieval(): return pf('!t_successful_retrieval')
