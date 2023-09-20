@@ -1,5 +1,5 @@
 from hak.pf import f as pf
-from hak.dict.rate.make import f as make_rate
+from hak.dict.rate.make import f as mk_rate
 from hak.dict.rate.is_a import f as is_rate
 from hak.puvyz import f as puvyz
 
@@ -12,35 +12,29 @@ def f(u, v):
   for k in u['unit']: _unit[k] += u['unit'][k]
   for k in v['unit']: _unit[k] += v['unit'][k]
 
-  return make_rate(
+  return mk_rate(
     u[  'numerator']*v[  'numerator'],
     u['denominator']*v['denominator'],
     {k: _unit[k] for k in _unit if _unit[k] != 0}
   )
 
 def t_a():
-  u = make_rate(1, 3, {'m': 1})
-  v = make_rate(3, 1, {'m': 1})
-  y = make_rate(1, 1, {'m': 2})
-  z = f(u, v)
-  return puvyz(u, v, y, z)
+  u = mk_rate( 1,  3, {'m': 1})
+  v = mk_rate( 3,  1, {'m': 1})
+  return puvyz(u, v, mk_rate(1, 1, {'m': 2}), f(u, v))
 
 def t_b():
-  u = make_rate( 2,  3, {'s': 1})
-  v = make_rate( 5,  7, {'s': 1})
-  y = make_rate(10, 21, {'s': 2})
-  z = f(u, v)
-  return puvyz(u, v, y, z)
+  u = mk_rate( 2,  3, {'s': 1})
+  v = mk_rate( 5,  7, {'s': 1})
+  return puvyz(u, v, mk_rate(10, 21, {'s': 2}), f(u, v))
 
 def t_c():
-  u = make_rate( 13,  11, {})
-  v = make_rate( 19,  17, {})
-  y = make_rate(247, 187, {})
-  z = f(u, v)
-  return puvyz(u, v, y, z)
+  u = mk_rate(13, 11, {})
+  v = mk_rate(19, 17, {})
+  return puvyz(u, v, mk_rate(247, 187, {}), f(u, v))
 
 def t():
   if not t_a(): return pf('!t_a')
   if not t_b(): return pf('!t_b')
   if not t_c(): return pf('!t_c')
-  return True
+  return 1
