@@ -173,4 +173,4 @@ def t():
     f'term.output_stream_as_list: {term.output_stream_as_list}',
     f'y_out_stream_list:          {y_out_stream_list}',
   ])
-  return True
+  return 1
