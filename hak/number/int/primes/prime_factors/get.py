@@ -7,7 +7,7 @@ from hak.file.get_next_line_as_int import f as get_next_prime
 from hak.file.zip.extract import f as extract
 from hak.number.int.primes.download_prime_10 import f as download_prime_10
 from hak.pf import f as pf
-from hak.pxyz import f as pxyz
+from hak.pxyf import f as pxyf
 
 def build_freq_dict(x, primes):
   queue = deque([1, *primes])
@@ -41,53 +41,18 @@ def f(x):
   prime_factors_list = tuple(sorted(list(prime_factors_set), reverse=True))
   return build_freq_dict(x, prime_factors_list)
 
-def t_2():
-  x = 2
-  y = {2: 1}
-  z = f(x)
-  return pxyz(x, y, z)
 
-def t_3():
-  x = 3
-  y = {3: 1}
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_4():
-  x = 4
-  y = {2: 2}
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_10():
-  x = 10
-  y = {2: 1, 5: 1}
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_360():
-  x = 360
-  y = {2: 3, 3: 2, 5: 1}
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_7093094658085993():
-  x = 7093094658085993
-  y = {71: 1, 1109: 1, 33757: 1, 2668591: 1}
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_735809():
-  x = 7093094658085993
-  y = {17929: 1, 41: 1}
-  z = f(x)
-  return pxyz(x, y, z)
+t_7093094658085993 = lambda: pxyf(
+  7093094658085993,
+  {71: 1, 1109: 1, 33757: 1, 2668591: 1},
+  f
+)
 
 def t():
-  if not t_2(): return pf('!t_2')
-  if not t_3(): return pf('!t_3')
-  if not t_4(): return pf('!t_4')
-  if not t_10(): return pf('!t_10')
-  if not t_360(): return pf('!t_360')
+  if not pxyf(2, {2: 1}, f): return pf('!t_2')
+  if not pxyf(3, {3: 1}, f): return pf('!t_3')
+  if not pxyf(4, {2: 2}, f): return pf('!t_4')
+  if not pxyf(10, {2: 1, 5: 1}, f): return pf('!t_10')
+  if not pxyf(360, {2: 3, 3: 2, 5: 1}, f): return pf('!t_360')
   if not t_7093094658085993(): return pf('!t_7093094658085993')
-  return True
+  return 1
