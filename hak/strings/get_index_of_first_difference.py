@@ -1,4 +1,4 @@
-from hak.pxyz import f as pxyz
+from hak.pxyf import f as pxyf
 
 # src.list.strings.get_index_of_first_difference
 def f(x):
@@ -8,8 +8,4 @@ def f(x):
     if u[i] != v[i]:
       return i
 
-def t():
-  x = {'u': 'abcdefghijk', 'v': 'abcdefghiJk'}
-  y = 9
-  z = f(x)
-  return pxyz(x, y, z)
+t = lambda: pxyf({'u': 'abcdefghijk', 'v': 'abcdefghiJk'}, 9, f)
