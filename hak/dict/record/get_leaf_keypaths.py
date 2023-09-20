@@ -26,16 +26,19 @@ def t_a():
     'path_so_far': [],
     'keypaths': set()
   }
-  y = set([
-    ('Name',),
-    ('Info', 'Age'),
-    ('Info', 'Country'),
-    ('Info', 'Appearance', 'Eye Colour'),
-    ('Info', 'Appearance', 'Height')
-  ])
-  z = f(**x)
-  return pxyz(x, y, z, new_line=1)
+  return pxyz(
+    x,
+    set([
+      ('Name',),
+      ('Info', 'Age'),
+      ('Info', 'Country'),
+      ('Info', 'Appearance', 'Eye Colour'),
+      ('Info', 'Appearance', 'Height')
+    ]),
+    f(**x),
+    new_line=1
+  )
 
 def t():
   if not t_a(): return pf('!t_a')
-  return True
+  return 1
