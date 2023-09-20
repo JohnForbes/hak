@@ -95,4 +95,4 @@ def t():
   
   if z.stderr.decode('utf-8') != '': return pf("z.stderr.decode('utf-8') != ''")
 
-  return True
+  return 1
