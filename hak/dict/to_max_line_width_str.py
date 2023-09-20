@@ -2,7 +2,7 @@
 from hak.pf import f as pf
 from hak.strings.get_last_line_width import f as get_last_line_width
 from hak.string.dict.to_limited_width_dict_string import f as dict_string_to_limited_width_dict_string
-from hak.pxyz import f as pxyz
+from hak.pxyf import f as pxyf
 
 def _f(x, w):
   result = ', '.join([f"'{k}': {x[k]}" for k in x])
@@ -14,78 +14,78 @@ def f(x, w=80):
   if len(str(x)) <= w: return str(x)
   return '{\n  '+_f(x, w)+'\n}'
 
-def t_short():
-  x = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8}
-  y = "{'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8}"
-  z = f(x)
-  return pxyz(x, y, z)
+t_short = lambda: pxyf(
+  {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8},
+  "{'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8}",
+  f
+)
 
-def t_w():
-  x = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8, 'j': 9}
-  y = "{'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8, 'j': 9}"
-  z = f(x)
-  return pxyz(x, y, z)
+t_w = lambda: pxyf(
+  {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8, 'j': 9},
+  "{'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8, 'j': 9}",
+  f
+)
 
-def t_too_long_a():
-  x = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8, 'j': 10}
-  y = '\n'.join([
+t_too_long_a = lambda: pxyf(
+  {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8, 'j': 10},
+  '\n'.join([
     "{",
     "  'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8,",
     "  'j': 10",
     "}",
-  ])
-  z = f(x)
-  return pxyz(x, y, z)
+  ]),
+  f
+)
 
-def t_too_long_b():
-  x = {
+t_too_long_b = lambda: pxyf(
+  {
     'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8,
     'j': 9, 'k': 10
-  }
-  y = '\n'.join([
+  },
+  '\n'.join([
     "{",
     "  'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8,",
     "  'j': 9, 'k': 10",
     "}",
-  ])
-  z = f(x)
-  return pxyz(x, y, z)
+  ]),
+  f
+)
 
-def t_too_long_c():
-  x = {chr(k+97): k for k in range(17)}
-  y = '\n'.join([
+t_too_long_c = lambda: pxyf(
+  {chr(k+97): k for k in range(17)},
+  '\n'.join([
     "{",
     "  'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8,",
     "  'j': 9, 'k': 10, 'l': 11, 'm': 12, 'n': 13, 'o': 14, 'p': 15, 'q': 16",
     "}",
-  ])
-  z = f(x)
-  return pxyz(x, y, z)
+  ]),
+  f
+)
 
-def t_too_long_d():
-  x = {chr(k+97): k for k in range(18)}
-  y = '\n'.join([
+t_too_long_d = lambda: pxyf(
+  {chr(k+97): k for k in range(18)},
+  '\n'.join([
     "{",
     "  'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8,",
     "  'j': 9, 'k': 10, 'l': 11, 'm': 12, 'n': 13, 'o': 14, 'p': 15, 'q': 16,",
     "  'r': 17",
     "}",
-  ])
-  z = f(x)
-  return pxyz(x, y, z)
+  ]),
+  f
+)
 
-def t_too_long_e():
-  x = {chr(k+97): k for k in range(26)}
-  y = '\n'.join([
+t_too_long_e = lambda: pxyf(
+  {chr(k+97): k for k in range(26)},
+  '\n'.join([
     "{",
     "  'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8,",
     "  'j': 9, 'k': 10, 'l': 11, 'm': 12, 'n': 13, 'o': 14, 'p': 15, 'q': 16,",
     "  'r': 17, 's': 18, 't': 19, 'u': 20, 'v': 21, 'w': 22, 'x': 23, 'y': 24,",
     "  'z': 25",
     "}",
-  ])
-  z = f(x)
-  return pxyz(x, y, z)
+  ]),
+  f
+)
 
 def t():
   if not t_short(): return pf('t_short() failed')
@@ -95,4 +95,4 @@ def t():
   if not t_too_long_c(): return pf('t_too_long_c() failed')
   if not t_too_long_d(): return pf('t_too_long_d() failed')
   if not t_too_long_e(): return pf('t_too_long_e() failed')
-  return True
+  return 1
