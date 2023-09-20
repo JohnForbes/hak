@@ -15,7 +15,7 @@ t_1 = lambda: pxyf(
 t_2 = lambda: pxyf({'a': 0, 'b': 1, 'rate_a': mk_rate(0, 2, {})}, {'b': 1}, f)
 
 def t():
-  if not pxyf({'a': 0, 'b': 1}, {'b': 1}, f): return pf('t_0 failed')
-  if not t_1(): return pf('t_1 failed')
-  if not t_2(): return pf('t_2 failed')
+  if not pxyf({'a': 0, 'b': 1}, {'b': 1}, f): return pf('!t_0')
+  if not t_1(): return pf('!t_1')
+  if not t_2(): return pf('!t_2')
   return 1
