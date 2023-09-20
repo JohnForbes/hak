@@ -1,11 +1,11 @@
-from hak.string.colour.bright.green import f as success
-from hak.strings.filepaths.py.testables.get import f as list_testables
 from hak.file.load import f as load
-from hak.pf import f as pf
-from hak.string.colour.bright.red import f as danger
-from hak.file.save import f as save
-from hak.terminal import Terminal
 from hak.file.remove import f as remove
+from hak.file.save import f as save
+from hak.pf import f as pf
+from hak.string.colour.bright.green import f as success
+from hak.string.colour.bright.red import f as danger
+from hak.strings.filepaths.py.testables.get import f as list_testables
+from hak.terminal import Terminal
 
 # check_line_lengths
 
@@ -22,7 +22,7 @@ def f(filepaths=None, term=None):
         danger(line)
       ], p=term.print)
   term.print(f"{success('PASS')} Line Lengths "+' '*20)
-  return True
+  return 1
 
 def t_expected_true():
   _test_files = {
@@ -33,7 +33,7 @@ def t_expected_true():
   for (k, v) in _test_files.items(): save(k, v)  
   
   x = list(_test_files.keys())
-  y = True
+  y = 1
   y_out_stream_list = [
     'Checking line lengths...\r',
     '\x1b[1;32mPASS\x1b[0;0m Line Lengths                     \n'
@@ -49,7 +49,7 @@ def t_expected_true():
     f'term.output_stream_as_list: {term.output_stream_as_list}',
     f'y_out_stream_list:          {y_out_stream_list}',
   ])
-  return True
+  return 1
 
 def t_expected_false():
   w = 90
@@ -62,7 +62,7 @@ def t_expected_false():
   for (k, v) in _test_files.items(): save(k, v)  
   
   x = list(_test_files.keys())
-  y = False
+  y = 0
   y_out_stream_list = [
     'Checking line lengths...\r',
     './c.pz:3\n\x1b[1;31m'+'-'*w+'\x1b[0;0m\n'
@@ -78,9 +78,9 @@ def t_expected_false():
     f'term.output_stream_as_list: {term.output_stream_as_list}',
     f'y_out_stream_list:          {y_out_stream_list}',
   ])
-  return True
+  return 1
 
 def t():
   if not t_expected_true(): return pf('not t_expected_true()')
   if not t_expected_false(): return pf('not t_expected_false()')
-  return True
+  return 1
