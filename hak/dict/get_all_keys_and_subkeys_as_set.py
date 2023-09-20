@@ -1,5 +1,5 @@
-from hak.pxyz import f as pxyz
 from hak.dict.is_a import f as is_dict
+from hak.pxyf import f as pxyf
 
 def f(d, s=set()):
   for k in d:
@@ -7,11 +7,11 @@ def f(d, s=set()):
       s |= f(d[k], s)
   return s | set(d.keys())
 
-def t():
-  x =  {
+t = lambda: pxyf(
+  {
     'a': {'aa': {'aaa': 'Lollipop'}, 'ab': None},
     'b': {'ba': None}
-  }
-  y = set(['a', 'aa', 'ab', 'aaa', 'b', 'ba'])
-  z = f(x)
-  return pxyz(x, y, z)
+  },
+  set(['a', 'aa', 'ab', 'aaa', 'b', 'ba']),
+  f
+)
