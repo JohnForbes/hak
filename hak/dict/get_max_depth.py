@@ -46,4 +46,4 @@ def t():
   if not t_2_a(): return pf('!t_2_a')
   if not t_2_b(): return pf('!t_2_b')
   if not t_3(): return pf('!t_3')
-  return True
+  return 1
