@@ -1,13 +1,9 @@
-from hak.pxyf import f as pxyf
+from hak.dict.is_a import f as g
 from hak.pf import f as pf
-from hak.rate.rate import Rate as Q
-from hak.dict.is_a import f as is_dict
+from hak.pxyf import f as pxyf
+from hak.rate import Rate as Q
 
-f = lambda x: (
-  sum([f(x[k]) if is_dict(x[k]) else x[k] for k in x])
-  if is_dict(x) else
-  x
-)
+f = lambda x: sum([f(x[k]) if g(x[k]) else x[k] for k in x]) if g(x) else x
 
 t_ints  = lambda: pxyf({'c': {'d': 2, 'e': 3, 'f': {'g': 4, 'h': 5}}},    14, f)
 t_rates = lambda: pxyf(      {'b': Q(1), 'c': {'d': Q(2), 'e': Q(3)}},  Q(6), f)
