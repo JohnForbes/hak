@@ -2,25 +2,29 @@ from hak.one.number.int.primes.prime_factors.get import f as get_prime_factors
 from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 from hak.one.number.is_a import f as is_number
+from hak.one.dict.numerator_and_denominator.to_common_factors import f as get_cf
+from hak.one.dict.numerator_and_denominator.simplify import f as n_d_simplify
+from hak.one.number.float.to_numerator_denominator import f as float_to_num_den
 
 get_decimal_place_count = lambda x: len(str(x).split('.')[1].rstrip('0'))
 
 shift_to_int = lambda x, decimal_place_count: int(x * 10**decimal_place_count)
-
-def _g(a, b):
-  if isinstance(a, float):
-    decimal_place_count = get_decimal_place_count(a)
-    a, b = [shift_to_int(x, decimal_place_count) for x in (a, b)]
-  return a, b
 
 class Rate:
   def __init__(self, numerator, denominator=None, unit=None):
     if not denominator: denominator = 1
     if not unit: unit = {}
     
-    numerator, denominator = _g(numerator, denominator)
-    denominator, numerator = _g(denominator, numerator)
-
+    if isinstance(numerator, float):
+      a, b = float_to_num_den(numerator).values()
+      numerator = a
+      denominator *= b
+    
+    if isinstance(denominator, float):
+      a, b = float_to_num_den(denominator).values()
+      numerator *= b
+      denominator = a
+    
     if numerator == 0: denominator = 1
 
     if isinstance(numerator, float):
@@ -30,34 +34,23 @@ class Rate:
       numerator = int(numerator)
       denominator = int(denominator)
 
-    self.numerator = numerator
-    self.denominator = denominator
+    self._numerator = numerator
+    self._denominator = denominator
     self.unit = unit
+
     self.simplify()
 
   def simplify(self):
-    numerator = self.numerator
-    denominator = self.denominator
-    unit = self.unit
+    _dict = n_d_simplify({'numerator': self.n, 'denominator': self.d})
+    self._numerator = _dict['numerator']
+    self._denominator = _dict['denominator']
+    self.unit = self.unit
 
-    npf = get_prime_factors(numerator)
-    dpf = get_prime_factors(denominator)
+  n           = property(lambda self: self._numerator)
+  numerator   = property(lambda self: self.n)
 
-    common_factors = set(npf.keys()).intersection(set(dpf.keys()))
-
-    while common_factors:
-      common_factor = common_factors.pop()
-      numerator //= common_factor
-      denominator //= common_factor
-      npf = get_prime_factors(numerator)
-      dpf = get_prime_factors(denominator)
-      common_factors = set(npf.keys()).intersection(set(dpf.keys()))
-    self.numerator = numerator
-    self.denominator = denominator
-    self.unit = unit
-
-  n = property(lambda self: self.numerator)
-  d = property(lambda self: self.denominator)
+  d           = property(lambda self: self._denominator)
+  denominator = property(lambda self: self.d)
 
   def __add__(u, v):
     if isinstance(v, Rate):
@@ -79,17 +72,17 @@ class Rate:
 
     unit = {k: _unit[k] for k in _unit if _unit[k] != 0}
 
-    return Rate(u.numerator*v.denominator, u.denominator*v.numerator, unit)
+    return Rate(u._numerator*v.denominator, u._denominator*v.numerator, unit)
 
   def __str__(self):
-    if self.denominator == 0: return f"undefined"
-    if self.numerator == 0: return f""
-    if self.denominator == 1: return f"{self.numerator}"
-    return f"{self.numerator}/{self.denominator}"
+    if self._denominator == 0: return f"undefined"
+    if self._numerator == 0: return f""
+    if self._denominator == 1: return f"{self._numerator}"
+    return f"{self._numerator}/{self._denominator}"
 
   def __sub__(u, v):
-    if u['unit'] != v['unit']:
-      raise ValueError(f"u['unit']: {u['unit']} != v['unit']: {v['unit']}")
+    if u.unit != v.unit:
+      raise ValueError(f"u.unit: {u.unit} != v.unit: {v.unit}")
     return Rate(u.n * v.d - u.d * v.n, u.d * v.d, u.unit)
 
   def __mul__(u, v):
@@ -101,8 +94,8 @@ class Rate:
     for k in v.unit: _unit[k] += v.unit[k]
 
     return Rate(
-      u.numerator  *v.numerator,
-      u.denominator*v.denominator,
+      u._numerator  *v._numerator,
+      u._denominator*v._denominator,
       {k: _unit[k] for k in _unit if _unit[k] != 0}
     )
 
@@ -165,6 +158,12 @@ def t_rate_sum():
   z = sum(x)
   return pxyz(x, y, z)
 
+def t_147_48():
+  x = {'numerator': 147.48, 'denominator': 1, 'unit': {'AUD': 1}}
+  y = Rate(14748, 100, {'AUD': 1})
+  z = f(**x)
+  return pxyz(x, y, z)
+
 def t():
   if not t_rate_simplifies_at_init(): return pf('!t_rate_simplifies_at_init')
   if not t_rate_numerator_float(): return pf('!t_rate_numerator_float')
@@ -173,4 +172,5 @@ def t():
   if not t_rate_b(): return pf('!t_rate_b')
   if not t_rate_by_integer(): return pf('!t_rate_by_integer')
   if not t_rate_sum(): return pf('!t_rate_sum')
+  if not t_147_48(): return pf('!t_147_48')
   return 1
