@@ -5,9 +5,7 @@ f = lambda pyfiles, items: [p for p in pyfiles if p not in items]
 
 def t_a():
   x = {'pyfiles': [], 'items': []}
-  y = []
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, [], f(**x))
 
 def t_b():
   x = {
@@ -19,9 +17,7 @@ def t_b():
       './hak/refactor_recommender.py',
     ]
   }
-  y = ['./a.py', './b.py']
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, ['./a.py', './b.py'], f(**x))
 
 def t_c():
   x = {
@@ -33,9 +29,7 @@ def t_c():
       './hak/refactor_recommender.py',
     ]
   }
-  y = ['./a.py', './b.py']
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, ['./a.py', './b.py'], f(**x))
 
 def t_d():
   x = {
@@ -47,9 +41,7 @@ def t_d():
       './hak/refactor_recommender.py',
     ]
   }
-  y = ['./a.py', './b.py']
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, ['./a.py', './b.py'], f(**x))
 
 def t_e():
   x = {
@@ -61,9 +53,7 @@ def t_e():
       './hak/refactor_recommender.py',
     ]
   }
-  y = ['./a.py', './b.py']
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, ['./a.py', './b.py'], f(**x))
 
 def t_f():
   x = {
@@ -79,9 +69,7 @@ def t_f():
       './hak/refactor_recommender.py',
     ]
   }
-  y = ['./a.py', './b.py']
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, ['./a.py', './b.py'], f(**x))
 
 def t_g():
   x = {
@@ -100,9 +88,7 @@ def t_g():
       './hak/refactor_recommender.py',
     ]
   }
-  y = ['./a.py', './b.py']
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, ['./a.py', './b.py'], f(**x))
 
 def t():
   if not t_a(): return pf('!t_a')
@@ -112,4 +98,4 @@ def t():
   if not t_e(): return pf('!t_e')
   if not t_f(): return pf('!t_f')
   if not t_g(): return pf('!t_g')
-  return True
+  return 1
