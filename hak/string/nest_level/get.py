@@ -1,4 +1,4 @@
-from hak.pxyz import f as pxyz
+from hak.pxyf import f as pxyf
 
 def f(x):
   result = []
@@ -14,13 +14,11 @@ def f(x):
       result.append(nest_level)
   return result
 
-def t():
-  x = str({'a': 0, 'b': 1, 'c': {'d': 0, 'e': 1}})
-  # x: "{'a': 0, 'b': 1, 'c': {'d': 0, 'e': 1}}"
-  # y:  011111111111111111111112222222222222210
-  y = [
+t = lambda: pxyf(
+  str({'a': 0, 'b': 1, 'c': {'d': 0, 'e': 1}}),
+  [
     0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2,
     2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0
-  ]
-  z = f(x)
-  return pxyz(x, y, z)
+  ],
+  f
+)
