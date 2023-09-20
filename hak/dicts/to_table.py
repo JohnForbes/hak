@@ -5,7 +5,8 @@ from hak.dicts.flat.homogenise import f as homogenise_dicts
 from hak.pf import f as pf
 from hak.pxyz import f as pxyz
 from hak.rate import Rate
-from hak.table.table import Table
+from hak.table import Table
+from hak.pxyf import f as pxyf
 
 f = lambda x: str(Table().add_records(homogenise_dicts(x)))
 
@@ -60,8 +61,7 @@ def t_a():
     '--------|-----|--------|---------|-----|------|------|------|------------'
   ])
 
-  z = f(x)
-  return pxyz(x, y, z)
+  return pxyf(x, y, f)
 
 def t_b():
   x = [
@@ -89,9 +89,7 @@ def t_b():
     ' 2023-01-01 |                                       ',
     '------------|---------------------------------------'
   ])
-
-  z = f(x)
-  return pxyz(x, y, z, new_line=1)
+  return pxyf(x, y, f, new_line=1)
 
 def t_c():
   x = [
@@ -126,9 +124,7 @@ def t_c():
     '      10 |        11 |     12 | thirteen | fourteen | 2023-01-01 ',
     '---------|-----------|--------|----------|----------|------------',
   ])
-
-  z = f(x)
-  return pxyz(x, y, z, new_line=1)
+  return pxyf(x, y, f, new_line=1)
 
 def t():
   if not t_a(): return pf('!t_a')
