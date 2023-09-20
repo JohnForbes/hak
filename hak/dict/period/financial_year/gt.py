@@ -7,6 +7,5 @@ f = lambda u, v: u['start_year'] > v['start_year']
 def t():
   u = mkfy({'start_year': 2023})
   v = mkfy({'final_year': 2023})
-  y = True
   z = f(u, v)
-  return puvyz(u, v, y, z)
+  return puvyz(u, v, 1, z)
