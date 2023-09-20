@@ -25,4 +25,4 @@ def t():
   if lines != x: dn(); return pf(f'{lines} != {x}')
   if z != x: dn(); return pf(f'{z} != {x}')
   dn()
-  return True
+  return 1
