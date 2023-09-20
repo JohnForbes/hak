@@ -13,19 +13,21 @@ def f(x, y, function, p=print, new_line=False, show_as_lists=False):
 def t_true():
   _fake_printer = FP()
   x = {'x': 2, 'y': 4, 'function': lambda x: x*x}
-  y = True
-  z = f(**x, p=_fake_printer)
-  return y == z and _fake_printer.history == []
+  return all([
+    f(**x, p=_fake_printer),
+    _fake_printer.history == []
+  ])
 
 def t_false():
   _fake_printer = FP()
   x = {'x': 1, 'y': 1, 'function': lambda x: x+1}
-  y = False
-  z = f(**x, p=_fake_printer)
-  return y == z and _fake_printer.history == ['x: 1\ny: 1\nz: 2']
+  return all([
+    not f(**x, p=_fake_printer),
+    _fake_printer.history == ['x: 1\ny: 1\nz: 2']
+  ])
 
 def t():
   # TODO: Insufficient test coverage: Skipped additional test for new line code
   if not t_true(): return pf('!t_true')
   if not t_false(): return pf('!t_false')
-  return True
+  return 1
