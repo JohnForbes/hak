@@ -1,5 +1,3 @@
-from hak.string.colour.bright.magenta import f as mg
-from hak.string.colour.bright.cyan import f as cy
 from hak.pf import f as pf
 from hak.puvyz import f as puvyz
 
@@ -14,44 +12,32 @@ def f(u, v):
 def t_diff_strs_same_length():
   u = 'abcde'
   v = 'abxde'
-  y = {'u_i': 'c', 'v_i': 'x', 'i': 2}
-  z = f(u, v)
-  return puvyz(u, v, y, z)
+  return puvyz(u, v, {'u_i': 'c', 'v_i': 'x', 'i': 2}, f(u, v))
 
 def t_matching_strs():
   u = 'abcde'
   v = 'abcde'
-  y = None
-  z = f(u, v)
-  return puvyz(u, v, y, z)
+  return puvyz(u, v, None, f(u, v))
 
 def t_isoprefiu_len_lt_v_len():
   u = 'abcd'
   v = 'abcdxfg'
-  y = {'u_i': None, 'v_i': 'x', 'i': 4}
-  z = f(u, v)
-  return puvyz(u, v, y, z)
+  return puvyz(u, v, {'u_i': None, 'v_i': 'x', 'i': 4}, f(u, v))
 
 def t_isoprefiu_len_gt_v_len():
   u = 'abcdxfg'
   v = 'abcd'
-  y = {'u_i': 'x', 'v_i': None, 'i': 4}
-  z = f(u, v)
-  return puvyz(u, v, y, z)
+  return puvyz(u, v, {'u_i': 'x', 'v_i': None, 'i': 4}, f(u, v))
 
 def t_diff_str_u_len_lt_v_len():
   u = 'abcd'
   v = 'axcdefg'
-  y = {'u_i': 'b', 'v_i': 'x', 'i': 1}
-  z = f(u, v)
-  return puvyz(u, v, y, z)
+  return puvyz(u, v, {'u_i': 'b', 'v_i': 'x', 'i': 1}, f(u, v))
 
 def t_diff_str_u_len_gt_v_len():
   u = 'axcdefg'
   v = 'abcd'
-  y = {'u_i': 'x', 'v_i': 'b', 'i': 1}
-  z = f(u, v)
-  return puvyz(u, v, y, z)
+  return puvyz(u, v, {'u_i': 'x', 'v_i': 'b', 'i': 1}, f(u, v))
 
 def t():
   if not t_matching_strs(): return pf('!t_matching_strs')
@@ -60,4 +46,4 @@ def t():
   if not t_isoprefiu_len_gt_v_len(): return pf('!t_isoprefiu_len_gt_v_len')
   if not t_diff_str_u_len_lt_v_len(): return pf('!t_diff_str_u_len_lt_v_len')
   if not t_diff_str_u_len_gt_v_len(): return pf('!t_diff_str_u_len_gt_v_len')
-  return True
+  return 1
