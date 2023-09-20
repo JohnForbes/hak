@@ -1,4 +1,4 @@
-from hak.node.node import Node
+from hak.node import Node
 from hak.pf import f as pf
 
 # dict_to_node_tree
