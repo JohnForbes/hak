@@ -1,38 +1,14 @@
 from hak.bool.random.make import f as make_bool
 from hak.number.int.random.make import f as make_int
-from hak.string.random.make import f as make_str
 from hak.pf import f as pf
-from hak.pxyz import f as pxyz
+from hak.pxyf import f as pxyf
+from hak.string.random.make import f as make_str
 
 f = lambda x: type(x) == type(1j)
 
-def t_false_int():
-  x = make_int(1, 10)
-  y = False
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_false_bool():
-  x = make_bool()
-  y = False
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_false_str():
-  x = make_str()
-  y = False
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_true():
-  x = 0+2.5j
-  y = True
-  z = f(x)
-  return pxyz(x, y, z)
-
 def t():
-  if not t_true(): return pf('!t_true')
-  if not t_false_int(): return pf('!t_false_int')
-  if not t_false_bool(): return pf('!t_false_bool')
-  if not t_false_str(): return pf('!t_false_str')
-  return True
+  if not pxyf(make_bool(), 0, f): return pf('!t_false_bool')
+  if not pxyf(make_int(1, 10), 0, f): return pf('!t_false_int')
+  if not pxyf(make_str(), 0, f): return pf('!t_false_str')
+  if not pxyf(0+2.5j, 1, f): return pf('!t_true')
+  return 1
