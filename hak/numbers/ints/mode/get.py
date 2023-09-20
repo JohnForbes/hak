@@ -1,4 +1,4 @@
-from hak.pxyz import f as pxyz
+from hak.pxyf import f as pxyf
 
 # src.list.ints.mode.get.py
 def f(x):
@@ -17,8 +17,4 @@ def f(x):
 
   return max_so_far_key
 
-def t():
-  x = [0, 0, 0, 1, 1, 1, 1, 2, 2]
-  y = 1
-  z = f(x)
-  return pxyz(x, y, z)
+t = lambda: pxyf([0, 0, 0, 1, 1, 1, 1, 2, 2], 1, f)
