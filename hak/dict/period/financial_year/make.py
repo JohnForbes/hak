@@ -21,16 +21,14 @@ def f(x):
 
 def t_a():
   x = {'start_year': 2022}
-  y = {'start_year': 2022, 'final_year': 2023}
   z = f(x)
 
   if z["start_year"] != 2022: return pf('z["start_year"] != 2022')
   if z["final_year"] != 2023: return pf('z["final_year"] != 2023')  
-  return pxyz(x, y, z)
+  return pxyz(x, {'start_year': 2022, 'final_year': 2023}, z)
 
 def t_α_and_final_are_1_year_apart():
-  x = {'final_year': 2022}
-  z = f(x)
+  z = f({'final_year': 2022})
   return z["final_year"] - z["start_year"] == 1
 
 def t_illegal_α_final_years_combination():
@@ -44,7 +42,7 @@ def t_illegal_α_final_years_combination():
         "str(ve) != 'Years should be contiguous, "
         "where start_year precedes final_year.'"
       )
-  return True
+  return 1
 
 def t():
   if not t_a(): return pf('!t_a')
@@ -55,4 +53,4 @@ def t():
   if not t_illegal_α_final_years_combination():
     return pf('t_illegal_α_final_years_combination')
 
-  return True
+  return 1
