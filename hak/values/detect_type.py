@@ -1,18 +1,19 @@
 from datetime import date
 from datetime import datetime
+
 from hak.bool.is_a import f as is_bool
 from hak.date.is_a import f as is_date
 from hak.datetime.is_a import f as is_datetime
 from hak.dict.is_a import f as is_dict
+from hak.dict.rate.is_a import f as is_rate
+from hak.dict.rate.make import f as mk_rate
 from hak.number.float.is_a import f as is_float
 from hak.number.int.is_a import f as is_int
+from hak.pf import f as pf
+from hak.pxyf import f as pxyf
 from hak.set.is_a import f as is_set
 from hak.string.is_a import f as is_str
 from hak.tuple.is_a import f as is_tup
-from hak.pf import f as pf
-from hak.pxyz import f as pxyz
-from hak.dict.rate.is_a import f as is_rate
-from hak.dict.rate.make import f as make_rate
 
 def f(x):
   if all([is_bool(x_i) for x_i in x]): return 'bool'
@@ -27,74 +28,37 @@ def f(x):
   if all([is_tup(x_i) for x_i in x]): return 'tup'
   return '?'
 
-def t_bool():
-  x = [True, False, False]
-  y = 'bool'
-  z = f(x)
-  return pxyz(x, y, z)
+t_bool = lambda: pxyf([True, False, False], 'bool', f)
 
-def t_date():
-  x = [date(2023, 1, 1), date(2023, 6, 30), date(2023, 12, 31)]
-  y = 'date'
-  z = f(x)
-  return pxyz(x, y, z)
+t_date = lambda: pxyf(
+  [date(2023, 1, 1), date(2023, 6, 30), date(2023, 12, 31)],
+  'date',
+  f
+)
 
-def t_datetime():
-  x = [datetime(2023, 1, 1), datetime(2023, 6, 30), datetime(2023, 12, 31)]
-  y = 'datetime'
-  z = f(x)
-  return pxyz(x, y, z)
+t_datetime = lambda: pxyf(
+  [datetime(2023, 1, 1), datetime(2023, 6, 30), datetime(2023, 12, 31)],
+  'datetime',
+  f
+)
 
-def t_dict():
-  x = [{0: 0}, {1: 1}, {2: 2}]
-  y = 'dict'
-  z = f(x)
-  return pxyz(x, y, z)
+t_dict = lambda: pxyf([{0: 0}, {1: 1}, {2: 2}], 'dict', f)
+t_float = lambda: pxyf([0.0, 1.0, 2.0], 'float', f)
+t_int = lambda: pxyf([0, 1, 2], 'int', f)
+t_set = lambda: pxyf([set(), set('abc'), {'d', 'e', 'f'}], 'set', f)
+t_str = lambda: pxyf(['abc', 'ghi', 'jkl'], 'str', f)
+t_tup = lambda: pxyf([('abc', 'ghi'), ('ghi', 'jkl')], 'tup', f)
 
-def t_float():
-  x = [0.0, 1.0, 2.0]
-  y = 'float'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_int():
-  x = [0, 1, 2]
-  y = 'int'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_set():
-  x = [set(), set('abc'), {'d', 'e', 'f'}]
-  y = 'set'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_str():
-  x = ['abc', 'ghi', 'jkl']
-  y = 'str'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_tup():
-  x = [('abc', 'ghi'), ('ghi', 'jkl')]
-  y = 'tup'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_rate():
-  x = [make_rate(1, 2, {'$': 1, 'm': -1}), make_rate(2, 3, {'m': 1, '$': -1})]
-  y = 'rate'
-  z = f(x)
-  return pxyz(x, y, z)
+t_rate = lambda: pxyf(
+  [mk_rate(1, 2, {'$': 1, 'm': -1}), mk_rate(2, 3, {'m': 1, '$': -1})],
+  'rate',
+  f
+)
 
 def t_unknown():
   class A:
-    def __init__(self):
-      self.v = '...'
-  x = [A(), A(), A()]
-  y = '?'
-  z = f(x)
-  return pxyz(x, y, z)
+    pass
+  return pxyf([A(), A(), A()], '?', f)
 
 def t():
   if not t_unknown(): return pf('!t_unknown')
@@ -108,4 +72,4 @@ def t():
   if not t_str(): return pf('!t_str')
   if not t_tup(): return pf('!t_tup')
   if not t_rate(): return pf('!t_rate')
-  return True
+  return 1
