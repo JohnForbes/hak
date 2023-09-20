@@ -1,8 +1,8 @@
 from copy import deepcopy
 from datetime import date
-from hak.strings.dates.detect_format import f as detect_format
+from hak.pxyf import f as pxyf
 from hak.string.date.to_date import f as str_to_date
-from hak.pxyz import f as pxyz
+from hak.strings.dates.detect_format import f as detect_format
 
 # convert_date_strs_to_date
 def f(x):
@@ -14,16 +14,16 @@ def f(x):
     y.append(w)
   return y
 
-def t():
-  x = [
+t = lambda: pxyf(
+  [
     {'date': '2021-11-04', 'other': 'aaa'},
     {'date': '2021-11-19', 'other': 'bbb'},
     {'date': '2022-01-31', 'other': 'ccc'},
-  ]
-  y = [
+  ],
+  [
     {'date': date(2021, 11,  4), 'other': 'aaa'},
     {'date': date(2021, 11, 19), 'other': 'bbb'},
     {'date': date(2022,  1, 31), 'other': 'ccc'},
-  ]
-  z = f(x)
-  return pxyz(x, y, z)
+  ],
+  f
+)
