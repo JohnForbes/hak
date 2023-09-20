@@ -3,13 +3,13 @@ from datetime import date
 from hak.bool.is_a import f as is_bool
 from hak.date.is_a import f as is_date
 from hak.dict.rate.is_a import f as is_rate
-from hak.dict.rate.make import f as make_rate
+from hak.dict.rate.make import f as mk_rate
 from hak.number.complex.is_a import f as is_complex
 from hak.number.float.is_a import f as is_float
 from hak.number.int.is_a import f as is_int
-from hak.string.is_a import f as is_str
 from hak.pf import f as pf
-from hak.pxyz import f as pxyz
+from hak.pxyf import f as pxyf
+from hak.string.is_a import f as is_str
 
 def f(x):
   if is_str(x): return 'str'
@@ -22,61 +22,13 @@ def f(x):
   if x is None: return 'none'
   raise NotImplementedError(f'! This condition not yet considered; x: {x}')
 
-def t_0():
-  x = 'abc'
-  y = 'str'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_1():
-  x = 1
-  y = 'int'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_2():
-  x = 1.1
-  y = 'float'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_3():
-  x = True
-  y = 'bool'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_4():
-  x = 0+1j
-  y = 'complex'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_6():
-  x = date(2000, 1, 1)
-  y = 'date'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_rate():
-  x = make_rate(2000, 1, {'m': 1})
-  y = 'rate'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_none():
-  x = None
-  y = 'none'
-  z = f(x)
-  return pxyz(x, y, z)
-
 def t():
-  if not t_0(): return pf('t_0 failed')
-  if not t_1(): return pf('t_1 failed')
-  if not t_2(): return pf('t_2 failed')
-  if not t_3(): return pf('t_3 failed')
-  if not t_4(): return pf('t_4 failed')
-  if not t_6(): return pf('t_6 failed')
-  if not t_rate(): return pf('t_rate failed')
-  if not t_none(): return pf('t_none failed')
-  return True
+  if not pxyf('abc', 'str', f): return pf('t_0 failed')
+  if not pxyf(1, 'int', f): return pf('t_1 failed')
+  if not pxyf(1.1, 'float', f): return pf('t_2 failed')
+  if not pxyf(True, 'bool', f): return pf('t_3 failed')
+  if not pxyf(0+1j, 'complex', f): return pf('t_4 failed')
+  if not pxyf(date(2000, 1, 1), 'date', f): return pf('t_6 failed')
+  if not pxyf(mk_rate(2000, 1, {'m': 1}), 'rate', f): return pf('t_rate failed')
+  if not pxyf(None, 'none', f): return pf('t_none failed')
+  return 1
