@@ -1,4 +1,4 @@
-from hak.pxyz import f as pxyz
+from hak.pxyf import f as pxyf
 from hak.pf import f as pf
 
 s = [
@@ -15,66 +15,20 @@ def _f_side(x):
   return z
 
 def f(x):
-  left = _f_side({k: x[k] for k in x if x[k] > 0})
-  right = _f_side({k: -x[k] for k in x if x[k] < 0})
-  if right:
-    left = left or '1'
-    return left+'/'+right
-  return left
+  l = _f_side({k: x[k] for k in x if x[k] > 0})
+  r = _f_side({k: -x[k] for k in x if x[k] < 0})
+  if r: return (l or '1')+'/'+r
+  return l
 
-def t_m_1():
-  x = {'m': 1}
-  y = 'm'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_m_2():
-  x = {'m': 2}
-  y = 'm\u00B2'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_m_10():
-  x = {'m': 10}
-  y = 'm\u00B9\u2070'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_m_20():
-  x = {'m': 20}
-  y = 'm\u00B2\u2070'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_m_neg_1():
-  x = {'m': -1}
-  y = '1/m'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_dollar_per_square_metre():
-  x = {'$': 1, 'm': -2}
-  y = '$/m\u00B2'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_m_3():
-  x = {'m': 3}
-  y = 'm\u00B3'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_USD_per_AUD():
-  x = {'USD': 1, 'AUD': -1}
-  y = 'USD/AUD'
-  z = f(x)
-  return pxyz(x, y, z)
-
-def t_USD_2_per_AUD():
-  x = {'USD': 2, 'AUD': -1}
-  y = 'USD\u00B2/AUD'
-  z = f(x)
-  return pxyz(x, y, z)
+t_m_1 = lambda: pxyf({'m': 1}, 'm', f)
+t_m_2 = lambda: pxyf({'m': 2}, 'm\u00B2', f)
+t_m_10 = lambda: pxyf({'m': 10}, 'm\u00B9\u2070', f)
+t_m_20 = lambda: pxyf({'m': 20}, 'm\u00B2\u2070', f)
+t_m_neg_1 = lambda: pxyf({'m': -1}, '1/m', f)
+t_dollar_per_square_metre = lambda: pxyf({'$': 1, 'm': -2}, '$/m\u00B2', f)
+t_m_3 = lambda: pxyf({'m': 3}, 'm\u00B3', f)
+t_USD_per_AUD = lambda: pxyf({'USD': 1, 'AUD': -1}, 'USD/AUD', f)
+t_USD_2_per_AUD = lambda: pxyf({'USD': 2, 'AUD': -1}, 'USD\u00B2/AUD', f)
 
 def t():
   if not t_m_1(): return pf('!t_m_1')
@@ -86,4 +40,4 @@ def t():
   if not t_m_3(): return pf('!t_m_3')
   if not t_USD_per_AUD(): return pf('!t_USD_per_AUD')
   if not t_USD_2_per_AUD(): return pf('!t_USD_2_per_AUD')
-  return True
+  return 1
