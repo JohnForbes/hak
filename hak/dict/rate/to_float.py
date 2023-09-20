@@ -1,5 +1,5 @@
 from hak.pf import f as pf
-from hak.dict.rate.make import f as make_rate
+from hak.dict.rate.make import f as mk_rate
 from hak.pxyz import f as pxyz
 
 def f(x):
@@ -7,18 +7,14 @@ def f(x):
   return x['numerator']/x['denominator']
 
 def t_int_as_float():
-  x = make_rate(2, 1, {})
-  y = type(2.0)
-  z = type(f(x))
-  return pxyz(x, y, z)
+  x = mk_rate(2, 1, {})
+  return pxyz(x, type(2.0), type(f(x)))
 
 def t_float():
-  x = make_rate(1, 2, {})
-  y = type(0.5)
-  z = type(f(x))
-  return pxyz(x, y, z)
+  x = mk_rate(1, 2, {})
+  return pxyz(x, type(0.5), type(f(x)))
 
 def t():
   if not t_int_as_float(): return pf('!t_int_as_float')
   if not t_float(): return pf('!t_float')
-  return True
+  return 1
