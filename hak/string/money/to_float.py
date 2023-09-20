@@ -5,7 +5,7 @@ from hak.pxyf import f as pxyf
 f = lambda x: float(x.strip().replace('$', '')) if x else 0.0
 
 def t():
-  if not pxyf(         '',   0.0, f): return pf('t_0 failed')
-  if not pxyf(' $200.00 ', 200.0, f): return pf('t_1 failed')
-  if not pxyf('$ 300.00 ', 300.0, f): return pf('t_2 failed')
+  if not pxyf(         '',   0.0, f): return pf('!t_0')
+  if not pxyf(' $200.00 ', 200.0, f): return pf('!t_1')
+  if not pxyf('$ 300.00 ', 300.0, f): return pf('!t_2')
   return 1
