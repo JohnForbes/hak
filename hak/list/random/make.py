@@ -1,6 +1,6 @@
-from hak.string.random.make import f as make_random_str
 from hak.list.is_a import f as is_list
 from hak.pf import f as pf
+from hak.string.random.make import f as make_random_str
 
 # make_random_list
 f = lambda: list(make_random_str())
@@ -11,4 +11,4 @@ def t():
   for z_i in z:
     if not is_list(z_i):
       return pf(f'not is_list(z_i); z_i: {z_i}; type(z_i): {type(z_i)};')
-  return True
+  return 1
