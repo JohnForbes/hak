@@ -25,4 +25,4 @@ def t_value_create():
 def t():
   if not t_value_update(): return pf('!t_value_update')
   if not t_value_create(): return pf('!t_value_create')
-  return True
+  return 1
