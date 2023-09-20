@@ -23,7 +23,7 @@ t_fy_false = lambda: pxyf(
 
 def t_month():
   x = {'month': {'year': 2022, 'number': 1}, 'date': date(2022, 1, 10)}
-  y = True
+  y = 1
   z = f(x)
   return y == z or pf(f'expected {x["date"]} to be in {x["month"]}')
 
