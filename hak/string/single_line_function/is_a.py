@@ -12,4 +12,4 @@ f = lambda x: all([
   count_x_in_y("'", x) % 2 == 0,
 ])
 
-t = lambda: all([f('def t(): return False'), not f('def t():\nreturn False')])
+t = lambda: all([f('def t(): return 0'), not f('def t():\nreturn 0')])
