@@ -1,14 +1,14 @@
-from hak.pxyz import f as pxyz
+from hak.pxyf import f as pxyf
 
 f = lambda x: sorted(list(set([k for d in x for k in d.keys()])))
 
-def t():
-  x = [
-    {'a':  True, 'b':  True},
-    {'a':  True, 'b': False},
-    {'a': False, 'b': False},
-    {'a': False, 'b':  True, 'c': None}
-  ]
-  y = ['a', 'b', 'c']
-  z = f(x)
-  return pxyz(x, y, z)
+t = lambda: pxyf(
+  [
+    {'a': 1, 'b': 1},
+    {'a': 1, 'b': 0},
+    {'a': 0, 'b': 0},
+    {'a': 0, 'b': 1, 'c': None}
+  ],
+  ['a', 'b', 'c'],
+  f
+)
