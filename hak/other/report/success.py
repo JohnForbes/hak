@@ -1,5 +1,5 @@
-from hak.one.string.colour.bright.green import f as success
-from hak.one.duration import f as duration
+from hak.string.colour.bright.green import f as success
+from hak.duration import f as duration
 from time import time
 
 f = lambda name, time_started, max_filename_length: (

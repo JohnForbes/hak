@@ -1,12 +1,12 @@
 from copy import deepcopy
-from hak.one.directory.empty import f as empty_directory
-from hak.one.directory.make import f as mkdir
-from hak.one.directory.remove import f as rmdirie
-from hak.one.file.load import f as load
-from hak.one.file.save import f as save
+from hak.directory.empty import f as empty_directory
+from hak.directory.make import f as mkdir
+from hak.directory.remove import f as rmdirie
+from hak.file.load import f as load
+from hak.file.save import f as save
 from hak.pf import f as pf
-from hak.one.system.git.commit.run import f as add_to_git
-from hak.one.system.git.commit.run import t as t_add_to_git
+from hak.system.git.commit.run import f as add_to_git
+from hak.system.git.commit.run import t as t_add_to_git
 from hak.other.pip.dist_tar.make import f as make_new_dist_tar
 from hak.other.pip.dist_tar.make import t as t_make_new_dist_tar
 from hak.other.pip.dist_tar.remove import t as t_remove_dist_tar

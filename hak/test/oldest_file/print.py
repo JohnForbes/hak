@@ -2,15 +2,15 @@ from os import remove
 from os.path import exists
 from os.path import getmtime
 
-from hak.one.dict.durations.to_tuple_list_sorted_by_duration import f as sort
-from hak.one.file.pickle.load_if_exists import f as load_pickle
-from hak.one.file.pickle.save import f as save_pickle
-from hak.one.file.remove import f as remove
-from hak.one.file.save import f as save
-from hak.one.file.save import f as save_file
-from hak.many.strings.filepaths.py.get import f as list_py_files
+from hak.dict.durations.to_tuple_list_sorted_by_duration import f as sort
+from hak.file.pickle.load_if_exists import f as load_pickle
+from hak.file.pickle.save import f as save_pickle
+from hak.file.remove import f as remove
+from hak.file.save import f as save
+from hak.file.save import f as save_file
+from hak.strings.filepaths.py.get import f as list_py_files
 from hak.pf import f as pf
-from hak.one.terminal import Terminal
+from hak.terminal import Terminal
 from hak.other.ternary import f as tern
 
 _list_testables = lambda root='.': [
@@ -102,13 +102,13 @@ def make_Pi_t(python_filepaths, test_all, prev, last_mods): return (
 
 # print_oldest_file
 
-# from hak.many.strings.filepaths.py.testables.get import f as list_testables
+# from hak.strings.filepaths.py.testables.get import f as list_testables
 # from os.path import getmtime
-# from hak.one.file.pickle.load_if_exists import f as load_pickle
-# from hak.one.file.remove import f as remove
-# from hak.one.file.pickle.save import f as save
-# from hak.many.strings.filepaths.py.testables.get import f as make_Pi_t
-# from hak.one.dict.durations.to_tuple_list_sorted_by_duration import f as sort
+# from hak.file.pickle.load_if_exists import f as load_pickle
+# from hak.file.remove import f as remove
+# from hak.file.pickle.save import f as save
+# from hak.strings.filepaths.py.testables.get import f as make_Pi_t
+# from hak.dict.durations.to_tuple_list_sorted_by_duration import f as sort
 
 # def f(_Pi=None):
 #   _Pi = list_testables()

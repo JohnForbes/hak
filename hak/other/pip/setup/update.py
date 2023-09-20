@@ -1,8 +1,8 @@
-from hak.one.file.save import f as save
-from hak.one.file.remove import f as remove
-from hak.one.file.load import f as read_file
-from hak.one.file.save_lines import f as apply_change_to_file
-from hak.many.strings.make_patch_version_change_to_py import f as patch_setup_py
+from hak.file.save import f as save
+from hak.file.remove import f as remove
+from hak.file.load import f as read_file
+from hak.file.save_lines import f as apply_change_to_file
+from hak.strings.make_patch_version_change_to_py import f as patch_setup_py
 
 f = lambda version, filename: apply_change_to_file(
   filename,

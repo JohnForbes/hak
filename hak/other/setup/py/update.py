@@ -1,8 +1,8 @@
-from hak.one.file.load import f as load
-from hak.one.file.save import f as save
-from hak.many.strings.patch_setup_py import f as increment_patch_in_setup_py
-from hak.one.directory.make import f as mkdirine
-from hak.one.directory.remove import f as rmdirie
+from hak.file.load import f as load
+from hak.file.save import f as save
+from hak.strings.patch_setup_py import f as increment_patch_in_setup_py
+from hak.directory.make import f as mkdirine
+from hak.directory.remove import f as rmdirie
 from hak.pf import f as pf
 from copy import deepcopy
 

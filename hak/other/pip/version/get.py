@@ -1,6 +1,6 @@
 from requests import get
-from hak.one.file.pickle.load_if_exists import f as load
-from hak.one.dict.make_from_key_value_lists import f as make_from_key_val_lists
+from hak.file.pickle.load_if_exists import f as load
+from hak.dict.make_from_key_value_lists import f as make_from_key_val_lists
 from hak.pxyz import f as pxyz
 
 def f(name, response=None):

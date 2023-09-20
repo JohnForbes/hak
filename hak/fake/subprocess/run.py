@@ -1,6 +1,6 @@
 # ignore_overlength_lines
 from subprocess import CompletedProcess
-from hak.one.file.load import f as load
+from hak.file.load import f as load
 
 _username = load('username.secret').split('\n')[0]
 _password = load('password.secret').split('\n')[0]

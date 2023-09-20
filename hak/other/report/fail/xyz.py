@@ -1,7 +1,7 @@
-from hak.one.string.colour.bright.red import f as danger
-from hak.one.duration import f as duration
-from hak.one.string.colour.primary import f as pri
-from hak.one.string.colour.secondary import f as sec
+from hak.string.colour.bright.red import f as danger
+from hak.duration import f as duration
+from hak.string.colour.primary import f as pri
+from hak.string.colour.secondary import f as sec
 from hak.other.report.summarise_file import f as summarise_file
 from time import time
 

@@ -1,6 +1,6 @@
 from setuptools import setup
 from pathlib import Path
-from hak.one.directory.filepaths.packages.get import f as get_packages
+from hak.directory.filepaths.packages.get import f as get_packages
 long_description = Path("./README.md").read_text()
 
 setup(

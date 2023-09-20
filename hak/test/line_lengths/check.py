@@ -1,11 +1,11 @@
-from hak.one.string.colour.bright.green import f as success
-from hak.many.strings.filepaths.py.testables.get import f as list_testables
-from hak.one.file.load import f as load
+from hak.string.colour.bright.green import f as success
+from hak.strings.filepaths.py.testables.get import f as list_testables
+from hak.file.load import f as load
 from hak.pf import f as pf
-from hak.one.string.colour.bright.red import f as danger
-from hak.one.file.save import f as save
-from hak.one.terminal import Terminal
-from hak.one.file.remove import f as remove
+from hak.string.colour.bright.red import f as danger
+from hak.file.save import f as save
+from hak.terminal import Terminal
+from hak.file.remove import f as remove
 
 # check_line_lengths
 

@@ -1,10 +1,10 @@
 from copy import deepcopy
 from subprocess import run as sprun
 
-from hak.one.directory.make import f as mkdir
-from hak.one.directory.remove import f as rmdir
-from hak.one.file.save import f as save
-from hak.one.file.zip.extract import f as extract
+from hak.directory.make import f as mkdir
+from hak.directory.remove import f as rmdir
+from hak.file.save import f as save
+from hak.file.zip.extract import f as extract
 from hak.pf import f as pf
 
 def f(x):
@@ -18,7 +18,7 @@ def up():
   mkdir(_root+'/hak')
   save(_root+'/hak/__init__.py', '')
 
-  _base = './hak/one/system/git/commit'
+  _base = './hak/system/git/commit'
   extract(f'{_base}/added_file_pre_commit.zip', '..')
 
   _setup_filepath = _root + '/setup.py'

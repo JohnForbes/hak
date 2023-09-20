@@ -1,9 +1,9 @@
 from os.path import exists
 
-from hak.one.directory.make import f as mkdir
-from hak.one.directory.empty import f as empty_directory
-from hak.one.directory.remove import f as rmdirie
-from hak.one.file.save import f as save
+from hak.directory.make import f as mkdir
+from hak.directory.empty import f as empty_directory
+from hak.directory.remove import f as rmdirie
+from hak.file.save import f as save
 from hak.pf import f as pf
 
 from copy import deepcopy

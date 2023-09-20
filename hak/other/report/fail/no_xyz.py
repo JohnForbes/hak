@@ -1,5 +1,5 @@
-from hak.one.string.colour.bright.red import f as danger
-from hak.one.duration import f as duration
+from hak.string.colour.bright.red import f as danger
+from hak.duration import f as duration
 from time import time
 
 f = lambda name, mode, time_started, w: (

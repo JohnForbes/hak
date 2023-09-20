@@ -1,10 +1,10 @@
 from datetime import datetime as dt
-from hak.one.string.colour.bright.red import f as danger
-from hak.one.string.colour.dark.yellow import f as warn
-from hak.one.file.pickle.save import f as save
-from hak.one.directory.make import f as mkdirine
-from hak.one.directory.remove import f as rmdirie
-from hak.one.file.pickle.load_if_exists import f as load_pickle
+from hak.string.colour.bright.red import f as danger
+from hak.string.colour.dark.yellow import f as warn
+from hak.file.pickle.save import f as save
+from hak.directory.make import f as mkdirine
+from hak.directory.remove import f as rmdirie
+from hak.file.pickle.load_if_exists import f as load_pickle
 
 _dir = './_handle_fail'
 _failed_pickle_path = f'{_dir}/failed.pickle'
