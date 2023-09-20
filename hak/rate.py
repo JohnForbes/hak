@@ -159,8 +159,7 @@ def t_rate_sum():
 def t_147_48():
   x = {'numerator': 147.48, 'denominator': 1, 'unit': {'AUD': 1}}
   y = Rate(14748, 100, {'AUD': 1})
-  z = f(**x)
-  return pxyz(x, y, z)
+  return pxyz(x, y, f(**x))
 
 def t():
   if not t_rate_simplifies_at_init(): return pf('!t_rate_simplifies_at_init')
