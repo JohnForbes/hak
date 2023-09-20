@@ -33,4 +33,4 @@ def t():
     f'y_returned: {y_returned}',
     f'z_returned: {z_returned}'
   ])
-  return True
+  return 1
