@@ -23,12 +23,12 @@ def f(x):
   raise NotImplementedError(f'! This condition not yet considered; x: {x}')
 
 def t():
-  if not pxyf('abc', 'str', f): return pf('t_0 failed')
-  if not pxyf(1, 'int', f): return pf('t_1 failed')
-  if not pxyf(1.1, 'float', f): return pf('t_2 failed')
-  if not pxyf(True, 'bool', f): return pf('t_3 failed')
-  if not pxyf(0+1j, 'complex', f): return pf('t_4 failed')
-  if not pxyf(date(2000, 1, 1), 'date', f): return pf('t_6 failed')
-  if not pxyf(mk_rate(2000, 1, {'m': 1}), 'rate', f): return pf('t_rate failed')
-  if not pxyf(None, 'none', f): return pf('t_none failed')
+  if not pxyf('abc', 'str', f): return pf('!t_0')
+  if not pxyf(1, 'int', f): return pf('!t_1')
+  if not pxyf(1.1, 'float', f): return pf('!t_2')
+  if not pxyf(True, 'bool', f): return pf('!t_3')
+  if not pxyf(0+1j, 'complex', f): return pf('!t_4')
+  if not pxyf(date(2000, 1, 1), 'date', f): return pf('!t_6')
+  if not pxyf(mk_rate(2000, 1, {'m': 1}), 'rate', f): return pf('!t_rate')
+  if not pxyf(None, 'none', f): return pf('!t_none')
   return 1
