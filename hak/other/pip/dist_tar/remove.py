@@ -10,8 +10,7 @@ from copy import deepcopy
 
 def f(x):
   x = deepcopy(x)
-  root = x['root'] if 'root' in x else '.'
-  return empty_directory(root)
+  return empty_directory(x['root'] if 'root' in x else '.')
 
 def up():
   temp_root = './_dist_tars_remove'
@@ -29,4 +28,4 @@ def t():
   if exists(x['filename']): return pf(f'exists({x["filename"]})')
   dn(x)
   if exists(x["root"]): return pf(f'exists({x["root"]})')
-  return True
+  return 1
