@@ -8,6 +8,6 @@ f = lambda x: get_α_d(x) <= x['date'] <= get_ω_d(x)
 
 def t():
   x = {'month': {'year': 2022, 'number': 1}, 'date': date(2022, 1, 10)}
-  y = True
+  y = 1
   z = f(x)
   return y == z or pf(f'expected {x["date"]} to be in {x["month"]}')
