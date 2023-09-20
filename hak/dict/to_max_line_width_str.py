@@ -88,11 +88,11 @@ t_too_long_e = lambda: pxyf(
 )
 
 def t():
-  if not t_short(): return pf('t_short() failed')
-  if not t_w(): return pf('t_w() failed')
-  if not t_too_long_a(): return pf('t_too_long_a() failed')
-  if not t_too_long_b(): return pf('t_too_long_b() failed')
-  if not t_too_long_c(): return pf('t_too_long_c() failed')
-  if not t_too_long_d(): return pf('t_too_long_d() failed')
-  if not t_too_long_e(): return pf('t_too_long_e() failed')
+  if not t_short(): return pf('!t_short')
+  if not t_w(): return pf('!t_w')
+  if not t_too_long_a(): return pf('!t_too_long_a')
+  if not t_too_long_b(): return pf('!t_too_long_b')
+  if not t_too_long_c(): return pf('!t_too_long_c')
+  if not t_too_long_d(): return pf('!t_too_long_d')
+  if not t_too_long_e(): return pf('!t_too_long_e')
   return 1
