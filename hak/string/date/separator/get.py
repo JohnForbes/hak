@@ -14,9 +14,9 @@ def f(x):
       return k
 
 def t():
-  if not pxyf( '2022-11-11', '-', f): return pf('t_0 failed')
-  if not pxyf( '28/03/2022', '/', f): return pf('t_1 failed')
-  if not pxyf( '2022 01 31', ' ', f): return pf('t_2 failed')
-  if not pxyf('19 Nov 2021', ' ', f): return pf('t_3 failed')
-  if not pxyf( '2022-05-06', '-', f): return pf('t_4 failed')
+  if not pxyf( '2022-11-11', '-', f): return pf('!t_0')
+  if not pxyf( '28/03/2022', '/', f): return pf('!t_1')
+  if not pxyf( '2022 01 31', ' ', f): return pf('!t_2')
+  if not pxyf('19 Nov 2021', ' ', f): return pf('!t_3')
+  if not pxyf( '2022-05-06', '-', f): return pf('!t_4')
   return 1
