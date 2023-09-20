@@ -1,8 +1,8 @@
 from hak.data.kana import hiragana
 from hak.data.kana import katakana
 from hak.data.kana import romaji
-from hak.pf import f as pf
 from hak.other.youtube.identifier.make import f as gen_id
+from hak.pf import f as pf
 
 charset = hiragana+katakana+romaji
 
@@ -18,4 +18,4 @@ def t():
     if char not in charset:
       return pf(f"char not in x['chars']: {char} not in {x['chars']}")
 
-  return True
+  return 1
