@@ -25,4 +25,4 @@ def t():
     if char not in _charset:
       return pf(f"char: {char} not in _charset: {_charset}")
 
-  return True
+  return 1
