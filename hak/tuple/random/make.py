@@ -12,4 +12,4 @@ def t():
     if not is_tuple(z_i):
       return pf(f'not is_tuple(z_i); z_i: {z_i}; type(z_i): {type(z_i)};')
 
-  return True
+  return 1
