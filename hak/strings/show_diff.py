@@ -1,8 +1,8 @@
+from hak.puvyz import f as puvyz
 from hak.string.colour.bright.cyan import f as cy
 from hak.string.colour.bright.magenta import f as mg
 from hak.string.colour.bright.yellow import f as yl
 from hak.strings.find_first_diff import f as find_first_diff
-from hak.puvyz import f as puvyz
 
 # show_diff
 
@@ -19,10 +19,13 @@ def f(u, v, w=64):
 def t():
   u = 'abcdef'
   v = 'abxdef'
-  y = [
-    '2',
-    '\x1b[1;36mab\x1b[0;0m\x1b[1;33mc\x1b[0;0m\x1b[1;36mdef\x1b[0;0m',
-    '\x1b[1;35mab\x1b[0;0m\x1b[1;33mx\x1b[0;0m\x1b[1;35mdef\x1b[0;0m'
-  ]
-  z = f(u, v)
-  return puvyz(u, v, y, z)
+  return puvyz(
+    u,
+    v,
+    [
+      '2',
+      '\x1b[1;36mab\x1b[0;0m\x1b[1;33mc\x1b[0;0m\x1b[1;36mdef\x1b[0;0m',
+      '\x1b[1;35mab\x1b[0;0m\x1b[1;33mx\x1b[0;0m\x1b[1;35mdef\x1b[0;0m'
+    ],
+    f(u, v)
+  )
