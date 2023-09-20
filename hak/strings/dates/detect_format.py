@@ -1,10 +1,10 @@
 from hak.numbers.ints.mode.get import f as get_mode
+from hak.pf import f as pf
+from hak.pxyf import f as pxyf
 from hak.string.date.separator.get import f as get_separator
 from hak.string.day.is_a import f as is_day
 from hak.string.month.is_a import f as is_month
-from hak.pf import f as pf
 from hak.string.year.is_a import f as is_year
-from hak.pxyz import f as pxyz
 
 # src.list_strings.dates.detect_format
 def f(x):
@@ -82,14 +82,14 @@ def f(x):
     'day_index': day_index
   }
 
-def t_0():
-  x = ['2021-11-04', '2021/11/19', '2022 01 31']
-  y = {'year_index': 0, 'month_index': 1, 'day_index': 2}
-  z = f(x)
-  return pxyz(x, y, z)
+t_0 = lambda: pxyf(
+  ['2021-11-04', '2021/11/19', '2022 01 31'],
+  {'year_index': 0, 'month_index': 1, 'day_index': 2},
+  f
+)
 
-def t_1():
-  x = [
+t_1 = lambda: pxyf(
+  [
     '28/03/2022',
     '29/03/2022',
     '31/03/2022',
@@ -100,26 +100,26 @@ def t_1():
     '5/04/2022',
     '5/04/2022',
     '5/04/2022',
-  ]
-  y = {'year_index': 2, 'month_index': 1, 'day_index': 0}
-  z = f(x)
-  return pxyz(x, y, z)
+  ],
+  {'year_index': 2, 'month_index': 1, 'day_index': 0},
+  f
+)
 
-def t_2():
-  x = [
+t_2 = lambda: pxyf(
+  [
     '2022-05-06',
     '2022-05-06',
     '2022-05-06',
     '2022-05-06',
     '2022-05-06',
     '2022-05-06'
-  ]
-  y = {'year_index': 0, 'month_index': 1, 'day_index': 2}
-  z = f(x)
-  return pxyz(x, y, z)
+  ],
+  {'year_index': 0, 'month_index': 1, 'day_index': 2},
+  f
+)
 
 def t():
-  if not t_0(): return pf('t_0 failed')
-  if not t_1(): return pf('t_1 failed')
-  if not t_2(): return pf('t_2 failed')
-  return True
+  if not t_0(): return pf('!t_0')
+  if not t_1(): return pf('!t_1')
+  if not t_2(): return pf('!t_2')
+  return 1
