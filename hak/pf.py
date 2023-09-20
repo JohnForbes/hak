@@ -26,7 +26,7 @@ def t_silent():
   ])
 
 def t():
-  if not t_0(): print("t_0() Failed"); return 0
-  if not t_1(): print("t_1() Failed"); return 0
-  if not t_silent(): print("t_silent() Failed"); return 0
+  if not t_0(): print("!t_0"); return 0
+  if not t_1(): print("!t_1"); return 0
+  if not t_silent(): print("!t_silent()"); return 0
   return 1
