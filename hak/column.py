@@ -178,7 +178,7 @@ def t_column_g(T):
 
 def t():
   from importlib import import_module
-  T = import_module('hak.table.table').Table
+  T = import_module('hak.table').Table
   if not t_column_a(T): return pf('!t_a')
   if not t_column_b(T): return pf('!t_b')
   if not t_column_c(T): return pf('!t_c')
