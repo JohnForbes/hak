@@ -6,11 +6,17 @@ from hak.pxyf import f as pxyf
 
 f = lambda x: mkfy({'final_year': x.year + (x.month > 6)})
 
-def t_july():
-  return pxyf(date(2022, 7, 1), {'start_year': 2022, 'final_year': 2023}, f)
+t_july = lambda: pxyf(
+  date(2022, 7, 1),
+  {'start_year': 2022, 'final_year': 2023},
+  f
+)
 
-def t_june():
-  return pxyf(date(2022, 6, 30), {'start_year': 2021, 'final_year': 2022}, f)
+t_june = lambda: pxyf(
+  date(2022, 6, 30),
+  {'start_year': 2021, 'final_year': 2022},
+  f
+)
 
 t_barrage = lambda: all([
   f(date(1999,  1,  1)) == {'start_year': 1998, 'final_year': 1999},
@@ -28,4 +34,4 @@ def t():
   if not t_july(): return pf('!t_july')
   if not t_june(): return pf('!t_june')
   if not t_barrage(): return pf('!t_barrage')
-  return True
+  return 1
