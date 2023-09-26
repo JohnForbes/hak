@@ -110,7 +110,14 @@ class Rate:
 
   def __repr__(self): return str(self.to_dict())
 
+  def __lt__(u, v): return (u - v).n < 0
+
 f = lambda numerator, denominator, unit: Rate(numerator, denominator, unit)
+
+t_u_lt_v = lambda: all([
+      Rate(1, 4, {'AUD': 1}) < Rate(1, 3, {'AUD': 1}),
+  not Rate(3, 4, {'AUD': 1}) < Rate(2, 3, {'AUD': 1})
+])
 
 def t_rate_simplifies_at_init():
   x = {'numerator': 120, 'denominator': 240, 'unit': {'$': 1, 'm': -1}}
@@ -170,4 +177,5 @@ def t():
   if not t_rate_by_integer(): return pf('!t_rate_by_integer')
   if not t_rate_sum(): return pf('!t_rate_sum')
   if not t_147_48(): return pf('!t_147_48')
+  if not t_u_lt_v(): return pf('!t_u_lt_v')
   return 1
