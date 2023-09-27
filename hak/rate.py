@@ -108,7 +108,7 @@ class Rate:
   def to_dict(self):
     return {'numerator': self.n, 'denominator': self.d, 'unit': self.unit}
 
-  def __repr__(self): return str(self.to_dict())
+  def __repr__(self): return f'Rate(n={self.n}, d={self.d}, unit={self.unit})'
 
   def __lt__(u, v): return (u - v).n < 0
 
