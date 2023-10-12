@@ -2,7 +2,7 @@ from hak.rate import Rate as R
 from hak.pxyz import f as pxyz
 
 class AUD(R):
-  def __init__(numerator=0, denominator=1):
+  def __init__(self, numerator=0, denominator=1):
     super().__init__(numerator, denominator, unit={'AUD': 1})
 
   __str__ = lambda s: (
@@ -12,8 +12,14 @@ class AUD(R):
   )
 
 # AUD
-f = lambda numerator=0, denominator=1: R(numerator, denominator, {'AUD': 1})
+f = lambda x: AUD(**x)
 
 def t():
   x = {'numerator': 1, 'denominator': 2}
-  return pxyz(x, R(1, 2, {'AUD': 1}), f(**x))
+  y = {
+    'numerator': 1,
+    'denominator': 2,
+    'unit': {'AUD': 1}
+  }
+  z = f(x).to_dict()
+  return pxyz(x, y, z)
