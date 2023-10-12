@@ -1,13 +1,18 @@
-from hak.rate import Rate as R
+from hak.rate import Rate
 from hak.pxyz import f as pxyz
 
-class AUD(R):
+class AUD(Rate):
   def __init__(self, numerator=0, denominator=1):
     super().__init__(numerator, denominator, unit={'AUD': 1})
   
   def __add__(u, v):
     if isinstance(v, AUD):
       return AUD(u.n * v.d + v.n * u.d, u.d * v.d, u.unit)
+    elif isinstance(v, Rate):
+      if v.unit == {'AUD': 1}:
+        return u + AUD(v.n, v.d)
+      else:
+        raise NotImplementedError('!15: branch not yet written')
     elif isinstance(v, (int, float)):
       return u + AUD(v, 1, u.unit)
     else:
