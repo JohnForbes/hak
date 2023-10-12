@@ -7,14 +7,14 @@ class AUD(Rate):
   
   def __add__(u, v):
     if isinstance(v, AUD):
-      return AUD(u.n * v.d + v.n * u.d, u.d * v.d, u.unit)
+      return AUD(u.n * v.d + v.n * u.d, u.d * v.d)
     elif isinstance(v, Rate):
       if v.unit == {'AUD': 1}:
         return u + AUD(v.n, v.d)
       else:
         raise NotImplementedError('!15: branch not yet written')
     elif isinstance(v, (int, float)):
-      return u + AUD(v, 1, u.unit)
+      return u + AUD(v, 1)
     else:
       raise TypeError('Unsupported operand type for +')
 
