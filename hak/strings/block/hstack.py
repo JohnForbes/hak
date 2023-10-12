@@ -9,9 +9,9 @@ from hak.block.is_a import f as is_block
 # hstack
 def f(blocks):
   if not blocks: return []
-  return (f_blocks if is_block(blocks[0]) else f_lists_strings)(blocks)
+  return (_f_blocks if is_block(blocks[0]) else _f_lists_strings)(blocks)
 
-def f_lists_strings(blocks):
+def _f_lists_strings(blocks):
   if not blocks: return []
   blocks = normalise_heights(blocks)
   return [
@@ -19,7 +19,7 @@ def f_lists_strings(blocks):
     for i_line in range(len(blocks[0]))
   ]
 
-def f_blocks(blocks: List[Block]) -> Block:
+def _f_blocks(blocks: List[Block]) -> Block:
   if not blocks: return Block([])
   blocks = normalise_heights(blocks)
   return Block([
