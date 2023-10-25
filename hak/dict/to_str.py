@@ -1,5 +1,6 @@
-from hak.rate import Rate
+from hak.pf import f as pf
 from hak.pxyz import f as pxyz
+from hak.rate import Rate
 from hak.strings.compare import f as compare_strings
 
 _f = lambda x, i=0: '{\n'+',\n'.join([
@@ -12,9 +13,9 @@ _f = lambda x, i=0: '{\n'+',\n'.join([
   in sorted(x.keys())
 ])+'\n'+' '*i+'}'
 
-f = lambda x: _f(x, 0)
+f = lambda x: _f(x, 0).replace('{\n\n}', '{}')
 
-def t():
+def t_a():
   x = {
     'assets': {
       'cash': {
@@ -64,3 +65,21 @@ def t():
     print([y[q-w:q+w]])
     print([z[q-w:q+w]])
   return pxyz(x, y, z)
+
+def t_b():
+  x = {}
+  y = '{}'
+  z = f(x)
+  if y != z:
+    comparison = compare_strings(y, z)
+    print(comparison)
+    q = comparison['first_difference']
+    w = 20
+    print([y[q-w:q+w]])
+    print([z[q-w:q+w]])
+  return pxyz(x, y, z)
+
+def t():
+  if not t_a(): return pf('!t_a')
+  if not t_b(): return pf('!t_b')
+  return 1
