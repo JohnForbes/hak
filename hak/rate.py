@@ -8,8 +8,47 @@ get_decimal_place_count = lambda x: len(str(x).split('.')[1].rstrip('0'))
 
 shift_to_int = lambda x, decimal_place_count: int(x * 10**decimal_place_count)
 
+_g = lambda x: x is not None
+
+def _numerator_and_n_to_numerator(numerator, n):
+  if     _g(numerator) and not _g(n): return numerator
+  
+  if not _g(numerator) and     _g(n): return n
+  
+  if     _g(numerator) and     _g(n):
+    raise ValueError('specify numerator or n but not both')
+  
+  if not _g(numerator) and not _g(n):
+    raise ValueError('\n'.join([
+      'numerator xor n are required',
+      f'observed numerator: {numerator}',
+      f'observed n:         {n}',
+      f'observed numerator is None: {numerator is None}',
+      f'observed n is None:         {n is None}',
+    ]))
+  
+  raise NotImplementedError('!This line should be unreachable.')
+
+def _denominator_and_d_to_denominator(denominator, d):
+  if not _g(denominator) and not _g(d): return 1
+  if not _g(denominator) and     _g(d): return d
+  if     _g(denominator) and not _g(d): return denominator
+  if     _g(denominator) and     _g(d):
+    raise ValueError('specify denominator or d but not both')
+  raise NotImplementedError('!This line should be unreachable.')
+
 class Rate:
-  def __init__(self, numerator, denominator=None, unit=None):
+  def __init__(
+    self,
+    numerator=None,
+    denominator=None,
+    unit=None,
+    n=None,
+    d=None,
+  ):
+    numerator = _numerator_and_n_to_numerator(numerator, n)
+    denominator = _denominator_and_d_to_denominator(denominator, d)
+
     if not denominator: denominator = 1
     if not unit: unit = {}
     
@@ -112,7 +151,7 @@ class Rate:
 
   def __lt__(u, v): return (u - v).n < 0
 
-f = lambda numerator, denominator, unit: Rate(numerator, denominator, unit)
+f = lambda x: Rate(**x)
 
 t_u_lt_v = lambda: all([
       Rate(1, 4, {'AUD': 1}) < Rate(1, 3, {'AUD': 1}),
@@ -166,7 +205,12 @@ def t_rate_sum():
 def t_147_48():
   x = {'numerator': 147.48, 'denominator': 1, 'unit': {'AUD': 1}}
   y = Rate(14748, 100, {'AUD': 1})
-  return pxyz(x, y, f(**x))
+  return pxyz(x, y, f(x))
+
+def t_210():
+  x = {'n': 210, 'd': 3, 'unit': {'AUD': 1}}
+  y = Rate(210, 3, {'AUD': 1})
+  return pxyz(x, y, f(x))
 
 def t():
   if not t_rate_simplifies_at_init(): return pf('!t_rate_simplifies_at_init')
@@ -178,4 +222,5 @@ def t():
   if not t_rate_sum(): return pf('!t_rate_sum')
   if not t_147_48(): return pf('!t_147_48')
   if not t_u_lt_v(): return pf('!t_u_lt_v')
+  if not t_210(): return pf('!t_210')
   return 1
