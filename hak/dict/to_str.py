@@ -9,7 +9,7 @@ _f = lambda x, i=0: '{\n'+',\n'.join([
     ' '*(i+2)+f"'{k}': {repr(x[k])}"
   )
   for k
-  in x
+  in sorted(x.keys())
 ])+'\n'+' '*i+'}'
 
 f = lambda x: _f(x, 0)
@@ -23,8 +23,9 @@ def t():
       },
       'non_cash': {
         'accounts_receivable': Rate(n=0, d=1, unit={'AUD': 1}),
-        'property_and_equipment': Rate(n=0, d=1, unit={'AUD': 1}),
-        'inventory': Rate(n=0, d=1, unit={'AUD': 1})}
+        'inventory': Rate(n=0, d=1, unit={'AUD': 1}),
+        'property_and_equipment': Rate(n=0, d=1, unit={'AUD': 1})
+      }
     },
     'equities': {
       'contributed_capital': Rate(n=0, d=1, unit={'AUD': 1}),
@@ -41,8 +42,8 @@ def t():
     "    },",
     "    'non_cash': {",
     "      'accounts_receivable': Rate(n=0, d=1, unit={'AUD': 1}),",
-    "      'property_and_equipment': Rate(n=0, d=1, unit={'AUD': 1}),",
-    "      'inventory': Rate(n=0, d=1, unit={'AUD': 1})",
+    "      'inventory': Rate(n=0, d=1, unit={'AUD': 1}),",
+    "      'property_and_equipment': Rate(n=0, d=1, unit={'AUD': 1})",
     "    }",
     "  },",
     "  'equities': {",
