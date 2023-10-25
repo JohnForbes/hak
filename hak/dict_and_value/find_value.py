@@ -1,30 +1,21 @@
 from hak.pxyz import f as pxyz
 from hak.pf import f as pf
+from hak.rate import Rate
 
 # remove leaves from tree where value
-# f = lambda tree, value: {
-#   k: (
-#     f(tree[k], value)
-#     if isinstance(tree[k], dict) else
-#     v
-#   )
-#   for (k, v) in tree.items()
-#   if v != value
-# }
-
 def _f(tree, value, path_so_far):
   for k in tree:
     if tree[k] == value:
       return path_so_far+[k]
     else:
       if isinstance(tree[k], dict):
-        return _f(tree[k], value, path_so_far+[k])
+        if tree[k].keys():
+          return _f(tree[k], value, path_so_far+[k])
   return None
 
-def f(tree, value):
-  return _f(tree, value, [])
+f = lambda tree, value: _f(tree, value, [])
 
-def t_0():
+def t_a():
   x = {
     'tree': {
       'a': 0,
@@ -46,7 +37,7 @@ def t_0():
   z = f(**x)
   return pxyz(x, y, z)
 
-def t_1():
+def t_b():
   x = {
     'tree': {
       'a': 0,
@@ -68,7 +59,45 @@ def t_1():
   z = f(**x)
   return pxyz(x, y, z)
 
+def t_c():
+  x = {
+    'tree': {},
+    'value': 0.5
+  }
+  y = None
+  z = f(**x)
+  return pxyz(x, y, z)
+
+def t_d():
+  x = {
+    'tree': {
+      'assets': {
+        'cash': {
+          'secondary': Rate(n=2, d=1, unit={'AUD': 1}),
+          'primary': Rate(n=1, d=1, unit={'AUD': 1})
+        },
+        'non_cash': {
+          'inventory': Rate(n=3, d=1, unit={'AUD': 1}),
+          'property_and_equipment': Rate(n=4, d=1, unit={'AUD': 1}),
+          'accounts_receivable': Rate(n=5, d=1, unit={'AUD': 1})
+        }
+      },
+      'equities': {
+        'contributed_capital': Rate(n=6, d=1, unit={'AUD': 1}),
+        'retained_earnings': Rate(n=7, d=1, unit={'AUD': 1})
+      },
+        'liabilities': {'notes_payable': Rate(n=8, d=1, unit={'AUD': 1})
+      }
+    },
+    'value': {}
+  }
+  y = None
+  z = f(tree=x['tree'], value=x['value'])
+  return pxyz(x, y, z)  
+
 def t():
-  if not t_0(): return pf('!t_0')
-  if not t_1(): return pf('!t_1')
+  if not t_a(): return pf('!t_a')
+  if not t_b(): return pf('!t_b')
+  if not t_c(): return pf('!t_c')
+  if not t_d(): return pf('!t_d')
   return 1
