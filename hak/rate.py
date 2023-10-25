@@ -138,7 +138,11 @@ class Rate:
 
   def __eq__(u, v):
     _u = Rate(u.n, u.d, u.unit)
-    _v = Rate(v.n, v.d, v.unit)
+    _v = (
+      Rate(0, 1, u.unit)
+      if (isinstance(v, float) or isinstance(v, int)) and v == 0 else
+      Rate(v.n, v.d, v.unit)
+    )
     return all([_u.n == _v.n, _u.d == _v.d, _u.unit == _v.unit])
   
   __abs__ = lambda s: Rate(abs(s.numerator), abs(s.denominator), s.unit)
@@ -212,6 +216,11 @@ def t_210():
   y = Rate(210, 3, {'AUD': 1})
   return pxyz(x, y, f(x))
 
+def t_zero_rate_eq_0():
+  u = Rate(0)
+  v = 0
+  return u == v
+
 def t():
   if not t_rate_simplifies_at_init(): return pf('!t_rate_simplifies_at_init')
   if not t_rate_numerator_float(): return pf('!t_rate_numerator_float')
@@ -223,4 +232,5 @@ def t():
   if not t_147_48(): return pf('!t_147_48')
   if not t_u_lt_v(): return pf('!t_u_lt_v')
   if not t_210(): return pf('!t_210')
+  if not t_zero_rate_eq_0(): return pf('!t_zero_rate_eq_0')
   return 1
