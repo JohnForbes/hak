@@ -3,6 +3,7 @@ from hak.number.float.to_numerator_denominator import f as float_to_num_den
 from hak.number.is_a import f as is_number
 from hak.pf import f as pf
 from hak.pxyz import f as pxyz
+from hak.puvyz import f as puvyz
 
 get_decimal_place_count = lambda x: len(str(x).split('.')[1].rstrip('0'))
 
@@ -137,6 +138,12 @@ class Rate:
     )
 
   def __eq__(u, v):
+    if isinstance(v, dict):
+      if all(['n' in v.keys(), 'd' in v.keys(), 'unit' in v.keys()]):
+        v = Rate(v['n'], v['d'], v['unit'])
+      else:
+        return False
+
     _u = Rate(u.n, u.d, u.unit)
     _v = (
       Rate(0, 1, u.unit)
@@ -221,6 +228,20 @@ def t_zero_rate_eq_0():
   v = 0
   return u == v
 
+def t_rate_eq_dict_0():
+  u = Rate(n=1, d=1, unit={'AUD': 1})
+  v = {}
+  y = False
+  z = u == v
+  return puvyz(u, v, y, z)
+
+def t_rate_eq_dict_1():
+  u = Rate(n=1, d=1, unit={'AUD': 1})
+  v = {'n': 1, 'd': 1, 'unit': {'AUD': 1}}
+  y = True
+  z = u == v
+  return puvyz(u, v, y, z)
+
 def t():
   if not t_rate_simplifies_at_init(): return pf('!t_rate_simplifies_at_init')
   if not t_rate_numerator_float(): return pf('!t_rate_numerator_float')
@@ -233,4 +254,6 @@ def t():
   if not t_u_lt_v(): return pf('!t_u_lt_v')
   if not t_210(): return pf('!t_210')
   if not t_zero_rate_eq_0(): return pf('!t_zero_rate_eq_0')
+  if not t_rate_eq_dict_0(): return pf('!t_rate_eq_dict_0')
+  if not t_rate_eq_dict_1(): return pf('!t_rate_eq_dict_1')
   return 1
