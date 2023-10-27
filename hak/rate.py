@@ -120,10 +120,13 @@ class Rate:
 
   def __sub__(u, v):
     if v == 0 and u != 0: v = Rate(0, 1, u.unit)
-    if u == 0 and v != 0: u = Rate(0, 1, v.unit)
     if u.unit != v.unit:
       raise ValueError(f"u.unit: {u.unit} != v.unit: {v.unit}")
     return Rate(u.n * v.d - u.d * v.n, u.d * v.d, u.unit)
+
+  def __rsub__(u, v):
+    if v == 0 and u != 0: v = Rate(0, 1, u.unit)
+    return v - u
 
   def __mul__(u, v):
     if is_number(v): v = Rate(v, 1, {})
@@ -244,6 +247,18 @@ def t_rate_eq_dict_1():
   z = u == v
   return puvyz(u, v, y, z)
 
+def t_u_sub_v_v_is_zero():
+  u = Rate(1, 1, {'AUD': 1})
+  v = 0
+  return u - v == u
+
+def t_u_sub_v_u_is_zero():
+  u = 0
+  v = Rate(1, 1, {'AUD': 1})
+  y = Rate(-1, 1, {'AUD': 1})
+  z = u - v
+  return puvyz(u, v, y, z)
+
 def t():
   if not t_rate_simplifies_at_init(): return pf('!t_rate_simplifies_at_init')
   if not t_rate_numerator_float(): return pf('!t_rate_numerator_float')
@@ -258,4 +273,6 @@ def t():
   if not t_zero_rate_eq_0(): return pf('!t_zero_rate_eq_0')
   if not t_rate_eq_dict_0(): return pf('!t_rate_eq_dict_0')
   if not t_rate_eq_dict_1(): return pf('!t_rate_eq_dict_1')
+  if not t_u_sub_v_v_is_zero(): return pf('!t_u_sub_v_v_is_zero')
+  if not t_u_sub_v_u_is_zero(): return pf('!t_u_sub_v_u_is_zero')
   return 1
