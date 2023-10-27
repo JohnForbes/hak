@@ -119,6 +119,8 @@ class Rate:
     return f"{self._numerator}/{self._denominator}"
 
   def __sub__(u, v):
+    if v == 0 and u != 0: v = Rate(0, 1, u.unit)
+    if u == 0 and v != 0: u = Rate(0, 1, v.unit)
     if u.unit != v.unit:
       raise ValueError(f"u.unit: {u.unit} != v.unit: {v.unit}")
     return Rate(u.n * v.d - u.d * v.n, u.d * v.d, u.unit)
