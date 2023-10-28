@@ -13,7 +13,7 @@ _f = lambda x, i=0: '{\n'+',\n'.join([
   in sorted(x.keys())
 ])+'\n'+' '*i+'}'
 
-f = lambda x: _f(x, 0).replace('{\n\n}', '{}')
+f = lambda x, indent=0: ' '*indent + _f(x, indent).replace('{\n\n}', '{}')
 
 def t_a():
   x = {
@@ -79,7 +79,59 @@ def t_b():
     print([z[q-w:q+w]])
   return pxyz(x, y, z)
 
+def t_c():
+  x = {
+    'assets': {
+      'cash': {
+        'primary': Rate(n=0, d=1, unit={'AUD': 1}),
+        'secondary': Rate(n=0, d=1, unit={'AUD': 1})
+      },
+      'non_cash': {
+        'accounts_receivable': Rate(n=0, d=1, unit={'AUD': 1}),
+        'inventory': Rate(n=0, d=1, unit={'AUD': 1}),
+        'property_and_equipment': Rate(n=0, d=1, unit={'AUD': 1})
+      }
+    },
+    'equities': {
+      'contributed_capital': Rate(n=0, d=1, unit={'AUD': 1}),
+      'retained_earnings': Rate(n=0, d=1, unit={'AUD': 1})
+    },
+    'liabilities': {'notes_payable': Rate(n=0, d=1, unit={'AUD': 1})}
+  }
+  y = "\n".join([
+    "  {",
+    "    'assets': {",
+    "      'cash': {",
+    "        'primary': Rate(n=0, d=1, unit={'AUD': 1}),",
+    "        'secondary': Rate(n=0, d=1, unit={'AUD': 1})",
+    "      },",
+    "      'non_cash': {",
+    "        'accounts_receivable': Rate(n=0, d=1, unit={'AUD': 1}),",
+    "        'inventory': Rate(n=0, d=1, unit={'AUD': 1}),",
+    "        'property_and_equipment': Rate(n=0, d=1, unit={'AUD': 1})",
+    "      }",
+    "    },",
+    "    'equities': {",
+    "      'contributed_capital': Rate(n=0, d=1, unit={'AUD': 1}),",
+    "      'retained_earnings': Rate(n=0, d=1, unit={'AUD': 1})",
+    "    },",
+    "    'liabilities': {",
+    "      'notes_payable': Rate(n=0, d=1, unit={'AUD': 1})",
+    "    }",
+    "  }",
+  ])
+  z = f(x, 2)
+  if y != z:
+    comparison = compare_strings(y, z)
+    print(comparison)
+    q = comparison['first_difference']
+    w = 20
+    print([y[q-w:q+w]])
+    print([z[q-w:q+w]])
+  return pxyz(x, y, z, new_line=1)
+
 def t():
   if not t_a(): return pf('!t_a')
   if not t_b(): return pf('!t_b')
+  if not t_c(): return pf('!t_c')
   return 1
